@@ -9,11 +9,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(item, index) in data">
+      <tr v-for="(driver, index) in data">
         <th scope="row">{{ index + 1 }}</th>
-        <td>{{ item.DriverName }}</td>
-        <td>{{ item.BestLap }}</td>
-        <td>{{ item.TotalTime }}</td>
+        <td>{{ driver.DriverName }}</td>
+        <td>{{ laps[index] }}</td>
+        <td>{{ driver.TotalTime }}</td>
       </tr>
     </tbody>
   </table>
@@ -23,6 +23,9 @@
 export default {
   props: {
     data: {
+      type: Array,
+    },
+    laps: {
       type: Array,
     },
   },
