@@ -28,6 +28,9 @@ export default {
     laps: {
       type: Array,
     },
+    totaltime: {
+      type: Array,
+    },
   },
 };
 </script>

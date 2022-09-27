@@ -11,7 +11,7 @@
         </form>
       </div>
     </div>
-    <Table :data="output" :laps="bestLap" />
+    <Table :data="output" :laps="bestLap" :totaltime="totalTime" />
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
     return {
       output: [],
       bestLap: [],
+      totalTime: [],
     };
   },
   methods: {
@@ -114,7 +115,6 @@ export default {
 
         //extra code that converts the int time to MM:SS:ms
         let json = JSON.parse(e.target.result).Result;
-        var bestLap = [];
         var length = Object.keys(json).length;
         for (var i = 0; i <= length; i++) {
           this.bestLap[i] = this.calculateBestLap(json[i].BestLap);
