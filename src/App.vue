@@ -22,21 +22,26 @@
             </div>
           </form>
         </div>
-        <div v-if="uploaded">
+        <!-- <div v-if="uploaded">
           <h2 class="text-xl font-semibold mt-4">Uploaded Data:</h2>
           <pre>{{ output }}</pre>
-        </div>
+        </div> -->
+        <ResultsTable v-if="uploaded" :data="jsonData"></ResultsTable>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ResultsTable from './components/ResultsTable.vue'
+
 export default {
-  components: {},
+  components: {
+    ResultsTable
+  },
   data() {
     return {
-      output: [],
+      jsonData: [],
       uploaded: false
     }
   },
@@ -122,7 +127,7 @@ export default {
         reader.onload = () => {
           try {
             const jsonData = JSON.parse(reader.result)
-            this.output = jsonData
+            this.jsonData = jsonData
           } catch (error) {
             console.error('Error parsing JSON:', error)
             // You might want to handle the error in a user-friendly way
