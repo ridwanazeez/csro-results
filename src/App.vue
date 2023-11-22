@@ -46,78 +46,6 @@ export default {
     }
   },
   methods: {
-    calculateBestLap(x) {
-      //Time calculation
-      //Some steps below are a bit repetitive because of how numbers work in JS
-      var a = x / 1000 //milliseconds after decimal point
-      var b = a.toString() //converts to string
-      var c = parseInt(b) //converted time back to integer, removes decimal without rounding
-      var ms = (c - a) * 1000 //milliseconds, but as a large decimal
-      ms = Math.abs(ms).toFixed(0) //absolute value of milliseconds (round number and removes decimal)
-      var seconds = c % 60 //remainder after dividing by 60 to get seconds of laptime
-      var minutes = (c - seconds) / 60 //subtract seconds from time at C (to avoid decimals) then divided by 60 to get lap minutes
-
-      //console.log(a, b, c, ms, seconds, minutes); //test output
-
-      //Time output
-      if (minutes > 0) {
-        //eg. 1:11:111
-        if (seconds < 10) {
-          //eg. 1:01:111
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return '' + minutes + ':0' + seconds + ':00' + ms //return 1:01:001
-            } else {
-              return '' + minutes + ':0' + seconds + ':0' + ms //return 1:01:011
-            }
-          } else {
-            return '' + minutes + ':0' + seconds + ':' + ms //return 1:01:111
-          }
-        } else {
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return '' + minutes + ':' + seconds + ':00' + ms //return 1:11:001
-            } else {
-              return '' + minutes + ':' + seconds + ':0' + ms //return 1:11:011
-            }
-          } else {
-            return '' + minutes + ':' + seconds + ':' + ms //return 1:11:111
-          }
-        }
-      } else {
-        //eg. 11:111
-        if (seconds < 10) {
-          //eg. 1:01:111
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return '0' + seconds + ':00' + ms //return 1:01:001
-            } else {
-              return '0' + seconds + ':0' + ms //return 1:01:011
-            }
-          } else {
-            return '0' + seconds + ':' + ms //return 1:01:111
-          }
-        } else {
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return seconds + ':00' + ms //return 1:11:001
-            } else {
-              return seconds + ':0' + ms //return 1:11:011
-            }
-          } else {
-            return seconds + ':' + ms //return 1:11:111
-          }
-        }
-      }
-    },
     handleFileUpload(event) {
       const file = event.target.files[0]
 
@@ -140,10 +68,16 @@ export default {
     saveDataToLocalStorage(data) {
       const jsonData = JSON.stringify(data)
       localStorage.setItem('CSRO_RESULT', jsonData)
+    },
+    loadDataFromLocalStorage() {
+      const jsonData = localStorage.getItem('CSRO_RESULT')
+      if (jsonData) {
+        this.uploaded = true
+      }
     }
   },
   mounted() {
-    localStorage.clear()
+    this.loadDataFromLocalStorage()
   }
 }
 </script>
