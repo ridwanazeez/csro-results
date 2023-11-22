@@ -1,6 +1,6 @@
 <template>
   <div class="flex dark:bg-gray-900 sm:h-screen w-full">
-    <SideNav v-if="uploaded"></SideNav>
+    <SideNav v-if="uploaded" @settings="updateResultsTable"></SideNav>
     <div class="m-auto px-6 lg:px-8 max-w-7xl">
       <div class="mx-auto">
         <div v-if="!uploaded">
@@ -27,7 +27,7 @@
           <h2 class="text-xl font-semibold mt-4">Uploaded Data:</h2>
           <pre>{{ output }}</pre>
         </div> -->
-        <ResultsTable v-if="uploaded"></ResultsTable>
+        <ResultsTable v-if="uploaded" :race-data="settings" :key="resultsTableKey"></ResultsTable>
       </div>
     </div>
   </div>
@@ -45,7 +45,9 @@ export default {
   data() {
     return {
       jsonData: [],
-      uploaded: false
+      uploaded: false,
+      settings: null,
+      resultsTableKey: 0
     }
   },
   methods: {
@@ -77,6 +79,10 @@ export default {
       if (jsonData) {
         this.uploaded = true
       }
+    },
+    updateResultsTable(data) {
+      this.settings = data
+      this.resultsTableKey += 1
     }
   },
   mounted() {

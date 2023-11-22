@@ -134,11 +134,16 @@ export default {
   data() {
     return {
       tableData: '',
-      seriesTitle: '2023 CSRO GT3/GT4 Championship',
+      seriesTitle: '',
       seriesLogo: ''
     }
   },
-  props: {},
+  props: {
+    raceData: {
+      type: Object,
+      default: null
+    }
+  },
   methods: {
     calculateBestLap(x) {
       //Time calculation
@@ -277,6 +282,10 @@ export default {
   },
   mounted() {
     this.loadDataFromLocalStorage()
+    if (this.raceData) {
+      this.seriesTitle = this.raceData.seriesTitle
+      this.seriesLogo = this.raceData.seriesLogo
+    }
   }
 }
 </script>
