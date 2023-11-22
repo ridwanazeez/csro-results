@@ -132,7 +132,9 @@
                     <option>USA</option>
                   </select>
                 </td>
-                <td class="px-6 py-4 text-center">{{ calculateBestLap(result.TotalTime) }}</td>
+                <td contenteditable="true" class="px-6 py-4 text-center">
+                  {{ calculateBestLap(result.TotalTime) }}
+                </td>
                 <td class="px-6 py-4 text-center">{{ calculateBestLap(result.BestLap) }}</td>
                 <td v-if="tableData.Type == 'QUALIFY'" class="px-6 py-4 text-center">
                   {{ calculateRaceGap(tableData.Result) }}
