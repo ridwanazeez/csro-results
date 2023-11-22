@@ -1,106 +1,129 @@
 <template>
   <div class="flex">
     <div class="container m-auto py-12">
-      <div
-        v-if="tableData.Type == 'QUALIFY'"
-        class="relative mb-5 flex w-full flex-col items-center text-center"
-      >
-        <div class="flex align-middle items-center">
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Qualifying Results
-            <button
-              class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
-              @click="clearData()"
-            >
-              Clear Table Data
-            </button>
-          </h1>
+      <div id="resultsTable">
+        <div class="flex align-middle items-center mb-5">
+          <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+          <img
+            v-if="seriesLogo"
+            class="w-1/4 mx-auto"
+            :src="seriesLogo"
+            alt="CSRO Racing Series Logo"
+          />
+          <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
         </div>
-        <h2 class="flex items-center tracking-tight text-black">
-          {{ formatDate(tableData.Date) }}
-        </h2>
-      </div>
-      <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
-        <div class="flex align-middle items-center">
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Race Results
-            <button
-              class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
-              @click="clearData()"
-            >
-              Clear Table Data
-            </button>
-          </h1>
-        </div>
-        <h2 class="flex items-center tracking-tight text-black">
-          {{ formatDate(tableData.Date) }}
-        </h2>
-      </div>
-      <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md dark:border-white">
-        <table
-          class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white table-auto"
+        <div
+          v-if="tableData.Type == 'QUALIFY'"
+          class="relative mb-5 flex w-full flex-col items-center text-center"
         >
-          <thead class="bg-gray-50 dark:bg-gray-800">
-            <tr>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            {{ seriesTitle }}
+          </h1>
+          <div class="flex align-middle items-center">
+            <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+              Qualifying Results
+              <button
+                class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
+                @click="clearData()"
               >
-                #
-              </th>
-              <th scope="col" class="px-6 py-4 font-medium text-gray-900 dark:text-white">Name</th>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                Clear Table Data
+              </button>
+            </h1>
+          </div>
+          <h2 class="flex items-center tracking-tight text-black">
+            {{ formatDate(tableData.Date) }}
+          </h2>
+        </div>
+        <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
+          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            {{ seriesTitle }}
+          </h1>
+          <div class="flex align-middle items-center">
+            <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+              Race Results
+              <button
+                class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
+                @click="clearData()"
               >
-                Country
-              </th>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                Clear Table Data
+              </button>
+            </h1>
+          </div>
+          <h2 class="flex items-center tracking-tight text-black">
+            {{ formatDate(tableData.Date) }}
+          </h2>
+        </div>
+        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md dark:border-white">
+          <table
+            class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white table-auto"
+          >
+            <thead class="bg-gray-50 dark:bg-gray-800">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  #
+                </th>
+                <th scope="col" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Country
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Total Time
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Best Lap
+                </th>
+                <th
+                  v-if="tableData.Type == 'QUALIFY'"
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Gap
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  # of Laps
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 border-t border-gray-100 dark:border-white">
+              <tr
+                v-for="(result, resultIndex) of tableData.Result"
+                :key="resultIndex"
+                class="hover:bg-gray-50 dark:hover:bg-gray-700"
               >
-                Total Time
-              </th>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-              >
-                Best Lap
-              </th>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-              >
-                Gap
-              </th>
-              <th
-                scope="col"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-              >
-                # of Laps
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100 border-t border-gray-100 dark:border-white">
-            <tr
-              v-for="(result, resultIndex) of tableData.Result"
-              :key="resultIndex"
-              class="hover:bg-gray-50 dark:hover:bg-gray-700"
-            >
-              <th class="px-6 py-4 font-bold">{{ resultIndex + 1 }}</th>
-              <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
-                {{ result.DriverName }}
-              </td>
-              <td class="px-6 py-4 text-center">COUNTRY</td>
-              <td class="px-6 py-4 text-center">{{ calculateBestLap(result.TotalTime) }}</td>
-              <td class="px-6 py-4 text-center">{{ calculateBestLap(result.BestLap) }}</td>
-              <td class="px-6 py-4 text-center"></td>
-              <td class="px-6 py-4 text-center">
-                {{ calculateTotalLaps(tableData.Laps, result.DriverName) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <th class="px-6 py-4 font-bold text-center">{{ resultIndex + 1 }}</th>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
+                  {{ result.DriverName }}
+                </td>
+                <td class="px-6 py-4 text-center">COUNTRY</td>
+                <td class="px-6 py-4 text-center">{{ calculateBestLap(result.TotalTime) }}</td>
+                <td class="px-6 py-4 text-center">{{ calculateBestLap(result.BestLap) }}</td>
+                <td v-if="tableData.Type == 'QUALIFY'" class="px-6 py-4 text-center">
+                  {{ calculateRaceGap(tableData.Result) }}
+                </td>
+                <td class="px-6 py-4 text-center">
+                  {{ calculateTotalLaps(tableData.Laps, result.DriverName) }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -110,7 +133,9 @@
 export default {
   data() {
     return {
-      tableData: ''
+      tableData: '',
+      seriesTitle: '2023 CSRO GT3/GT4 Championship',
+      seriesLogo: ''
     }
   },
   props: {},
@@ -196,6 +221,19 @@ export default {
         }
       }
       return totalLaps
+    },
+    calculateRaceGap(data) {
+      let gap = 0
+      console.log('length: ', data.length)
+      for (var i = 0; i < data.length; i++) {
+        console.log('index: ', i)
+        console.log('current: ', data[i].BestLap)
+        console.log('next: ', data[i + 1].BestLap)
+        gap = data[i + 1].BestLap - data[i].BestLap
+        console.log('gap: ', gap)
+        // console.log(gap)
+      }
+      // return gap
     },
     formatDate(inputDate) {
       // Input date string
