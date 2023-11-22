@@ -145,7 +145,7 @@ export default {
     }
   },
   methods: {
-    calculateBestLap(x) {
+    calculateBestLap(x, penalty = 0) {
       //Time calculation
       //Some steps below are a bit repetitive because of how numbers work in JS
       var a = x / 1000 //milliseconds after decimal point
@@ -153,10 +153,20 @@ export default {
       var c = parseInt(b) //converted time back to integer, removes decimal without rounding
       var ms = (c - a) * 1000 //milliseconds, but as a large decimal
       ms = Math.abs(ms).toFixed(0) //absolute value of milliseconds (round number and removes decimal)
-      var seconds = c % 60 //remainder after dividing by 60 to get seconds of laptime
-      var minutes = (c - seconds) / 60 //subtract seconds from time at C (to avoid decimals) then divided by 60 to get lap minutes
+      var seconds = (c % 60) + penalty //remainder after dividing by 60 to get seconds of laptime then add on penalties if any
+      var minutes = Math.round((c - seconds) / 60) //subtract seconds from time at C (to avoid decimals) then divided by 60 to get lap minutes
 
-      //console.log(a, b, c, ms, seconds, minutes); //test output
+      // console.log(a, b, c, ms, seconds, minutes) //test output
+      console.log('------------')
+      console.log('original: ', x)
+      console.log('ms after decimal point: ', a)
+      console.log('converted to string: ', b)
+      console.log('converted back to int: ', c)
+      console.log('minutes: ', minutes)
+      console.log('seconds: ', seconds)
+      console.log('ms: ', ms)
+      console.log('time penalty: ', penalty)
+      console.log('------------')
 
       //Time output
       if (minutes > 0) {
