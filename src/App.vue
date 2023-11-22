@@ -4,7 +4,11 @@
     <div class="m-auto px-6 lg:px-8 max-w-7xl">
       <div class="mx-auto">
         <div v-if="!uploaded">
-          <h1 class="text-3xl text-center font-bold">CSRO Result Generator</h1>
+          <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+          <h1 class="mt-4 text-3xl text-center font-bold">CSRO Results Generator</h1>
+          <p class="text-center text-sm dark:text-white">
+            v{{ version }} | Last updated: 22/11/2023
+          </p>
           <form class="my-4">
             <div class="flex items-center">
               <label
@@ -34,6 +38,7 @@
 </template>
 
 <script>
+import { version } from '../package.json'
 import ResultsTable from './components/ResultsTable.vue'
 import SideNav from './components/SideNav.vue'
 
@@ -47,7 +52,8 @@ export default {
       jsonData: [],
       uploaded: false,
       settings: null,
-      resultsTableKey: 0
+      resultsTableKey: 0,
+      version: version
     }
   },
   methods: {
