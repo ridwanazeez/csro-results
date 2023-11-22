@@ -1,5 +1,6 @@
 <template>
   <div class="flex dark:bg-gray-900 sm:h-screen w-full">
+    <SideNav v-if="uploaded"></SideNav>
     <div class="m-auto px-6 lg:px-8 max-w-7xl">
       <div class="mx-auto">
         <div v-if="!uploaded">
@@ -34,10 +35,12 @@
 
 <script>
 import ResultsTable from './components/ResultsTable.vue'
+import SideNav from './components/SideNav.vue'
 
 export default {
   components: {
-    ResultsTable
+    ResultsTable,
+    SideNav
   },
   data() {
     return {
