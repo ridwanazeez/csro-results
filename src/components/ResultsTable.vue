@@ -19,17 +19,9 @@
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
             {{ seriesTitle }}
           </h1>
-          <div class="flex align-middle items-center">
-            <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-              Qualifying Results
-              <button
-                class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
-                @click="clearData()"
-              >
-                Clear Table Data
-              </button>
-            </h1>
-          </div>
+          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Qualifying Results
+          </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
           </h2>
@@ -38,17 +30,9 @@
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
             {{ seriesTitle }}
           </h1>
-          <div class="flex align-middle items-center">
-            <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-              Race Results
-              <button
-                class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
-                @click="clearData()"
-              >
-                Clear Table Data
-              </button>
-            </h1>
-          </div>
+          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Race Results
+          </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
           </h2>
@@ -108,10 +92,46 @@
                 class="hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 <th class="px-6 py-4 font-bold text-center">{{ resultIndex + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
+                <td
+                  contenteditable="true"
+                  class="px-6 py-4 font-normal text-gray-900 dark:text-white"
+                >
                   {{ result.DriverName }}
                 </td>
-                <td class="px-6 py-4 text-center">COUNTRY</td>
+                <td contenteditable="true" class="px-6 py-4 text-center">
+                  <select
+                    id="country"
+                    name="country"
+                    class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6 text-center"
+                  >
+                    <option selected disabled>COUNTRY</option>
+                    <option>Anguilla</option>
+                    <option>Antigua and Barbuda</option>
+                    <option>Bahamas</option>
+                    <option>Barbados</option>
+                    <option>Belize</option>
+                    <option>Bermuda</option>
+                    <option>British Virgin Islands</option>
+                    <option>Canada</option>
+                    <option>Cayman Islands</option>
+                    <option>Cuba</option>
+                    <option>Denmark</option>
+                    <option>Dominica</option>
+                    <option>Grenada</option>
+                    <option>Guyana</option>
+                    <option>Haiti</option>
+                    <option>Jamaica</option>
+                    <option>Montserrat</option>
+                    <option>South Africa</option>
+                    <option>Saint Lucia</option>
+                    <option>St. Kitts and Nevis</option>
+                    <option>St. Vincent and the Grenadines</option>
+                    <option>Suriname</option>
+                    <option>Trinidad & Tobago</option>
+                    <option>Turks and Caicos Islands</option>
+                    <option>USA</option>
+                  </select>
+                </td>
                 <td class="px-6 py-4 text-center">{{ calculateBestLap(result.TotalTime) }}</td>
                 <td class="px-6 py-4 text-center">{{ calculateBestLap(result.BestLap) }}</td>
                 <td v-if="tableData.Type == 'QUALIFY'" class="px-6 py-4 text-center">
@@ -134,8 +154,8 @@ export default {
   data() {
     return {
       tableData: '',
-      seriesTitle: '',
-      seriesLogo: ''
+      seriesTitle: null,
+      seriesLogo: null
     }
   },
   props: {
@@ -156,17 +176,16 @@ export default {
       var seconds = (c % 60) + penalty //remainder after dividing by 60 to get seconds of laptime then add on penalties if any
       var minutes = Math.round((c - seconds) / 60) //subtract seconds from time at C (to avoid decimals) then divided by 60 to get lap minutes
 
-      // console.log(a, b, c, ms, seconds, minutes) //test output
-      console.log('------------')
-      console.log('original: ', x)
-      console.log('ms after decimal point: ', a)
-      console.log('converted to string: ', b)
-      console.log('converted back to int: ', c)
-      console.log('minutes: ', minutes)
-      console.log('seconds: ', seconds)
-      console.log('ms: ', ms)
-      console.log('time penalty: ', penalty)
-      console.log('------------')
+      // console.log('------------')
+      // console.log('original: ', x)
+      // console.log('ms after decimal point: ', a)
+      // console.log('converted to string: ', b)
+      // console.log('converted back to int: ', c)
+      // console.log('minutes: ', minutes)
+      // console.log('seconds: ', seconds)
+      // console.log('ms: ', ms)
+      // console.log('time penalty: ', penalty)
+      // console.log('------------')
 
       //Time output
       if (minutes > 0) {
@@ -278,10 +297,6 @@ export default {
     saveDataToLocalStorage(data) {
       const jsonData = JSON.stringify(data)
       localStorage.setItem('CSRO_RESULT', jsonData)
-    },
-    clearData() {
-      localStorage.clear()
-      window.location.reload()
     }
   },
   mounted() {

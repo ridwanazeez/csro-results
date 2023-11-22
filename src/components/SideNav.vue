@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-64 bg-gray-800 text-white p-4">
+  <aside class="w-[300px] bg-gray-800 text-white p-4">
     <div class="mb-4">
       <h1 class="text-2xl font-bold">Settings</h1>
     </div>
@@ -19,7 +19,6 @@
         <label for="seriesLogo" class="block text-sm font-medium leading-6 text-white">
           Series Logo
         </label>
-
         <input
           id="seriesLogo"
           name="seriesLogo"
@@ -27,19 +26,22 @@
           class="sr-only"
           @change="changeSeriesLogo"
         />
-
         <label for="seriesLogo" class="cursor-pointer">
           <span class="bg-blue-500 text-white py-2 px-4 inline-block rounded-md">Upload Image</span>
         </label>
-
-        <img v-if="seriesLogo" :src="seriesLogo" alt="Selected Image" />
       </div>
-      <div>
+      <div class="mb-4 flex align-middle items-center justify-between space-x-3">
         <button
-          class="mt-4 rounded-md bg-green-600 hover:bg-green-700 p-2 text-base text-white"
+          class="rounded-md bg-green-600 hover:bg-green-700 p-2 text-base text-white w-full"
           @click="saveSettings"
         >
           Save
+        </button>
+        <button
+          class="rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white w-full"
+          @click="clearData()"
+        >
+          Reset
         </button>
       </div>
     </nav>
@@ -69,7 +71,11 @@ export default {
       }
     },
     saveSettings() {
-      this.$emit('settings', { seriesTitle: this.seriesTitle, seriesLogo: 'key2' })
+      this.$emit('settings', { seriesTitle: this.seriesTitle, seriesLogo: this.seriesLogo })
+    },
+    clearData() {
+      localStorage.clear()
+      window.location.reload()
     }
   },
   mounted() {
