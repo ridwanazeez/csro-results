@@ -4,7 +4,7 @@
     <div class="m-auto px-6 lg:px-8 max-w-7xl">
       <div class="mx-auto">
         <div v-if="!uploaded">
-          <h1 class="text-3xl text-center font-bold">CSRO Timesheet Parser</h1>
+          <h1 class="text-3xl text-center font-bold">CSRO Result Generator</h1>
           <form class="my-4">
             <div class="flex items-center">
               <label
