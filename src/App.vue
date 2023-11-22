@@ -1,7 +1,7 @@
 <template>
-  <div class="flex dark:bg-gray-900 sm:h-screen">
-    <div class="m-auto px-6 lg:px-8">
-      <div class="mx-auto max-w-3xl">
+  <div class="flex dark:bg-gray-900 sm:h-screen w-full">
+    <div class="m-auto px-6 lg:px-8 max-w-7xl">
+      <div class="mx-auto">
         <div v-if="!uploaded">
           <h1 class="text-3xl text-center font-bold">CSRO Timesheet Parser</h1>
           <form class="my-4">

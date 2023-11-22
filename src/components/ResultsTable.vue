@@ -21,13 +21,24 @@
         </h2>
       </div>
       <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
-        <h1 class="flex items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-          Race Results
-        </h1>
+        <div class="flex align-middle items-center">
+          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Race Results
+            <button
+              class="absolute right-0 ml-2 inline-flex items-center rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white"
+              @click="clearData()"
+            >
+              Clear Table Data
+            </button>
+          </h1>
+        </div>
+        <h2 class="flex items-center tracking-tight text-black">
+          {{ formatDate(tableData.Date) }}
+        </h2>
       </div>
       <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md dark:border-white">
         <table
-          class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white"
+          class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white table-auto"
         >
           <thead class="bg-gray-50 dark:bg-gray-800">
             <tr>
@@ -77,7 +88,7 @@
               class="hover:bg-gray-50 dark:hover:bg-gray-700"
             >
               <th class="px-6 py-4 font-bold">{{ resultIndex + 1 }}</th>
-              <td class="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-white">
+              <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
                 {{ result.DriverName }}
               </td>
               <td class="px-6 py-4 text-center">COUNTRY</td>
