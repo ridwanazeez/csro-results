@@ -26,7 +26,7 @@
           <h2 class="text-xl font-semibold mt-4">Uploaded Data:</h2>
           <pre>{{ output }}</pre>
         </div> -->
-        <ResultsTable v-if="uploaded" :data="jsonData"></ResultsTable>
+        <ResultsTable v-if="uploaded"></ResultsTable>
       </div>
     </div>
   </div>
@@ -126,17 +126,24 @@ export default {
 
         reader.onload = () => {
           try {
-            const jsonData = JSON.parse(reader.result)
-            this.jsonData = jsonData
+            const fileData = JSON.parse(reader.result)
+            this.jsonData = fileData
+            this.saveDataToLocalStorage(this.jsonData)
+            this.uploaded = true
           } catch (error) {
             console.error('Error parsing JSON:', error)
-            // You might want to handle the error in a user-friendly way
           }
         }
         reader.readAsText(file)
       }
-      this.uploaded = true
+    },
+    saveDataToLocalStorage(data) {
+      const jsonData = JSON.stringify(data)
+      localStorage.setItem('CSRO_RESULT', jsonData)
     }
+  },
+  mounted() {
+    localStorage.clear()
   }
 }
 </script>
