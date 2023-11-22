@@ -229,16 +229,10 @@ export default {
     },
     calculateRaceGap(data) {
       let gap = 0
-      console.log('length: ', data.length)
       for (var i = 0; i < data.length; i++) {
-        console.log('index: ', i)
-        console.log('current: ', data[i].BestLap)
-        console.log('next: ', data[i + 1].BestLap)
-        gap = data[i + 1].BestLap - data[i].BestLap
-        console.log('gap: ', gap)
-        // console.log(gap)
+        // gap = data[i + 1].BestLap - data[i].BestLap
       }
-      // return gap
+      return gap
     },
     formatDate(inputDate) {
       // Input date string

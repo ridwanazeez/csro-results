@@ -8,14 +8,12 @@
         <label for="seriesTitle" class="block text-sm font-medium leading-6 text-white"
           >Series Title</label
         >
-        <input
+        <textarea
           id="seriesTitle"
           v-model="seriesTitle"
-          type="text"
           name="seriesTitle"
           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-        />
-        {{ seriesTitle }}
+        ></textarea>
       </div>
       <div class="mb-4">
         <label for="seriesLogo" class="block text-sm font-medium leading-6 text-white">
@@ -31,14 +29,14 @@
         />
 
         <label for="seriesLogo" class="cursor-pointer">
-          <span class="bg-blue-500 text-white py-2 px-4 inline-block">Upload Image</span>
+          <span class="bg-blue-500 text-white py-2 px-4 inline-block rounded-md">Upload Image</span>
         </label>
 
         <img v-if="seriesLogo" :src="seriesLogo" alt="Selected Image" />
       </div>
       <div>
         <button
-          class="rounded-md bg-green-600 hover:bg-green-700 p-2 text-base text-white"
+          class="mt-4 rounded-md bg-green-600 hover:bg-green-700 p-2 text-base text-white"
           @click="saveSettings"
         >
           Save
@@ -52,7 +50,7 @@
 export default {
   data() {
     return {
-      seriesTitle: '2023 CSRO GT3/GT4 Championship',
+      seriesTitle: '2023 CSRO Championship',
       seriesLogo: null
     }
   },
@@ -73,6 +71,9 @@ export default {
     saveSettings() {
       this.$emit('settings', { seriesTitle: this.seriesTitle, seriesLogo: 'key2' })
     }
+  },
+  mounted() {
+    this.saveSettings()
   }
 }
 </script>
