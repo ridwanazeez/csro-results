@@ -1,138 +1,98 @@
 <template>
-  <div class="container">
-    <h1>CSRO Timesheet Parser</h1>
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <div class="col-4">
-        <form id="form">
-          <div class="mb-3">
-            <label for="fileUpload" class="form-label">Upload JSON File</label>
-            <input type="file" class="form-control" id="fileUpload" @change="handleFile" />
-          </div>
-        </form>
+  <div class="flex dark:bg-gray-900 sm:h-screen w-full">
+    <SideNav v-if="uploaded" @settings="updateResultsTable"></SideNav>
+    <div class="m-auto px-6 lg:px-8 max-w-7xl">
+      <div class="mx-auto">
+        <div v-if="!uploaded">
+          <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+          <h1 class="mt-4 text-3xl text-center font-bold">CSRO Results Generator</h1>
+          <p class="text-center text-sm dark:text-white">
+            v{{ version }} | Last updated: 22/11/2023
+          </p>
+          <form class="my-4">
+            <div class="flex items-center">
+              <label
+                for="fileUpload"
+                class="relative cursor-pointer rounded-md font-bold text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:bg-blue-700 px-2 py-2 bg-blue-600 mx-auto"
+              >
+                <span>Upload JSON</span>
+                <input
+                  id="fileUpload"
+                  name="file-upload"
+                  type="file"
+                  class="sr-only"
+                  @change="handleFileUpload"
+                />
+              </label>
+            </div>
+          </form>
+        </div>
+        <!-- <div v-if="uploaded">
+          <h2 class="text-xl font-semibold mt-4">Uploaded Data:</h2>
+          <pre>{{ output }}</pre>
+        </div> -->
+        <ResultsTable v-if="uploaded" :race-data="settings" :key="resultsTableKey"></ResultsTable>
       </div>
     </div>
-    <Table :data="output" :laps="bestLap" :totaltime="totalTime" />
   </div>
 </template>
 
 <script>
-import Table from "./components/Table.vue";
+import { version } from '../package.json'
+import ResultsTable from './components/ResultsTable.vue'
+import SideNav from './components/SideNav.vue'
 
 export default {
-  name: "App",
   components: {
-    Table,
+    ResultsTable,
+    SideNav
   },
   data() {
     return {
-      output: [],
-      bestLap: [],
-      totalTime: [],
-    };
+      jsonData: [],
+      uploaded: false,
+      settings: null,
+      resultsTableKey: 0,
+      version: version
+    }
   },
   methods: {
-    handleFile(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.readFile(files[0]);
-    },
-    calculateBestLap(x) {
-      //Time calculation
-      //Some steps below are a bit repetitive because of how numbers work in JS
-      var a = x / 1000; //milliseconds after decimal point
-      var b = a.toString(); //converts to string
-      var c = parseInt(b); //converted time back to integer, removes decimal without rounding
-      var ms = (c - a) * 1000; //milliseconds, but as a large decimal
-      ms = Math.abs(ms).toFixed(0); //absolute value of milliseconds (round number and removes decimal)
-      var seconds = c % 60; //remainder after dividing by 60 to get seconds of laptime
-      var minutes = (c - seconds) / 60; //subtract seconds from time at C (to avoid decimals) then divided by 60 to get lap minutes
+    handleFileUpload(event) {
+      const file = event.target.files[0]
 
-      //console.log(a, b, c, ms, seconds, minutes); //test output
+      if (file) {
+        const reader = new FileReader()
 
-      //Time output
-      if (minutes > 0) {
-        //eg. 1:11:111
-        if (seconds < 10) {
-          //eg. 1:01:111
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return "" + minutes + ":0" + seconds + ":00" + ms; //return 1:01:001
-            } else {
-              return "" + minutes + ":0" + seconds + ":0" + ms; //return 1:01:011
-            }
-          } else {
-            return "" + minutes + ":0" + seconds + ":" + ms; //return 1:01:111
-          }
-        } else {
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return "" + minutes + ":" + seconds + ":00" + ms; //return 1:11:001
-            } else {
-              return "" + minutes + ":" + seconds + ":0" + ms; //return 1:11:011
-            }
-          } else {
-            return "" + minutes + ":" + seconds + ":" + ms; //return 1:11:111
+        reader.onload = () => {
+          try {
+            const fileData = JSON.parse(reader.result)
+            this.jsonData = fileData
+            this.saveDataToLocalStorage(this.jsonData)
+            this.uploaded = true
+          } catch (error) {
+            console.error('Error parsing JSON:', error)
           }
         }
-      } else {
-        //eg. 11:111
-        if (seconds < 10) {
-          //eg. 1:01:111
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return "0" + seconds + ":00" + ms; //return 1:01:001
-            } else {
-              return "0" + seconds + ":0" + ms; //return 1:01:011
-            }
-          } else {
-            return "0" + seconds + ":" + ms; //return 1:01:111
-          }
-        } else {
-          if (ms < 100) {
-            //eg. 1:01:011
-            if (ms < 10) {
-              //eg. 1:01:001
-              return seconds + ":00" + ms; //return 1:11:001
-            } else {
-              return seconds + ":0" + ms; //return 1:11:011
-            }
-          } else {
-            return seconds + ":" + ms; //return 1:11:111
-          }
-        }
+        reader.readAsText(file)
       }
     },
-    readFile(file) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.output = JSON.parse(e.target.result).Result;
-
-        //extra code that converts the int time to MM:SS:ms
-        let json = JSON.parse(e.target.result).Result;
-        var length = Object.keys(json).length;
-        for (var i = 0; i <= length; i++) {
-          this.bestLap[i] = this.calculateBestLap(json[i].BestLap);
-        }
-      };
-      reader.readAsText(file);
+    saveDataToLocalStorage(data) {
+      const jsonData = JSON.stringify(data)
+      localStorage.setItem('CSRO_RESULT', jsonData)
     },
+    loadDataFromLocalStorage() {
+      const jsonData = localStorage.getItem('CSRO_RESULT')
+      if (jsonData) {
+        this.uploaded = true
+      }
+    },
+    updateResultsTable(data) {
+      this.settings = data
+      this.resultsTableKey += 1
+    }
   },
-};
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  mounted() {
+    this.loadDataFromLocalStorage()
+  }
 }
-</style>
+</script>
