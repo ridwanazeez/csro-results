@@ -135,9 +135,14 @@
                 <td contenteditable="true" class="px-6 py-4 text-center">
                   {{ calculateBestLap(result.TotalTime) }}
                 </td>
-                <td class="px-6 py-4 text-center">{{ calculateBestLap(result.BestLap) }}</td>
+                <td
+                  class="px-6 py-4 text-center"
+                  :class="{ 'bg-green-600 text-white': isBestLap(result.BestLap) }"
+                >
+                  {{ calculateBestLap(result.BestLap) }}
+                </td>
                 <td v-if="tableData.Type == 'QUALIFY'" class="px-6 py-4 text-center">
-                  {{ calculateRaceGap(tableData.Result) }}
+                  {{ calculateRaceGap(tableData.Result)[resultIndex] }}
                 </td>
                 <td class="px-6 py-4 text-center">
                   {{ calculateTotalLaps(tableData.Laps, result.DriverName) }}
@@ -258,12 +263,21 @@ export default {
       }
       return totalLaps
     },
-    calculateRaceGap(data) {
-      let gap = 0
-      for (var i = 0; i < data.length; i++) {
-        // gap = data[i + 1].BestLap - data[i].BestLap
+    calculateRaceGap(results) {
+      const raceGap = []
+
+      for (let i = 0; i < results.length; i++) {
+        if (i === 0) {
+          // For the first row, the race gap is 0
+          raceGap.push(this.formatTime(0))
+        } else {
+          // Calculate the difference between the current and previous BestLap
+          const gap = results[i].BestLap - results[i - 1].BestLap
+          raceGap.push(this.formatTime(gap))
+        }
       }
-      return gap
+
+      return raceGap
     },
     formatDate(inputDate) {
       // Input date string
@@ -299,6 +313,27 @@ export default {
     saveDataToLocalStorage(data) {
       const jsonData = JSON.stringify(data)
       localStorage.setItem('CSRO_RESULT', jsonData)
+    },
+    isBestLap(currentBestLap) {
+      const allBestLaps = this.tableData.Result.map((result) => result.BestLap)
+      const smallestBestLap = Math.min(...allBestLaps)
+      return currentBestLap === smallestBestLap
+    },
+    formatTime(milliseconds) {
+      const minutes = Math.floor(milliseconds / (60 * 1000))
+      const seconds = Math.floor((milliseconds % (60 * 1000)) / 1000)
+      const millisecondsPart = milliseconds % 1000
+
+      // Pad single-digit seconds and milliseconds with leading zeros
+      const formattedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
+      const formattedMilliseconds =
+        millisecondsPart < 10
+          ? `00${millisecondsPart}`
+          : millisecondsPart < 100
+            ? `0${millisecondsPart}`
+            : `${millisecondsPart}`
+
+      return `${minutes}:${formattedSeconds}.${formattedMilliseconds}`
     }
   },
   mounted() {
