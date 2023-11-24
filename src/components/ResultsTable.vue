@@ -271,8 +271,8 @@ export default {
           // For the first row, the race gap is 0
           raceGap.push(this.formatTime(0))
         } else {
-          // Calculate the difference between the current and previous BestLap
-          const gap = results[i].BestLap - results[i - 1].BestLap
+          // Calculate the difference between the current lap and the first lap
+          const gap = results[i].BestLap - results[0].BestLap
           raceGap.push(this.formatTime(gap))
         }
       }
