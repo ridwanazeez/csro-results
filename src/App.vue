@@ -7,7 +7,7 @@
           <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
           <h1 class="mt-4 text-3xl text-center font-bold">CSRO Results Generator</h1>
           <p class="text-center text-sm dark:text-white">
-            v{{ version }} | Last updated: 01/01/2024
+            v{{ version }} | Last updated: 19/11/2024
           </p>
           <form class="my-4">
             <div class="flex items-center">
