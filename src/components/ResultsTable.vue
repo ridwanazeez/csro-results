@@ -1,7 +1,15 @@
 <template>
   <div class="flex">
     <div class="container m-auto py-12">
-      <div id="resultsTable">
+      <div class="mb-4 flex justify-end">
+        <button
+          @click="captureScreenshot"
+          class="rounded-md bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white font-medium"
+        >
+          📸 Save Screenshot
+        </button>
+      </div>
+      <div id="resultsTable" class="bg-white">
         <div class="flex align-middle items-center mb-5">
           <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
           <img
@@ -20,7 +28,7 @@
             {{ seriesTitle }}
           </h1>
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Qualifying Results
+            {{ resultsTitle || 'Qualifying Results' }}
           </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
@@ -31,7 +39,7 @@
             {{ seriesTitle }}
           </h1>
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Race Results
+            {{ resultsTitle || 'Race Results' }}
           </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
@@ -89,7 +97,13 @@
               <tr
                 v-for="(result, resultIndex) of tableData.Result"
                 :key="resultIndex"
-                class="hover:bg-gray-50 dark:hover:bg-gray-700"
+                draggable="true"
+                @dragstart="handleDragStart($event, resultIndex)"
+                @dragover.prevent="handleDragOver($event, resultIndex)"
+                @drop="handleDrop($event, resultIndex)"
+                @dragend="handleDragEnd"
+                class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
+                :class="{ 'opacity-50': draggedIndex === resultIndex }"
               >
                 <th class="px-6 py-4 font-bold text-center">{{ resultIndex + 1 }}</th>
                 <td
@@ -102,34 +116,37 @@
                   <select
                     id="country"
                     name="country"
+                    :value="getDriverNation(result.DriverName)"
                     class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6 text-center"
                   >
-                    <option selected disabled>COUNTRY</option>
-                    <option>Anguilla</option>
-                    <option>Antigua and Barbuda</option>
-                    <option>Bahamas</option>
-                    <option>Barbados</option>
-                    <option>Belize</option>
-                    <option>Bermuda</option>
-                    <option>British Virgin Islands</option>
-                    <option>Canada</option>
-                    <option>Cayman Islands</option>
-                    <option>Cuba</option>
-                    <option>Denmark</option>
-                    <option>Dominica</option>
-                    <option>Grenada</option>
-                    <option>Guyana</option>
-                    <option>Haiti</option>
-                    <option>Jamaica</option>
-                    <option>Montserrat</option>
-                    <option>South Africa</option>
-                    <option>Saint Lucia</option>
-                    <option>St. Kitts and Nevis</option>
-                    <option>St. Vincent and the Grenadines</option>
-                    <option>Suriname</option>
-                    <option>Trinidad & Tobago</option>
-                    <option>Turks and Caicos Islands</option>
-                    <option>USA</option>
+                    <option value="" disabled>COUNTRY</option>
+                    <option value="Anguilla">Anguilla</option>
+                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                    <option value="Bahamas">Bahamas</option>
+                    <option value="Barbados">Barbados</option>
+                    <option value="Belize">Belize</option>
+                    <option value="Bermuda">Bermuda</option>
+                    <option value="British Virgin Islands">British Virgin Islands</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Cayman Islands">Cayman Islands</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Dominica">Dominica</option>
+                    <option value="Grenada">Grenada</option>
+                    <option value="Guyana">Guyana</option>
+                    <option value="Haiti">Haiti</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Saint Lucia">Saint Lucia</option>
+                    <option value="St. Kitts and Nevis">St. Kitts and Nevis</option>
+                    <option value="St. Vincent and the Grenadines">
+                      St. Vincent and the Grenadines
+                    </option>
+                    <option value="Suriname">Suriname</option>
+                    <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                    <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                    <option value="USA">USA</option>
                   </select>
                 </td>
                 <td contenteditable="true" class="px-6 py-4 text-center">
@@ -157,12 +174,17 @@
 </template>
 
 <script>
+import html2canvas from 'html2canvas'
+
 export default {
   data() {
     return {
       tableData: '',
       seriesTitle: null,
-      seriesLogo: null
+      resultsTitle: '',
+      seriesLogo: null,
+      draggedIndex: null,
+      dragOverIndex: null
     }
   },
   props: {
@@ -334,12 +356,129 @@ export default {
             : `${millisecondsPart}`
 
       return `${minutes}:${formattedSeconds}.${formattedMilliseconds}`
+    },
+    getDriverNation(driverName) {
+      if (!this.tableData.Cars) return ''
+
+      // Find the driver in the Cars array
+      const car = this.tableData.Cars.find((car) => car.Driver && car.Driver.Name === driverName)
+
+      if (car && car.Driver && car.Driver.Nation) {
+        // Convert nation code to full country name
+        return this.getNationName(car.Driver.Nation)
+      }
+
+      return ''
+    },
+    getNationName(nationCode) {
+      // Map nation codes to full country names
+      const nationMap = {
+        GUY: 'Guyana',
+        JAM: 'Jamaica',
+        TTO: 'Trinidad & Tobago',
+        BRB: 'Barbados',
+        BHS: 'Bahamas',
+        ATG: 'Antigua and Barbuda',
+        DMA: 'Dominica',
+        GRD: 'Grenada',
+        KNA: 'St. Kitts and Nevis',
+        LCA: 'Saint Lucia',
+        VCT: 'St. Vincent and the Grenadines',
+        BLZ: 'Belize',
+        SUR: 'Suriname',
+        HTI: 'Haiti',
+        CUB: 'Cuba',
+        CAN: 'Canada',
+        USA: 'USA',
+        MSR: 'Montserrat',
+        AIA: 'Anguilla',
+        VGB: 'British Virgin Islands',
+        CYM: 'Cayman Islands',
+        TCA: 'Turks and Caicos Islands',
+        BMU: 'Bermuda',
+        DNK: 'Denmark',
+        ZAF: 'South Africa'
+      }
+
+      return nationMap[nationCode] || ''
+    },
+    handleDragStart(event, index) {
+      this.draggedIndex = index
+      event.dataTransfer.effectAllowed = 'move'
+      event.dataTransfer.setData('text/html', event.target.innerHTML)
+    },
+    handleDragOver(event, index) {
+      event.preventDefault()
+      this.dragOverIndex = index
+    },
+    handleDrop(event, dropIndex) {
+      event.preventDefault()
+      if (this.draggedIndex === null || this.draggedIndex === dropIndex) {
+        return
+      }
+
+      const results = [...this.tableData.Result]
+      const draggedItem = results[this.draggedIndex]
+
+      // Remove dragged item
+      results.splice(this.draggedIndex, 1)
+
+      // Insert at new position
+      results.splice(dropIndex, 0, draggedItem)
+
+      this.tableData.Result = results
+      this.saveDataToLocalStorage(this.tableData)
+    },
+    handleDragEnd() {
+      this.draggedIndex = null
+      this.dragOverIndex = null
+    },
+    async captureScreenshot() {
+      const element = document.getElementById('resultsTable')
+      if (!element) {
+        console.error('Results table element not found')
+        return
+      }
+
+      try {
+        // Temporarily add padding for screenshot
+        element.style.padding = '2.5rem'
+
+        const canvas = await html2canvas(element, {
+          backgroundColor: '#ffffff',
+          scale: 2,
+          logging: false,
+          useCORS: true
+        })
+
+        // Remove padding after capture
+        element.style.padding = ''
+
+        // Convert canvas to blob
+        canvas.toBlob((blob) => {
+          // Create download link
+          const url = URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          const date = new Date().toISOString().split('T')[0]
+          link.download = `csro-results-${date}.png`
+          link.href = url
+          link.click()
+
+          // Cleanup
+          URL.revokeObjectURL(url)
+        })
+      } catch (error) {
+        console.error('Error capturing screenshot:', error)
+        // Make sure to remove padding even if error occurs
+        element.style.padding = ''
+      }
     }
   },
   mounted() {
     this.loadDataFromLocalStorage()
     if (this.raceData) {
       this.seriesTitle = this.raceData.seriesTitle
+      this.resultsTitle = this.raceData.resultsTitle || ''
       this.seriesLogo = this.raceData.seriesLogo
     }
   }
