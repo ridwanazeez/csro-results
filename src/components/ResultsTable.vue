@@ -1,20 +1,6 @@
 <template>
   <div class="flex">
     <div class="m-auto py-12">
-      <div class="mb-4 flex justify-end gap-2">
-        <button
-          @click="saveChanges"
-          class="rounded-md bg-green-600 hover:bg-green-700 px-4 py-2 text-white font-medium"
-        >
-          💾 Save Changes
-        </button>
-        <button
-          @click="captureScreenshot"
-          class="rounded-md bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white font-medium"
-        >
-          📸 Save Screenshot
-        </button>
-      </div>
       <div id="resultsTable" class="bg-white">
         <div class="flex align-middle items-center mb-5">
           <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />

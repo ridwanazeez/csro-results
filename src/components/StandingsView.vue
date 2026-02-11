@@ -1,19 +1,5 @@
 <template>
   <div class="py-12">
-    <div class="mb-4 flex justify-between">
-      <button
-        @click="$emit('back-to-table')"
-        class="rounded-md bg-gray-600 hover:bg-gray-700 px-4 py-2 text-white font-medium"
-      >
-        ← Back to Results
-      </button>
-      <button
-        @click="captureScreenshot"
-        class="rounded-md bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white font-medium"
-      >
-        📸 Save Screenshot
-      </button>
-    </div>
     <div id="standingsTable" class="bg-white p-8 space-y-8">
       <!-- Header -->
       <div class="flex align-middle items-center mb-5">

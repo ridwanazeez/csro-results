@@ -7,6 +7,9 @@
       @delete-result="deleteSavedResult"
       @view-standings="viewStandings"
       @global-reset="globalReset"
+      @save-changes="handleSaveChanges"
+      @screenshot="handleScreenshot"
+      @back-to-table="backToTable"
       :saved-results="savedResults"
       :current-view="currentView"
     ></SideNav>
@@ -38,6 +41,7 @@
         </div>
         <ResultsTable
           v-if="uploaded && currentView === 'table'"
+          ref="resultsTable"
           :race-data="settings"
           :current-result-id="currentResultId"
           :key="resultsTableKey"
@@ -45,9 +49,9 @@
         ></ResultsTable>
         <StandingsView
           v-if="uploaded && currentView === 'standings'"
+          ref="standingsView"
           :saved-results="savedResults"
           :settings="settings"
-          @back-to-table="backToTable"
         ></StandingsView>
       </div>
     </div>
@@ -183,6 +187,18 @@ export default {
           localStorage.clear()
           window.location.reload()
         }
+      }
+    },
+    handleSaveChanges() {
+      if (this.$refs.resultsTable) {
+        this.$refs.resultsTable.saveChanges()
+      }
+    },
+    handleScreenshot() {
+      if (this.currentView === 'table' && this.$refs.resultsTable) {
+        this.$refs.resultsTable.captureScreenshot()
+      } else if (this.currentView === 'standings' && this.$refs.standingsView) {
+        this.$refs.standingsView.captureScreenshot()
       }
     }
   },
