@@ -138,6 +138,8 @@
                     id="country"
                     name="country"
                     :value="getDriverNation(result.DriverName)"
+                    :data-index="resultIndex"
+                    @change="handleCountryChange"
                     class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6 text-center"
                   >
                     <option value="" disabled>COUNTRY</option>
@@ -179,23 +181,52 @@
                 >
                   {{ getDriverTeam(result.DriverName) }}
                 </td>
-                <td class="px-6 py-4 text-center">
+                <td
+                  contenteditable="true"
+                  :data-field="'car'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center"
+                  @blur="handleCellEdit"
+                >
                   {{ getDriverCar(result.DriverName) }}
                 </td>
-                <td class="px-6 py-4 text-center">
-                  {{ calculateBestLap(result.TotalTime) }}
+                <td
+                  contenteditable="true"
+                  :data-field="'totalTime'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center"
+                  @blur="handleCellEdit"
+                >
+                  {{ result.customTotalTime || calculateBestLap(result.TotalTime) }}
                 </td>
                 <td
+                  contenteditable="true"
+                  :data-field="'bestLap'"
+                  :data-index="resultIndex"
                   class="px-6 py-4 text-center"
                   :class="{ 'bg-green-600 text-white': isBestLap(result.BestLap) }"
+                  @blur="handleCellEdit"
                 >
-                  {{ calculateBestLap(result.BestLap) }}
+                  {{ result.customBestLap || calculateBestLap(result.BestLap) }}
                 </td>
-                <td v-if="tableData.Type == 'QUALIFY'" class="px-6 py-4 text-center">
-                  {{ calculateRaceGap(tableData.Result)[resultIndex] }}
+                <td
+                  v-if="tableData.Type == 'QUALIFY'"
+                  contenteditable="true"
+                  :data-field="'gap'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center"
+                  @blur="handleCellEdit"
+                >
+                  {{ result.customGap || calculateRaceGap(tableData.Result)[resultIndex] }}
                 </td>
-                <td class="px-6 py-4 text-center">
-                  {{ calculateTotalLaps(tableData.Laps, result.DriverName) }}
+                <td
+                  contenteditable="true"
+                  :data-field="'laps'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center"
+                  @blur="handleCellEdit"
+                >
+                  {{ result.customLaps || calculateTotalLaps(tableData.Laps, result.DriverName) }}
                 </td>
               </tr>
             </tbody>
@@ -477,6 +508,38 @@ export default {
 
       return nationMap[nationCode] || ''
     },
+    getNationCode(countryName) {
+      // Reverse map: country name to nation code
+      const nationCodeMap = {
+        Guyana: 'GUY',
+        Jamaica: 'JAM',
+        'Trinidad & Tobago': 'TTO',
+        Barbados: 'BRB',
+        Bahamas: 'BHS',
+        'Antigua and Barbuda': 'ATG',
+        Dominica: 'DMA',
+        Grenada: 'GRD',
+        'St. Kitts and Nevis': 'KNA',
+        'Saint Lucia': 'LCA',
+        'St. Vincent and the Grenadines': 'VCT',
+        Belize: 'BLZ',
+        Suriname: 'SUR',
+        Haiti: 'HTI',
+        Cuba: 'CUB',
+        Canada: 'CAN',
+        USA: 'USA',
+        Montserrat: 'MSR',
+        Anguilla: 'AIA',
+        'British Virgin Islands': 'VGB',
+        'Cayman Islands': 'CYM',
+        'Turks and Caicos Islands': 'TCA',
+        Bermuda: 'BMU',
+        Denmark: 'DNK',
+        'South Africa': 'ZAF'
+      }
+
+      return nationCodeMap[countryName] || ''
+    },
     handleDragStart(event, index) {
       this.draggedIndex = index
       event.dataTransfer.effectAllowed = 'move'
@@ -517,6 +580,15 @@ export default {
         this.pendingEdits[index] = {}
       }
       this.pendingEdits[index][field] = value
+    },
+    handleCountryChange(event) {
+      const index = parseInt(event.target.dataset.index)
+      const value = event.target.value
+
+      if (!this.pendingEdits[index]) {
+        this.pendingEdits[index] = {}
+      }
+      this.pendingEdits[index]['country'] = value
     },
     saveChanges() {
       // Apply all pending edits to the data structure
@@ -563,6 +635,52 @@ export default {
                 this.tableData.Cars[carIndex].Driver.Team = edits.team
               }
             }
+          }
+
+          // Update country if changed
+          if (edits.country) {
+            const currentDriverName = edits.name || this.tableData.Result[i].DriverName
+            const nationCode = this.getNationCode(edits.country)
+
+            if (this.tableData.Cars) {
+              const carIndex = this.tableData.Cars.findIndex(
+                (car) => car.Driver && car.Driver.Name === currentDriverName
+              )
+              if (carIndex !== -1) {
+                this.tableData.Cars[carIndex].Driver.Nation = nationCode
+              }
+            }
+          }
+
+          // Update car if changed
+          if (edits.car) {
+            const currentDriverName = edits.name || this.tableData.Result[i].DriverName
+
+            if (this.tableData.Cars) {
+              const carIndex = this.tableData.Cars.findIndex(
+                (car) => car.Driver && car.Driver.Name === currentDriverName
+              )
+              if (carIndex !== -1) {
+                this.tableData.Cars[carIndex].Model = edits.car
+              }
+            }
+          }
+
+          // Store custom display values for calculated fields
+          if (edits.totalTime) {
+            this.tableData.Result[i].customTotalTime = edits.totalTime
+          }
+
+          if (edits.bestLap) {
+            this.tableData.Result[i].customBestLap = edits.bestLap
+          }
+
+          if (edits.gap) {
+            this.tableData.Result[i].customGap = edits.gap
+          }
+
+          if (edits.laps) {
+            this.tableData.Result[i].customLaps = edits.laps
           }
         }
       })
