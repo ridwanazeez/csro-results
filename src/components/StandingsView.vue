@@ -1,6 +1,6 @@
 <template>
   <div class="py-12">
-    <div id="standingsTable" class="bg-white p-8 space-y-8">
+    <div id="standingsTable" class="bg-white dark:bg-gray-800 p-8 space-y-8">
       <!-- Header -->
       <div class="flex align-middle items-center mb-5">
         <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
@@ -14,39 +14,57 @@
       </div>
 
       <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold tracking-tight text-black">
+        <h1 class="text-3xl font-bold tracking-tight text-black dark:text-white">
           {{ settings?.seriesTitle || 'Championship Standings' }}
         </h1>
-        <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+        >
           {{ settings?.resultsTitle || 'Results' }}
         </h1>
       </div>
 
       <!-- Qualifying Results -->
       <div v-if="qualifyingResults.length > 0">
-        <h2 class="text-2xl font-bold text-black mb-4">Qualifying Sessions</h2>
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Qualifying Sessions</h2>
         <div v-for="(result, index) in qualifyingResults" :key="'qualify-' + index" class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ result.name }}</h3>
-          <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            {{ result.name }}
+          </h3>
+          <div
+            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          >
             <table
-              class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto"
+              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
             >
-              <thead class="bg-gray-50">
+              <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Pos</th>
-                  <th class="px-6 py-4 font-medium text-gray-900">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900">Team</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Best Lap</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Pos
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Best Lap
+                  </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                <tr v-for="(driver, idx) in result.data.Result" :key="idx" class="hover:bg-gray-50">
-                  <th class="px-6 py-4 font-bold text-center">{{ idx + 1 }}</th>
-                  <td class="px-6 py-4 font-normal text-gray-900">{{ driver.DriverName }}</td>
-                  <td class="px-6 py-4 font-normal text-gray-900">
+              <tbody
+                class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+              >
+                <tr
+                  v-for="(driver, idx) in result.data.Result"
+                  :key="idx"
+                  class="hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
+                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                    {{ driver.DriverName }}
+                  </td>
+                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
                   </td>
-                  <td class="px-6 py-4 text-center font-mono">
+                  <td class="px-6 py-4 text-center font-mono dark:text-gray-300">
                     {{ formatTime(driver.BestLap) }}
                   </td>
                 </tr>
@@ -58,33 +76,51 @@
 
       <!-- Race Results -->
       <div v-if="raceResults.length > 0">
-        <h2 class="text-2xl font-bold text-black mb-4">Race Results</h2>
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Race Results</h2>
         <div v-for="(result, index) in raceResults" :key="'race-' + index" class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ result.name }}</h3>
-          <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            {{ result.name }}
+          </h3>
+          <div
+            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          >
             <table
-              class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto"
+              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
             >
-              <thead class="bg-gray-50">
+              <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Pos</th>
-                  <th class="px-6 py-4 font-medium text-gray-900">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900">Team</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Total Time</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Points</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Pos
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Total Time
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Points
+                  </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                <tr v-for="(driver, idx) in result.data.Result" :key="idx" class="hover:bg-gray-50">
-                  <th class="px-6 py-4 font-bold text-center">{{ idx + 1 }}</th>
-                  <td class="px-6 py-4 font-normal text-gray-900">{{ driver.DriverName }}</td>
-                  <td class="px-6 py-4 font-normal text-gray-900">
+              <tbody
+                class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+              >
+                <tr
+                  v-for="(driver, idx) in result.data.Result"
+                  :key="idx"
+                  class="hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
+                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                    {{ driver.DriverName }}
+                  </td>
+                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
                   </td>
-                  <td class="px-6 py-4 text-center font-mono">
+                  <td class="px-6 py-4 text-center font-mono dark:text-gray-300">
                     {{ formatTime(driver.TotalTime) }}
                   </td>
-                  <td class="px-6 py-4 text-center font-bold">
+                  <td class="px-6 py-4 text-center font-bold dark:text-white">
                     {{ driver.customPoints || calculatePoints(idx + 1) }}
                   </td>
                 </tr>
@@ -96,21 +132,35 @@
 
       <!-- Driver Standings -->
       <div>
-        <h2 class="text-2xl font-bold text-black mb-4">Driver Standings</h2>
-        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
-          <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto">
-            <thead class="bg-gray-50">
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Driver Standings</h2>
+        <div
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+        >
+          <table
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+          >
+            <thead class="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900">Driver</th>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">Points</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                  Points
+                </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-              <tr v-for="(driver, index) in driverStandings" :key="index" class="hover:bg-gray-50">
-                <th class="px-6 py-4 font-bold text-center">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900">{{ driver.name }}</td>
-                <td class="px-6 py-4 text-center font-bold">{{ driver.points }}</td>
+            <tbody
+              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+            >
+              <tr
+                v-for="(driver, index) in driverStandings"
+                :key="index"
+                class="hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
+                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  {{ driver.name }}
+                </td>
+                <td class="px-6 py-4 text-center font-bold dark:text-white">{{ driver.points }}</td>
               </tr>
             </tbody>
           </table>
@@ -119,21 +169,35 @@
 
       <!-- Team Standings -->
       <div>
-        <h2 class="text-2xl font-bold text-black mb-4">Team Standings</h2>
-        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
-          <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto">
-            <thead class="bg-gray-50">
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Team Standings</h2>
+        <div
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+        >
+          <table
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+          >
+            <thead class="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900">Team</th>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">Points</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                  Points
+                </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-              <tr v-for="(team, index) in teamStandings" :key="index" class="hover:bg-gray-50">
-                <th class="px-6 py-4 font-bold text-center">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900">{{ team.name }}</td>
-                <td class="px-6 py-4 text-center font-bold">{{ team.points }}</td>
+            <tbody
+              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+            >
+              <tr
+                v-for="(team, index) in teamStandings"
+                :key="index"
+                class="hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
+                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  {{ team.name }}
+                </td>
+                <td class="px-6 py-4 text-center font-bold dark:text-white">{{ team.points }}</td>
               </tr>
             </tbody>
           </table>
@@ -142,25 +206,37 @@
 
       <!-- Country Standings -->
       <div>
-        <h2 class="text-2xl font-bold text-black mb-4">Country Standings</h2>
-        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
-          <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto">
-            <thead class="bg-gray-50">
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Country Standings</h2>
+        <div
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+        >
+          <table
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+          >
+            <thead class="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900">Country</th>
-                <th class="px-6 py-4 font-medium text-gray-900 text-center">Points</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Country</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                  Points
+                </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+            <tbody
+              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+            >
               <tr
                 v-for="(country, index) in countryStandings"
                 :key="index"
-                class="hover:bg-gray-50"
+                class="hover:bg-gray-50 dark:hover:bg-gray-700"
               >
-                <th class="px-6 py-4 font-bold text-center">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900">{{ country.name }}</td>
-                <td class="px-6 py-4 text-center font-bold">{{ country.points }}</td>
+                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  {{ country.name }}
+                </td>
+                <td class="px-6 py-4 text-center font-bold dark:text-white">
+                  {{ country.points }}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -336,12 +412,24 @@ export default {
       }
 
       try {
+        // Temporarily disable dark mode for screenshot
+        const htmlElement = document.documentElement
+        const hadDarkClass = htmlElement.classList.contains('dark')
+        if (hadDarkClass) {
+          htmlElement.classList.remove('dark')
+        }
+
         const canvas = await html2canvas(element, {
           backgroundColor: '#ffffff',
           scale: 2,
           logging: false,
           useCORS: true
         })
+
+        // Restore dark mode if it was enabled
+        if (hadDarkClass) {
+          htmlElement.classList.add('dark')
+        }
 
         canvas.toBlob((blob) => {
           const url = URL.createObjectURL(blob)

@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div class="m-auto py-12">
-      <div id="resultsTable" class="bg-white">
+      <div id="resultsTable" class="bg-white dark:bg-gray-800">
         <div class="flex align-middle items-center mb-5">
           <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
           <img
@@ -16,28 +16,38 @@
           v-if="tableData.Type == 'QUALIFY'"
           class="relative mb-5 flex w-full flex-col items-center text-center"
         >
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          <h1
+            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+          >
             {{ seriesTitle }}
           </h1>
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          <h1
+            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+          >
             {{ resultsTitle || 'Results' }}
           </h1>
-          <h2 class="flex items-center tracking-tight text-black">
+          <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
             {{ formatDate(tableData.Date) }}
           </h2>
         </div>
         <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          <h1
+            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+          >
             {{ seriesTitle }}
           </h1>
-          <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          <h1
+            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+          >
             {{ resultsTitle || 'Results' }}
           </h1>
-          <h2 class="flex items-center tracking-tight text-black">
+          <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
             {{ formatDate(tableData.Date) }}
           </h2>
         </div>
-        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md dark:border-white">
+        <div
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+        >
           <table
             class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white table-auto"
           >
@@ -104,7 +114,9 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100 dark:border-white">
+            <tbody
+              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+            >
               <tr
                 v-for="(result, resultIndex) of tableData.Result"
                 :key="resultIndex"
@@ -116,7 +128,9 @@
                 class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
                 :class="{ 'opacity-50': draggedIndex === resultIndex }"
               >
-                <th class="px-6 py-4 font-bold text-center">{{ resultIndex + 1 }}</th>
+                <th class="px-6 py-4 font-bold text-center dark:text-white">
+                  {{ resultIndex + 1 }}
+                </th>
                 <td
                   contenteditable="true"
                   :data-field="'name'"
@@ -133,7 +147,7 @@
                     :value="getDriverNation(result.DriverName)"
                     :data-index="resultIndex"
                     @change="handleCountryChange"
-                    class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 sm:text-sm sm:leading-6 text-center"
+                    class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-700 sm:text-sm sm:leading-6 text-center"
                   >
                     <option value="" disabled>COUNTRY</option>
                     <option value="Anguilla">Anguilla</option>
@@ -169,7 +183,7 @@
                   contenteditable="true"
                   :data-field="'team'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   @blur="handleCellEdit"
                 >
                   {{ getDriverTeam(result.DriverName) }}
@@ -178,7 +192,7 @@
                   contenteditable="true"
                   :data-field="'car'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   @blur="handleCellEdit"
                 >
                   {{ getDriverCar(result.DriverName) }}
@@ -187,7 +201,7 @@
                   contenteditable="true"
                   :data-field="'totalTime'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   @blur="handleCellEdit"
                 >
                   {{ result.customTotalTime || calculateBestLap(result.TotalTime) }}
@@ -196,7 +210,7 @@
                   contenteditable="true"
                   :data-field="'bestLap'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   :class="{ 'bg-green-600 text-white': isBestLap(result.BestLap) }"
                   @blur="handleCellEdit"
                 >
@@ -207,7 +221,7 @@
                   contenteditable="true"
                   :data-field="'gap'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   @blur="handleCellEdit"
                 >
                   {{ result.customGap || calculateRaceGap(tableData.Result)[resultIndex] }}
@@ -216,7 +230,7 @@
                   contenteditable="true"
                   :data-field="'laps'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center"
+                  class="px-6 py-4 text-center dark:text-gray-300"
                   @blur="handleCellEdit"
                 >
                   {{ result.customLaps || calculateTotalLaps(tableData.Laps, result.DriverName) }}
@@ -226,7 +240,7 @@
                   contenteditable="true"
                   :data-field="'points'"
                   :data-index="resultIndex"
-                  class="px-6 py-4 text-center font-bold"
+                  class="px-6 py-4 text-center font-bold dark:text-white"
                   @blur="handleCellEdit"
                 >
                   {{ result.customPoints || calculatePoints(resultIndex + 1) }}
@@ -732,7 +746,14 @@ export default {
       }
 
       try {
-        // Temporarily add padding for screenshot
+        // Temporarily disable dark mode for screenshot
+        const htmlElement = document.documentElement
+        const hadDarkClass = htmlElement.classList.contains('dark')
+        if (hadDarkClass) {
+          htmlElement.classList.remove('dark')
+        }
+
+        // Add padding for screenshot
         element.style.padding = '2.5rem'
 
         const canvas = await html2canvas(element, {
@@ -744,6 +765,11 @@ export default {
 
         // Remove padding after capture
         element.style.padding = ''
+
+        // Restore dark mode if it was enabled
+        if (hadDarkClass) {
+          htmlElement.classList.add('dark')
+        }
 
         // Convert canvas to blob
         canvas.toBlob((blob) => {

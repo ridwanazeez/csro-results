@@ -134,8 +134,19 @@
       </nav>
     </div>
 
+    <!-- Dark Mode Toggle -->
+    <div class="mt-auto pt-4 border-t border-gray-700">
+      <button
+        @click="toggleDark()"
+        class="w-full rounded-md bg-gray-700 hover:bg-gray-600 p-3 text-white font-medium text-sm flex items-center justify-center gap-2"
+      >
+        <span v-if="isDark">🌙 Dark Mode</span>
+        <span v-else>☀️ Light Mode</span>
+      </button>
+    </div>
+
     <!-- Footer -->
-    <div class="mt-auto pt-4 border-t border-gray-700 text-center text-xs text-gray-400">
+    <div class="pt-4 border-t border-gray-700 text-center text-xs text-gray-400">
       <p>
         Built by
         <a
@@ -150,7 +161,18 @@
 </template>
 
 <script>
+import { useDark, useToggle } from '@vueuse/core'
+
 export default {
+  setup() {
+    const isDark = useDark()
+    const toggleDark = useToggle(isDark)
+
+    return {
+      isDark,
+      toggleDark
+    }
+  },
   props: {
     savedResults: {
       type: Array,

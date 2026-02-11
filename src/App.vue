@@ -17,7 +17,9 @@
       <div class="mx-auto">
         <div v-if="!uploaded">
           <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
-          <h1 class="mt-4 text-3xl text-center font-bold">CSRO Results Generator</h1>
+          <h1 class="mt-4 text-3xl text-center font-bold dark:text-white">
+            CSRO Results Generator
+          </h1>
           <p class="text-center text-sm dark:text-white">
             v{{ version }} | Last updated: 11/02/2026
           </p>

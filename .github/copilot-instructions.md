@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Single-page Vue 3 application for formatting Assetto Corsa racing server results (JSON) into readable tables and championship standings for CSRO (Caribbean Sim Racing Organization) admins. Built with Vue 3 Options API, TailwindCSS, html2canvas, and Vite. Deployed to GitHub Pages at `/csro-results/` base path.
+Single-page Vue 3 application for formatting Assetto Corsa racing server results (JSON) into readable tables and championship standings for CSRO (Caribbean Sim Racing Organization) admins. Built with Vue 3 Options API, TailwindCSS, VueUse, html2canvas, and Vite. Deployed to GitHub Pages at `/csro-results/` base path.
 
 ## Architecture & Data Flow
 
@@ -106,6 +106,9 @@ GitHub Pages deployment assumes:
 
 - **TailwindCSS only** - no scoped styles or custom CSS
 - Dark mode: `class` strategy with `dark:` prefixes (see tailwind.config.js)
+  - Toggle managed by VueUse's `useDark()` composable in SideNav.vue
+  - Persists preference to localStorage automatically via VueUse
+  - Button placed above footer in SideNav
 - Inter var font from CDN (index.html), extended in Tailwind config
 - `@tailwindcss/forms` plugin for select/input styling
 
@@ -118,6 +121,7 @@ GitHub Pages deployment assumes:
 ### Vue Patterns
 
 - **Options API exclusively** - no `<script setup>` or Composition API
+- Exception: `setup()` method used in SideNav.vue for VueUse composables (`useDark`, `useToggle`)
 - Props: Always define with `type` and `default`
 - Reactivity: Standard data() return objects, avoid refs
 - Conditional rendering: v-if for feature toggles (e.g., uploaded state, qualifying vs race)
