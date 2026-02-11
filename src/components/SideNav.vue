@@ -46,6 +46,17 @@
         </label>
       </div>
       <div class="mb-4">
+        <label class="flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="enablePoints"
+            @change="saveSettings"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+          />
+          <span class="ml-2 text-sm font-medium text-white">Enable Points</span>
+        </label>
+      </div>
+      <div class="mb-4">
         <button
           class="rounded-md bg-yellow-600 hover:bg-yellow-700 p-2 text-base text-white w-full mb-2"
           @click="clearJsonOnly()"
@@ -69,7 +80,8 @@ export default {
     return {
       seriesTitle: '2023 CSRO Championship',
       resultsTitle: 'Race Results',
-      seriesLogo: null
+      seriesLogo: null,
+      enablePoints: false
     }
   },
   methods: {
@@ -91,7 +103,8 @@ export default {
       const settings = {
         seriesTitle: this.seriesTitle,
         resultsTitle: this.resultsTitle,
-        seriesLogo: this.seriesLogo
+        seriesLogo: this.seriesLogo,
+        enablePoints: this.enablePoints
       }
       // Save to localStorage
       localStorage.setItem('CSRO_SETTINGS', JSON.stringify(settings))
@@ -105,6 +118,7 @@ export default {
         this.seriesTitle = settings.seriesTitle || '2023 CSRO Championship'
         this.resultsTitle = settings.resultsTitle || 'Race Results'
         this.seriesLogo = settings.seriesLogo || null
+        this.enablePoints = settings.enablePoints || false
       }
     },
     clearData() {

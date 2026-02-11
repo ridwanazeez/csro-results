@@ -1,7 +1,7 @@
 <template>
   <div class="flex dark:bg-gray-900 w-full sm:h-screen">
     <SideNav v-if="uploaded" @settings="updateResultsTable"></SideNav>
-    <div class="m-auto px-6 lg:px-8 max-w-7xl">
+    <div class="m-auto px-6 lg:px-8 max-w-[80%]">
       <div class="mx-auto">
         <div v-if="!uploaded">
           <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />

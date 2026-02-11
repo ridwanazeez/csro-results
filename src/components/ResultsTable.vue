@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="container m-auto py-12">
+    <div class="m-auto py-12">
       <div class="mb-4 flex justify-end gap-2">
         <button
           @click="saveChanges"
@@ -108,6 +108,13 @@
                   class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
                 >
                   # of Laps
+                </th>
+                <th
+                  v-if="enablePoints"
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Points
                 </th>
               </tr>
             </thead>
@@ -228,6 +235,16 @@
                 >
                   {{ result.customLaps || calculateTotalLaps(tableData.Laps, result.DriverName) }}
                 </td>
+                <td
+                  v-if="enablePoints"
+                  contenteditable="true"
+                  :data-field="'points'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center font-bold"
+                  @blur="handleCellEdit"
+                >
+                  {{ result.customPoints || calculatePoints(resultIndex + 1) }}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -249,7 +266,8 @@ export default {
       seriesLogo: null,
       draggedIndex: null,
       dragOverIndex: null,
-      pendingEdits: {}
+      pendingEdits: {},
+      enablePoints: false
     }
   },
   props: {
@@ -349,6 +367,15 @@ export default {
         }
       }
       return totalLaps
+    },
+    calculatePoints(position) {
+      // Points system: 25, 18, 15, 12, 10, 8, 6, 4, 2, 1, then 0 for 11+
+      const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+
+      if (position <= 10) {
+        return pointsTable[position - 1]
+      }
+      return 0
     },
     calculateRaceGap(results) {
       const raceGap = []
@@ -682,6 +709,10 @@ export default {
           if (edits.laps) {
             this.tableData.Result[i].customLaps = edits.laps
           }
+
+          if (edits.points) {
+            this.tableData.Result[i].customPoints = edits.points
+          }
         }
       })
 
@@ -740,6 +771,7 @@ export default {
       this.seriesTitle = this.raceData.seriesTitle
       this.resultsTitle = this.raceData.resultsTitle || ''
       this.seriesLogo = this.raceData.seriesLogo
+      this.enablePoints = this.raceData.enablePoints || false
     }
   }
 }
