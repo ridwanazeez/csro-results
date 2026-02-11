@@ -746,18 +746,15 @@ export default {
       }
 
       try {
-        // Temporarily disable dark mode for screenshot
+        // Check if dark mode is enabled
         const htmlElement = document.documentElement
-        const hadDarkClass = htmlElement.classList.contains('dark')
-        if (hadDarkClass) {
-          htmlElement.classList.remove('dark')
-        }
+        const isDarkMode = htmlElement.classList.contains('dark')
 
         // Add padding for screenshot
         element.style.padding = '2.5rem'
 
         const canvas = await html2canvas(element, {
-          backgroundColor: '#ffffff',
+          backgroundColor: isDarkMode ? '#111827' : '#ffffff',
           scale: 2,
           logging: false,
           useCORS: true
@@ -765,11 +762,6 @@ export default {
 
         // Remove padding after capture
         element.style.padding = ''
-
-        // Restore dark mode if it was enabled
-        if (hadDarkClass) {
-          htmlElement.classList.add('dark')
-        }
 
         // Convert canvas to blob
         canvas.toBlob((blob) => {

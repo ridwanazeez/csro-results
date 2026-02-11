@@ -43,9 +43,20 @@
                     Pos
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Country
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Team
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Car
+                  </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                     Best Lap
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    # of Laps
                   </th>
                 </tr>
               </thead>
@@ -61,11 +72,28 @@
                   <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                     {{ driver.DriverName }}
                   </td>
-                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
+                    {{ getCountryName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
                   </td>
-                  <td class="px-6 py-4 text-center font-mono dark:text-gray-300">
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
+                    {{ getCarName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td
+                    class="px-6 py-4 text-center font-mono dark:text-gray-300"
+                    :class="{
+                      'bg-green-600 text-white': isBestLapInResult(
+                        driver.BestLap,
+                        result.data.Result
+                      )
+                    }"
+                  >
                     {{ formatTime(driver.BestLap) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-normal dark:text-gray-300">
+                    {{ calculateTotalLaps(result.data.Laps, driver.DriverName) }}
                   </td>
                 </tr>
               </tbody>
@@ -93,9 +121,23 @@
                     Pos
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Country
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Team
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Car
+                  </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                     Total Time
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    Best Lap
+                  </th>
+                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
+                    # of Laps
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                     Points
@@ -114,11 +156,31 @@
                   <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                     {{ driver.DriverName }}
                   </td>
-                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
+                    {{ getCountryName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
+                    {{ getCarName(result.data.Cars, driver.DriverName) }}
                   </td>
                   <td class="px-6 py-4 text-center font-mono dark:text-gray-300">
                     {{ formatTime(driver.TotalTime) }}
+                  </td>
+                  <td
+                    class="px-6 py-4 text-center font-mono dark:text-gray-300"
+                    :class="{
+                      'bg-green-600 text-white': isBestLapInResult(
+                        driver.BestLap,
+                        result.data.Result
+                      )
+                    }"
+                  >
+                    {{ formatTime(driver.BestLap) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-normal dark:text-gray-300">
+                    {{ calculateTotalLaps(result.data.Laps, driver.DriverName) }}
                   </td>
                   <td class="px-6 py-4 text-center font-bold dark:text-white">
                     {{ driver.customPoints || calculatePoints(idx + 1) }}
@@ -143,6 +205,8 @@
               <tr>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
+                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Country</th>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                   Points
                 </th>
@@ -159,6 +223,12 @@
                 <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
                 <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                   {{ driver.name }}
+                </td>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  {{ driver.team }}
+                </td>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
+                  {{ driver.country }}
                 </td>
                 <td class="px-6 py-4 text-center font-bold dark:text-white">{{ driver.points }}</td>
               </tr>
@@ -268,7 +338,7 @@ export default {
       return this.savedResults.filter((result) => result.data && result.data.Type === 'RACE')
     },
     driverStandings() {
-      const driverPoints = {}
+      const driverData = {}
 
       // Only count points from RACE type results
       this.raceResults.forEach((result) => {
@@ -277,16 +347,27 @@ export default {
             const points = driver.customPoints || this.calculatePoints(index + 1)
             const driverName = driver.DriverName
 
-            if (!driverPoints[driverName]) {
-              driverPoints[driverName] = 0
+            if (!driverData[driverName]) {
+              // Find driver info from Cars array
+              const car = result.data.Cars?.find((c) => c.Driver && c.Driver.Name === driverName)
+              driverData[driverName] = {
+                points: 0,
+                team: car?.Driver?.Team || 'No Team',
+                country: this.getNationName(car?.Driver?.Nation) || 'Unknown'
+              }
             }
-            driverPoints[driverName] += parseInt(points) || 0
+            driverData[driverName].points += parseInt(points) || 0
           })
         }
       })
 
-      return Object.entries(driverPoints)
-        .map(([name, points]) => ({ name, points }))
+      return Object.entries(driverData)
+        .map(([name, data]) => ({
+          name,
+          points: data.points,
+          team: data.team,
+          country: data.country
+        }))
         .sort((a, b) => b.points - a.points)
     },
     teamStandings() {
@@ -373,6 +454,52 @@ export default {
       const car = cars.find((c) => c.Driver && c.Driver.Name === driverName)
       return car?.Driver?.Team || 'No Team'
     },
+    getCountryName(cars, driverName) {
+      if (!cars) return ''
+      const car = cars.find((c) => c.Driver && c.Driver.Name === driverName)
+      const nationCode = car?.Driver?.Nation
+      return this.getNationName(nationCode) || ''
+    },
+    getCarName(cars, driverName) {
+      if (!cars) return ''
+      const car = cars.find((c) => c.Driver && c.Driver.Name === driverName)
+      if (car && car.Model) {
+        return this.formatCarName(car.Model)
+      }
+      return ''
+    },
+    formatCarName(model) {
+      // Remove common mod prefixes dynamically and format car names
+      let formatted = model
+        // Remove common prefixes (rss, gtm, ks, etc.) followed by underscore
+        .replace(/^(rss|gtm|ks|ac|mod)_/gi, '')
+        // Replace remaining underscores with spaces
+        .replace(/_/g, ' ')
+        // Trim any extra spaces
+        .trim()
+
+      // Capitalize each word
+      return formatted
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+    },
+    calculateTotalLaps(laps, driverName) {
+      if (!laps) return 0
+      let totalLaps = 0
+      for (let i = 0; i < laps.length; i++) {
+        if (laps[i].DriverName === driverName) {
+          totalLaps++
+        }
+      }
+      return totalLaps
+    },
+    isBestLapInResult(currentBestLap, results) {
+      if (!results || results.length === 0) return false
+      const allBestLaps = results.map((result) => result.BestLap)
+      const smallestBestLap = Math.min(...allBestLaps)
+      return currentBestLap === smallestBestLap
+    },
     getNationName(nationCode) {
       const nationMap = {
         GUY: 'Guyana',
@@ -412,24 +539,16 @@ export default {
       }
 
       try {
-        // Temporarily disable dark mode for screenshot
+        // Check if dark mode is enabled
         const htmlElement = document.documentElement
-        const hadDarkClass = htmlElement.classList.contains('dark')
-        if (hadDarkClass) {
-          htmlElement.classList.remove('dark')
-        }
+        const isDarkMode = htmlElement.classList.contains('dark')
 
         const canvas = await html2canvas(element, {
-          backgroundColor: '#ffffff',
+          backgroundColor: isDarkMode ? '#111827' : '#ffffff',
           scale: 2,
           logging: false,
           useCORS: true
         })
-
-        // Restore dark mode if it was enabled
-        if (hadDarkClass) {
-          htmlElement.classList.add('dark')
-        }
 
         canvas.toBlob((blob) => {
           const url = URL.createObjectURL(blob)
