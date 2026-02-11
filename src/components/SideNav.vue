@@ -109,18 +109,15 @@
           </div>
         </div>
 
-        <!-- View Standings Button -->
-        <div class="mb-4" v-if="savedResults.length > 0">
+        <!-- Action Buttons -->
+        <div class="mb-4 border-t border-gray-600 pt-4">
           <button
-            class="rounded-md bg-purple-600 hover:bg-purple-700 p-2 text-base text-white w-full"
+            v-if="savedResults.length > 0"
+            class="rounded-md bg-purple-600 hover:bg-purple-700 p-2 text-base text-white w-full mb-2"
             @click="$emit('view-standings')"
           >
             📊 View Standings
           </button>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="mb-4 border-t border-gray-600 pt-4">
           <button
             class="rounded-md bg-yellow-600 hover:bg-yellow-700 p-2 text-base text-white w-full mb-2"
             @click="clearJsonOnly()"
