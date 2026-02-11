@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-[300px] h-screen bg-gray-800 text-white p-4 overflow-y-auto">
+  <aside class="w-[300px] min-h-screen bg-gray-800 text-white p-4 overflow-y-auto">
     <div class="mb-4">
       <h1 class="text-2xl font-bold">Settings</h1>
     </div>

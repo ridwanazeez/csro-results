@@ -1,5 +1,5 @@
 <template>
-  <div class="flex dark:bg-gray-900 w-full sm:h-screen">
+  <div class="flex dark:bg-gray-900 w-full min-h-screen">
     <SideNav
       v-if="uploaded"
       @settings="updateResultsTable"
