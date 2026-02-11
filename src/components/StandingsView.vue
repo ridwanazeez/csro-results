@@ -17,6 +17,81 @@
         <h1 class="text-3xl font-bold tracking-tight text-black">
           {{ settings?.seriesTitle || 'Championship Standings' }}
         </h1>
+        <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          {{ settings?.resultsTitle || 'Results' }}
+        </h1>
+      </div>
+
+      <!-- Qualifying Results -->
+      <div v-if="qualifyingResults.length > 0">
+        <h2 class="text-2xl font-bold text-black mb-4">Qualifying Sessions</h2>
+        <div v-for="(result, index) in qualifyingResults" :key="'qualify-' + index" class="mb-6">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ result.name }}</h3>
+          <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+            <table
+              class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto"
+            >
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Pos</th>
+                  <th class="px-6 py-4 font-medium text-gray-900">Driver</th>
+                  <th class="px-6 py-4 font-medium text-gray-900">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Best Lap</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                <tr v-for="(driver, idx) in result.data.Result" :key="idx" class="hover:bg-gray-50">
+                  <th class="px-6 py-4 font-bold text-center">{{ idx + 1 }}</th>
+                  <td class="px-6 py-4 font-normal text-gray-900">{{ driver.DriverName }}</td>
+                  <td class="px-6 py-4 font-normal text-gray-900">
+                    {{ getTeamName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-mono">
+                    {{ formatTime(driver.BestLap) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Race Results -->
+      <div v-if="raceResults.length > 0">
+        <h2 class="text-2xl font-bold text-black mb-4">Race Results</h2>
+        <div v-for="(result, index) in raceResults" :key="'race-' + index" class="mb-6">
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">{{ result.name }}</h3>
+          <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
+            <table
+              class="w-full border-collapse bg-white text-left text-sm text-gray-500 table-auto"
+            >
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Pos</th>
+                  <th class="px-6 py-4 font-medium text-gray-900">Driver</th>
+                  <th class="px-6 py-4 font-medium text-gray-900">Team</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Total Time</th>
+                  <th class="px-6 py-4 font-medium text-gray-900 text-center">Points</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                <tr v-for="(driver, idx) in result.data.Result" :key="idx" class="hover:bg-gray-50">
+                  <th class="px-6 py-4 font-bold text-center">{{ idx + 1 }}</th>
+                  <td class="px-6 py-4 font-normal text-gray-900">{{ driver.DriverName }}</td>
+                  <td class="px-6 py-4 font-normal text-gray-900">
+                    {{ getTeamName(result.data.Cars, driver.DriverName) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-mono">
+                    {{ formatTime(driver.TotalTime) }}
+                  </td>
+                  <td class="px-6 py-4 text-center font-bold">
+                    {{ driver.customPoints || calculatePoints(idx + 1) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- Driver Standings -->
@@ -110,10 +185,17 @@ export default {
     }
   },
   computed: {
+    qualifyingResults() {
+      return this.savedResults.filter((result) => result.data && result.data.Type === 'QUALIFY')
+    },
+    raceResults() {
+      return this.savedResults.filter((result) => result.data && result.data.Type === 'RACE')
+    },
     driverStandings() {
       const driverPoints = {}
 
-      this.savedResults.forEach((result) => {
+      // Only count points from RACE type results
+      this.raceResults.forEach((result) => {
         if (result.data && result.data.Result) {
           result.data.Result.forEach((driver, index) => {
             const points = driver.customPoints || this.calculatePoints(index + 1)
@@ -134,7 +216,8 @@ export default {
     teamStandings() {
       const teamPoints = {}
 
-      this.savedResults.forEach((result) => {
+      // Only count points from RACE type results
+      this.raceResults.forEach((result) => {
         if (result.data && result.data.Result && result.data.Cars) {
           result.data.Result.forEach((driver, index) => {
             const points = driver.customPoints || this.calculatePoints(index + 1)
@@ -161,7 +244,8 @@ export default {
     countryStandings() {
       const countryPoints = {}
 
-      this.savedResults.forEach((result) => {
+      // Only count points from RACE type results
+      this.raceResults.forEach((result) => {
         if (result.data && result.data.Result && result.data.Cars) {
           result.data.Result.forEach((driver, index) => {
             const points = driver.customPoints || this.calculatePoints(index + 1)
@@ -194,6 +278,24 @@ export default {
         return pointsTable[position - 1]
       }
       return 0
+    },
+    formatTime(milliseconds) {
+      if (!milliseconds || milliseconds === 0) return '-'
+
+      const totalSeconds = Math.floor(milliseconds / 1000)
+      const minutes = Math.floor(totalSeconds / 60)
+      const seconds = totalSeconds % 60
+      const ms = milliseconds % 1000
+
+      const secondsStr = seconds < 10 ? `0${seconds}` : seconds
+      const msStr = ms < 100 ? (ms < 10 ? `00${ms}` : `0${ms}`) : ms
+
+      return `${minutes}:${secondsStr}.${msStr}`
+    },
+    getTeamName(cars, driverName) {
+      if (!cars) return 'No Team'
+      const car = cars.find((c) => c.Driver && c.Driver.Name === driverName)
+      return car?.Driver?.Team || 'No Team'
     },
     getNationName(nationCode) {
       const nationMap = {

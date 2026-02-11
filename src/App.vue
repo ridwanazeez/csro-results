@@ -126,14 +126,28 @@ export default {
       )
       if (!resultName) return
 
+      // Check if a result with this name already exists
+      const existingByName = this.savedResults.find((r) => r.name === resultName)
+      const existingById = this.savedResults.findIndex((r) => r.id === resultData.id)
+
+      let resultId = resultData.id
+
+      if (existingByName && existingByName.id !== resultData.id) {
+        // Same name, different ID - overwrite the existing one
+        resultId = existingByName.id
+      } else if (!resultId) {
+        // New result, generate new ID
+        resultId = Date.now().toString()
+      }
+
       const result = {
-        id: resultData.id || Date.now().toString(),
+        id: resultId,
         name: resultName,
         data: resultData.data,
         timestamp: Date.now()
       }
 
-      // Check if updating existing result
+      // Check if updating existing result by ID
       const existingIndex = this.savedResults.findIndex((r) => r.id === result.id)
       if (existingIndex !== -1) {
         this.savedResults[existingIndex] = result
@@ -168,6 +182,11 @@ export default {
           this.currentResultId = null
           localStorage.removeItem('CSRO_RESULT')
           this.uploaded = false
+        }
+
+        // Force update of standings view if currently viewing it
+        if (this.currentView === 'standings') {
+          this.resultsTableKey += 1
         }
       }
     },

@@ -20,7 +20,7 @@
             {{ seriesTitle }}
           </h1>
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            {{ resultsTitle || 'Qualifying Results' }}
+            {{ resultsTitle || 'Results' }}
           </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
@@ -31,7 +31,7 @@
             {{ seriesTitle }}
           </h1>
           <h1 class="items-center text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            {{ resultsTitle || 'Race Results' }}
+            {{ resultsTitle || 'Results' }}
           </h1>
           <h2 class="flex items-center tracking-tight text-black">
             {{ formatDate(tableData.Date) }}
@@ -96,7 +96,7 @@
                   # of Laps
                 </th>
                 <th
-                  v-if="enablePoints"
+                  v-if="tableData.Type == 'RACE'"
                   scope="col"
                   class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
                 >
@@ -222,7 +222,7 @@
                   {{ result.customLaps || calculateTotalLaps(tableData.Laps, result.DriverName) }}
                 </td>
                 <td
-                  v-if="enablePoints"
+                  v-if="tableData.Type == 'RACE'"
                   contenteditable="true"
                   :data-field="'points'"
                   :data-index="resultIndex"

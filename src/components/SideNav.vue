@@ -79,17 +79,6 @@
             >
           </label>
         </div>
-        <div class="mb-4">
-          <label class="flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              v-model="enablePoints"
-              @change="saveSettings"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-            />
-            <span class="ml-2 text-sm font-medium text-white">Enable Points</span>
-          </label>
-        </div>
 
         <!-- Saved Results Section -->
         <div class="mb-4 border-t border-gray-600 pt-4">
@@ -121,7 +110,7 @@
         </div>
 
         <!-- View Standings Button -->
-        <div class="mb-4" v-if="enablePoints && savedResults.length > 0">
+        <div class="mb-4" v-if="savedResults.length > 0">
           <button
             class="rounded-md bg-purple-600 hover:bg-purple-700 p-2 text-base text-white w-full"
             @click="$emit('view-standings')"
@@ -214,8 +203,8 @@ export default {
       const savedSettings = localStorage.getItem('CSRO_SETTINGS')
       if (savedSettings) {
         const settings = JSON.parse(savedSettings)
-        this.seriesTitle = settings.seriesTitle || '2023 CSRO Championship'
-        this.resultsTitle = settings.resultsTitle || 'Race Results'
+        this.seriesTitle = settings.seriesTitle || 'CSRO Championship'
+        this.resultsTitle = settings.resultsTitle || 'Results'
         this.seriesLogo = settings.seriesLogo || null
         this.enablePoints = settings.enablePoints || false
       }
