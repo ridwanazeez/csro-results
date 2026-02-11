@@ -2,32 +2,35 @@
 
 ## Project Overview
 
-Single-page Vue 3 application for formatting Assetto Corsa racing server results (JSON) into readable tables for CSRO (Caribbean Sim Racing Organization) admins. Built with Vue 3 Composition API, TailwindCSS, and Vite. Deployed to GitHub Pages at `/csro-results/` base path.
+Single-page Vue 3 application for formatting Assetto Corsa racing server results (JSON) into readable tables and championship standings for CSRO (Caribbean Sim Racing Organization) admins. Built with Vue 3 Options API, TailwindCSS, html2canvas, and Vite. Deployed to GitHub Pages at `/csro-results/` base path.
 
 ## Architecture & Data Flow
 
-### Core Components (3-component system)
+### Core Components (4-component system)
 
-- **App.vue**: Root component handling file upload, localStorage orchestration, and settings propagation
-- **ResultsTable.vue**: Main table display with custom time calculation logic for race/qualifying results
-- **SideNav.vue**: Settings panel for series branding (title/logo) with image file upload
+- **App.vue**: Root component handling file upload, multi-result management, view switching (table/standings), and localStorage orchestration
+- **ResultsTable.vue**: Single result display with contenteditable cells for inline editing, custom time calculation, drag-and-drop reordering, and screenshot functionality
+- **StandingsView.vue**: Championship standings aggregator showing qualifying/race history, driver/team/country standings calculated from all saved RACE results
+- **SideNav.vue**: Settings sidebar for series branding (title/logo), result management (save/load/delete), and view navigation
 
 ### Data Persistence Pattern
 
 Uses localStorage exclusively (no backend):
 
-- Key: `CSRO_RESULT` stores uploaded JSON race data
-- Data flows: Upload → App.vue → localStorage → ResultsTable.vue
+- `CSRO_RESULT`: Current active result JSON from Assetto Corsa
+- `CSRO_SAVED_RESULTS`: Array of saved results with metadata (id, name, timestamp, data)
+- Data flows: Upload → App.vue → localStorage → ResultsTable/StandingsView
 - Settings (title/logo) flow through reactive props, triggering re-renders via `resultsTableKey` increment
 
 ### State Management
 
 No Vuex/Pinia. State managed via:
 
-- Parent-child props (`raceData` from App → ResultsTable)
-- Custom events (`@settings` emitted from SideNav → App)
-- localStorage for persistence across sessions
-- Force re-render pattern: `resultsTableKey` incremented to refresh ResultsTable
+- Parent-child props (`raceData`, `savedResults`, `settings` from App → child components)
+- Custom events (`@settings`, `@save-result`, `@load-result`, `@delete-result`, `@view-standings`)
+- localStorage for multi-session persistence
+- Force re-render pattern: `resultsTableKey` incremented to refresh components after state changes
+- View switching: `currentView` state toggles between 'table' and 'standings'
 
 ## Critical Domain Logic
 
@@ -42,14 +45,36 @@ No Vuex/Pinia. State managed via:
 
 ### Race Gap Calculation
 
-`calculateRaceGap()` computes time differences relative to P1's best lap (qualifying mode only):
+`calculateRaceGap(results)` computes time differences relative to P1's best lap (qualifying mode only):
 
 - Gap = Current driver BestLap - P1 BestLap
 - Returns formatted time strings in array indexed by position
 
-### Lap Counting
+### Points System
 
-`calculateTotalLaps(data, driver)` iterates full `Laps` array to count laps per driver (DriverName matching)
+`calculatePoints(position)` implements F1-style points: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1] for positions 1-10, 0 for 11+
+
+- Used by default in RACE results, customizable via contenteditable cells
+- Points from RACE results (not QUALIFY) aggregate into championship standings
+- Custom points stored as `customPoints` property on result objects
+
+### Inline Editing System
+
+All table cells in ResultsTable are `contenteditable="true"` with `@blur="handleCellEdit"`:
+
+- Edits captured via data attributes: `data-field`, `data-index`
+- Custom values stored with `custom` prefix: `customPoints`, `customBestLap`, `customGap`, `customLaps`
+- Original calculated values preserved, custom overrides take display priority
+- Drag-and-drop reordering available for result rows
+
+### Championship Standings (StandingsView.vue)
+
+Aggregates all saved results to compute:
+
+- **Driver Standings**: Sum of points across all RACE results, sorted descending
+- **Team Standings**: Points grouped by `Driver.Team` from Cars array
+- **Country Standings**: Points grouped by `Driver.Nation` with country code lookup
+- Only RACE type results count for standings; QUALIFY results displayed separately
 
 ## Development Workflows
 
@@ -105,9 +130,14 @@ GitHub Pages deployment assumes:
   - `Type`: "QUALIFY" or "RACE"
   - `Result[]`: Array with `DriverName`, `BestLap`, `TotalTime`
   - `Laps[]`: Array with `DriverName` for lap counting
+  - `Cars[]`: Array with `Driver.Name`, `Driver.Team`, `Driver.Nation` for team/country lookup
   - `Date`: ISO date string
 - **localStorage API**: Must be available (no SSR compatibility)
 - **FileReader API**: For JSON and image file uploads
+- **html2canvas**: Screenshot functionality for both ResultsTable and StandingsView
+  - Triggered via SideNav "Save Screenshot" button
+  - Captures `#resultsTable` or `#standingsTable` element
+  - Downloads as PNG with filename based on result type and date
 
 ### Image Handling
 
