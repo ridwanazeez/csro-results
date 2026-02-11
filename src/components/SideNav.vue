@@ -47,10 +47,16 @@
       </div>
       <div class="mb-4">
         <button
+          class="rounded-md bg-yellow-600 hover:bg-yellow-700 p-2 text-base text-white w-full mb-2"
+          @click="clearJsonOnly()"
+        >
+          Upload New JSON
+        </button>
+        <button
           class="rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white w-full"
           @click="clearData()"
         >
-          Reset
+          Reset All
         </button>
       </div>
     </nav>
@@ -82,18 +88,36 @@ export default {
       }
     },
     saveSettings() {
-      this.$emit('settings', {
+      const settings = {
         seriesTitle: this.seriesTitle,
         resultsTitle: this.resultsTitle,
         seriesLogo: this.seriesLogo
-      })
+      }
+      // Save to localStorage
+      localStorage.setItem('CSRO_SETTINGS', JSON.stringify(settings))
+      // Emit to parent
+      this.$emit('settings', settings)
+    },
+    loadSettings() {
+      const savedSettings = localStorage.getItem('CSRO_SETTINGS')
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings)
+        this.seriesTitle = settings.seriesTitle || '2023 CSRO Championship'
+        this.resultsTitle = settings.resultsTitle || 'Race Results'
+        this.seriesLogo = settings.seriesLogo || null
+      }
     },
     clearData() {
       localStorage.clear()
       window.location.reload()
+    },
+    clearJsonOnly() {
+      localStorage.removeItem('CSRO_RESULT')
+      window.location.reload()
     }
   },
   mounted() {
+    this.loadSettings()
     this.saveSettings()
   }
 }
