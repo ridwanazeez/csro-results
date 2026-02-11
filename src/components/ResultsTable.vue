@@ -1,7 +1,13 @@
 <template>
   <div class="flex">
     <div class="container m-auto py-12">
-      <div class="mb-4 flex justify-end">
+      <div class="mb-4 flex justify-end gap-2">
+        <button
+          @click="saveChanges"
+          class="rounded-md bg-green-600 hover:bg-green-700 px-4 py-2 text-white font-medium"
+        >
+          💾 Save Changes
+        </button>
         <button
           @click="captureScreenshot"
           class="rounded-md bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white font-medium"
@@ -70,6 +76,18 @@
                   scope="col"
                   class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
                 >
+                  Team
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
+                  Car
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                >
                   Total Time
                 </th>
                 <th
@@ -108,11 +126,14 @@
                 <th class="px-6 py-4 font-bold text-center">{{ resultIndex + 1 }}</th>
                 <td
                   contenteditable="true"
+                  :data-field="'name'"
+                  :data-index="resultIndex"
                   class="px-6 py-4 font-normal text-gray-900 dark:text-white"
+                  @blur="handleCellEdit"
                 >
                   {{ result.DriverName }}
                 </td>
-                <td contenteditable="true" class="px-6 py-4 text-center">
+                <td class="px-6 py-4 text-center">
                   <select
                     id="country"
                     name="country"
@@ -149,7 +170,19 @@
                     <option value="USA">USA</option>
                   </select>
                 </td>
-                <td contenteditable="true" class="px-6 py-4 text-center">
+                <td
+                  contenteditable="true"
+                  :data-field="'team'"
+                  :data-index="resultIndex"
+                  class="px-6 py-4 text-center"
+                  @blur="handleCellEdit"
+                >
+                  {{ getDriverTeam(result.DriverName) }}
+                </td>
+                <td class="px-6 py-4 text-center">
+                  {{ getDriverCar(result.DriverName) }}
+                </td>
+                <td class="px-6 py-4 text-center">
                   {{ calculateBestLap(result.TotalTime) }}
                 </td>
                 <td
@@ -184,7 +217,8 @@ export default {
       resultsTitle: '',
       seriesLogo: null,
       draggedIndex: null,
-      dragOverIndex: null
+      dragOverIndex: null,
+      pendingEdits: {}
     }
   },
   props: {
@@ -370,6 +404,47 @@ export default {
 
       return ''
     },
+    getDriverTeam(driverName) {
+      if (!this.tableData.Cars) return ''
+
+      // Find the driver in the Cars array
+      const car = this.tableData.Cars.find((car) => car.Driver && car.Driver.Name === driverName)
+
+      if (car && car.Driver && car.Driver.Team) {
+        return car.Driver.Team
+      }
+
+      return ''
+    },
+    getDriverCar(driverName) {
+      if (!this.tableData.Cars) return ''
+
+      // Find the driver in the Cars array
+      const car = this.tableData.Cars.find((car) => car.Driver && car.Driver.Name === driverName)
+
+      if (car && car.Model) {
+        // Format the car model name to be more readable
+        return this.formatCarName(car.Model)
+      }
+
+      return ''
+    },
+    formatCarName(model) {
+      // Remove common mod prefixes dynamically and format car names
+      let formatted = model
+        // Remove common prefixes (rss, gtm, ks, etc.) followed by underscore
+        .replace(/^(rss|gtm|ks|ac|mod)_/gi, '')
+        // Replace remaining underscores with spaces
+        .replace(/_/g, ' ')
+        // Trim any extra spaces
+        .trim()
+
+      // Capitalize each word
+      return formatted
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+    },
     getNationName(nationCode) {
       // Map nation codes to full country names
       const nationMap = {
@@ -432,6 +507,73 @@ export default {
     handleDragEnd() {
       this.draggedIndex = null
       this.dragOverIndex = null
+    },
+    handleCellEdit(event) {
+      const index = parseInt(event.target.dataset.index)
+      const field = event.target.dataset.field
+      const value = event.target.textContent.trim()
+
+      if (!this.pendingEdits[index]) {
+        this.pendingEdits[index] = {}
+      }
+      this.pendingEdits[index][field] = value
+    },
+    saveChanges() {
+      // Apply all pending edits to the data structure
+      Object.keys(this.pendingEdits).forEach((index) => {
+        const edits = this.pendingEdits[index]
+        const i = parseInt(index)
+
+        if (this.tableData.Result[i]) {
+          const originalDriverName = this.tableData.Result[i].DriverName
+
+          // Update driver name if changed
+          if (edits.name) {
+            this.tableData.Result[i].DriverName = edits.name
+
+            // Update in Cars array
+            if (this.tableData.Cars) {
+              const carIndex = this.tableData.Cars.findIndex(
+                (car) => car.Driver && car.Driver.Name === originalDriverName
+              )
+              if (carIndex !== -1) {
+                this.tableData.Cars[carIndex].Driver.Name = edits.name
+              }
+            }
+
+            // Update in Laps array
+            if (this.tableData.Laps) {
+              this.tableData.Laps.forEach((lap) => {
+                if (lap.DriverName === originalDriverName) {
+                  lap.DriverName = edits.name
+                }
+              })
+            }
+          }
+
+          // Update team if changed
+          if (edits.team) {
+            const currentDriverName = edits.name || this.tableData.Result[i].DriverName
+
+            if (this.tableData.Cars) {
+              const carIndex = this.tableData.Cars.findIndex(
+                (car) => car.Driver && car.Driver.Name === currentDriverName
+              )
+              if (carIndex !== -1) {
+                this.tableData.Cars[carIndex].Driver.Team = edits.team
+              }
+            }
+          }
+        }
+      })
+
+      // Clear pending edits
+      this.pendingEdits = {}
+
+      // Save to localStorage
+      this.saveDataToLocalStorage(this.tableData)
+
+      alert('Changes saved successfully!')
     },
     async captureScreenshot() {
       const element = document.getElementById('resultsTable')
