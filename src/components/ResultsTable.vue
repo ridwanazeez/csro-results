@@ -274,6 +274,10 @@ export default {
     raceData: {
       type: Object,
       default: null
+    },
+    currentResultId: {
+      type: String,
+      default: null
     }
   },
   methods: {
@@ -719,10 +723,20 @@ export default {
       // Clear pending edits
       this.pendingEdits = {}
 
-      // Save to localStorage
+      // Save to localStorage (current working copy)
       this.saveDataToLocalStorage(this.tableData)
 
-      alert('Changes saved successfully!')
+      // Generate suggested name based on date and type
+      const date = this.formatDate(this.tableData.Date)
+      const type = this.tableData.Type === 'QUALIFY' ? 'Qualifying' : 'Race'
+      const suggestedName = `${type} - ${date}`
+
+      // Emit to parent to save as a result
+      this.$emit('save-result', {
+        id: this.currentResultId,
+        data: this.tableData,
+        suggestedName: suggestedName
+      })
     },
     async captureScreenshot() {
       const element = document.getElementById('resultsTable')

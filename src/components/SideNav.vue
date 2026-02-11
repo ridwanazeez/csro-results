@@ -56,7 +56,48 @@
           <span class="ml-2 text-sm font-medium text-white">Enable Points</span>
         </label>
       </div>
-      <div class="mb-4">
+
+      <!-- Saved Results Section -->
+      <div class="mb-4 border-t border-gray-600 pt-4">
+        <h2 class="text-lg font-bold mb-2">Saved Results</h2>
+        <div v-if="savedResults.length === 0" class="text-sm text-gray-400">
+          No saved results yet
+        </div>
+        <div v-else class="space-y-2">
+          <div
+            v-for="result in savedResults"
+            :key="result.id"
+            class="bg-gray-700 p-2 rounded flex justify-between items-center"
+          >
+            <button
+              @click="$emit('load-result', result.id)"
+              class="text-sm text-left flex-1 hover:text-blue-400"
+            >
+              {{ result.name }}
+            </button>
+            <button
+              @click="$emit('delete-result', result.id)"
+              class="text-red-400 hover:text-red-300 ml-2"
+              title="Delete"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Standings Button -->
+      <div class="mb-4" v-if="enablePoints && savedResults.length > 0">
+        <button
+          class="rounded-md bg-purple-600 hover:bg-purple-700 p-2 text-base text-white w-full"
+          @click="$emit('view-standings')"
+        >
+          📊 View Standings
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-4 border-t border-gray-600 pt-4">
         <button
           class="rounded-md bg-yellow-600 hover:bg-yellow-700 p-2 text-base text-white w-full mb-2"
           @click="clearJsonOnly()"
@@ -65,9 +106,9 @@
         </button>
         <button
           class="rounded-md bg-red-600 hover:bg-red-700 p-2 text-base text-white w-full"
-          @click="clearData()"
+          @click="$emit('global-reset')"
         >
-          Reset All
+          🔥 GLOBAL RESET
         </button>
       </div>
     </nav>
@@ -76,6 +117,16 @@
 
 <script>
 export default {
+  props: {
+    savedResults: {
+      type: Array,
+      default: () => []
+    },
+    currentView: {
+      type: String,
+      default: 'table'
+    }
+  },
   data() {
     return {
       seriesTitle: '2023 CSRO Championship',
@@ -120,10 +171,6 @@ export default {
         this.seriesLogo = settings.seriesLogo || null
         this.enablePoints = settings.enablePoints || false
       }
-    },
-    clearData() {
-      localStorage.clear()
-      window.location.reload()
     },
     clearJsonOnly() {
       localStorage.removeItem('CSRO_RESULT')

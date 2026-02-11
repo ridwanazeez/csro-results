@@ -1,6 +1,15 @@
 <template>
   <div class="flex dark:bg-gray-900 w-full sm:h-screen">
-    <SideNav v-if="uploaded" @settings="updateResultsTable"></SideNav>
+    <SideNav
+      v-if="uploaded"
+      @settings="updateResultsTable"
+      @load-result="loadSavedResult"
+      @delete-result="deleteSavedResult"
+      @view-standings="viewStandings"
+      @global-reset="globalReset"
+      :saved-results="savedResults"
+      :current-view="currentView"
+    ></SideNav>
     <div class="m-auto px-6 lg:px-8 max-w-[80%]">
       <div class="mx-auto">
         <div v-if="!uploaded">
@@ -27,11 +36,19 @@
             </div>
           </form>
         </div>
-        <!-- <div v-if="uploaded">
-          <h2 class="text-xl font-semibold mt-4">Uploaded Data:</h2>
-          <pre>{{ output }}</pre>
-        </div> -->
-        <ResultsTable v-if="uploaded" :race-data="settings" :key="resultsTableKey"></ResultsTable>
+        <ResultsTable
+          v-if="uploaded && currentView === 'table'"
+          :race-data="settings"
+          :current-result-id="currentResultId"
+          :key="resultsTableKey"
+          @save-result="saveResult"
+        ></ResultsTable>
+        <StandingsView
+          v-if="uploaded && currentView === 'standings'"
+          :saved-results="savedResults"
+          :settings="settings"
+          @back-to-table="backToTable"
+        ></StandingsView>
       </div>
     </div>
   </div>
@@ -41,11 +58,21 @@
 import { version } from '../package.json'
 import ResultsTable from './components/ResultsTable.vue'
 import SideNav from './components/SideNav.vue'
+import StandingsView from './components/StandingsView.vue'
 
 export default {
-  components: { ResultsTable, SideNav },
+  components: { ResultsTable, SideNav, StandingsView },
   data() {
-    return { jsonData: [], uploaded: false, settings: null, resultsTableKey: 0, version: version }
+    return {
+      jsonData: [],
+      uploaded: false,
+      settings: null,
+      resultsTableKey: 0,
+      version: version,
+      savedResults: [],
+      currentResultId: null,
+      currentView: 'table'
+    }
   },
   methods: {
     handleFileUpload(event) {
@@ -59,6 +86,8 @@ export default {
             const fileData = JSON.parse(reader.result)
             this.jsonData = fileData
             this.saveDataToLocalStorage(this.jsonData)
+            this.currentResultId = null // New upload, not saved yet
+            this.currentView = 'table'
             this.uploaded = true
           } catch (error) {
             console.error('Error parsing JSON:', error)
@@ -76,10 +105,85 @@ export default {
       if (jsonData) {
         this.uploaded = true
       }
+      // Load saved results
+      const savedResultsData = localStorage.getItem('CSRO_SAVED_RESULTS')
+      if (savedResultsData) {
+        this.savedResults = JSON.parse(savedResultsData)
+      }
     },
     updateResultsTable(data) {
       this.settings = data
       this.resultsTableKey += 1
+    },
+    saveResult(resultData) {
+      const resultName = prompt(
+        'Enter a name for this result:',
+        resultData.suggestedName || 'Result'
+      )
+      if (!resultName) return
+
+      const result = {
+        id: resultData.id || Date.now().toString(),
+        name: resultName,
+        data: resultData.data,
+        timestamp: Date.now()
+      }
+
+      // Check if updating existing result
+      const existingIndex = this.savedResults.findIndex((r) => r.id === result.id)
+      if (existingIndex !== -1) {
+        this.savedResults[existingIndex] = result
+      } else {
+        this.savedResults.push(result)
+      }
+
+      // Save to localStorage
+      localStorage.setItem('CSRO_SAVED_RESULTS', JSON.stringify(this.savedResults))
+      this.currentResultId = result.id
+
+      alert(`Result "${resultName}" saved successfully!`)
+    },
+    loadSavedResult(resultId) {
+      const result = this.savedResults.find((r) => r.id === resultId)
+      if (result) {
+        localStorage.setItem('CSRO_RESULT', JSON.stringify(result.data))
+        this.currentResultId = result.id
+        this.currentView = 'table'
+        this.uploaded = true
+        this.resultsTableKey += 1
+        window.location.reload()
+      }
+    },
+    deleteSavedResult(resultId) {
+      if (confirm('Are you sure you want to delete this result?')) {
+        this.savedResults = this.savedResults.filter((r) => r.id !== resultId)
+        localStorage.setItem('CSRO_SAVED_RESULTS', JSON.stringify(this.savedResults))
+
+        // If deleting current result, clear the current data
+        if (this.currentResultId === resultId) {
+          this.currentResultId = null
+          localStorage.removeItem('CSRO_RESULT')
+          this.uploaded = false
+        }
+      }
+    },
+    viewStandings() {
+      this.currentView = 'standings'
+      this.resultsTableKey += 1
+    },
+    backToTable() {
+      this.currentView = 'table'
+      this.resultsTableKey += 1
+    },
+    globalReset() {
+      if (
+        confirm('WARNING: This will delete ALL saved results, settings, and images. Are you sure?')
+      ) {
+        if (confirm('This action cannot be undone. Continue?')) {
+          localStorage.clear()
+          window.location.reload()
+        }
+      }
     }
   },
   mounted() {
