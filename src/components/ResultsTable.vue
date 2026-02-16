@@ -1,13 +1,6 @@
 <template>
   <div class="flex justify-center py-12 px-4">
-    <div
-      id="resultsTable"
-      class="bg-white dark:bg-gray-800"
-      :style="{
-        width: table ? Math.min(table.getTotalSize() + 100, 1600) + 'px' : 'auto',
-        maxWidth: '100%'
-      }"
-    >
+    <div id="resultsTable" class="bg-white dark:bg-gray-800">
       <div class="flex align-middle items-center mb-5">
         <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
         <img
@@ -65,7 +58,6 @@
         <table
           v-if="table"
           class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white"
-          :style="{ width: table.getTotalSize() + 'px' }"
         >
           <thead class="bg-gray-50 dark:bg-gray-800">
             <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
