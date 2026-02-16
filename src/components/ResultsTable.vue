@@ -66,12 +66,6 @@
                   scope="col"
                   class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
                 >
-                  Country
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
                   Team
                 </th>
                 <th
@@ -131,53 +125,23 @@
                 <th class="px-6 py-4 font-bold text-center dark:text-white">
                   {{ resultIndex + 1 }}
                 </th>
-                <td
-                  contenteditable="true"
-                  :data-field="'name'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 font-normal text-gray-900 dark:text-white"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.DriverName }}
-                </td>
-                <td class="px-6 py-4 text-center">
-                  <select
-                    id="country"
-                    name="country"
-                    :value="getDriverNation(result.DriverName)"
-                    :data-index="resultIndex"
-                    @change="handleCountryChange"
-                    class="w-100 ring-0 rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-700 sm:text-sm sm:leading-6 text-center"
-                  >
-                    <option value="" disabled>COUNTRY</option>
-                    <option value="Anguilla">Anguilla</option>
-                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                    <option value="Bahamas">Bahamas</option>
-                    <option value="Barbados">Barbados</option>
-                    <option value="Belize">Belize</option>
-                    <option value="Bermuda">Bermuda</option>
-                    <option value="British Virgin Islands">British Virgin Islands</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Cayman Islands">Cayman Islands</option>
-                    <option value="Cuba">Cuba</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Dominica">Dominica</option>
-                    <option value="Grenada">Grenada</option>
-                    <option value="Guyana">Guyana</option>
-                    <option value="Haiti">Haiti</option>
-                    <option value="Jamaica">Jamaica</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="South Africa">South Africa</option>
-                    <option value="Saint Lucia">Saint Lucia</option>
-                    <option value="St. Kitts and Nevis">St. Kitts and Nevis</option>
-                    <option value="St. Vincent and the Grenadines">
-                      St. Vincent and the Grenadines
-                    </option>
-                    <option value="Suriname">Suriname</option>
-                    <option value="Trinidad & Tobago">Trinidad & Tobago</option>
-                    <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
-                    <option value="USA">USA</option>
-                  </select>
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
+                  <div class="flex items-center gap-2">
+                    <span
+                      v-if="getDriverNationCode(result.DriverName)"
+                      v-html="getCountryFlag(getDriverNationCode(result.DriverName))"
+                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
+                    ></span>
+                    <span
+                      contenteditable="true"
+                      :data-field="'name'"
+                      :data-index="resultIndex"
+                      @blur="handleCellEdit"
+                      class="flex-1"
+                    >
+                      {{ result.DriverName }}
+                    </span>
+                  </div>
                 </td>
                 <td
                   contenteditable="true"
@@ -255,6 +219,7 @@
 </template>
 
 <script>
+import * as flags from 'country-flag-icons/string/3x2'
 import html2canvas from 'html2canvas'
 
 export default {
@@ -571,6 +536,54 @@ export default {
 
       return nationCodeMap[countryName] || ''
     },
+    getDriverNationCode(driverName) {
+      if (!this.tableData.Cars) return ''
+
+      // Find the driver in the Cars array
+      const car = this.tableData.Cars.find((car) => car.Driver && car.Driver.Name === driverName)
+
+      if (car && car.Driver && car.Driver.Nation) {
+        return car.Driver.Nation
+      }
+
+      return ''
+    },
+    getCountryFlag(nationCode) {
+      // Map 3-letter nation codes to ISO 3166-1 alpha-2 codes used by flag library
+      const isoCodeMap = {
+        GUY: 'GY',
+        JAM: 'JM',
+        TTO: 'TT',
+        BRB: 'BB',
+        BHS: 'BS',
+        ATG: 'AG',
+        DMA: 'DM',
+        GRD: 'GD',
+        KNA: 'KN',
+        LCA: 'LC',
+        VCT: 'VC',
+        BLZ: 'BZ',
+        SUR: 'SR',
+        HTI: 'HT',
+        CUB: 'CU',
+        CAN: 'CA',
+        USA: 'US',
+        MSR: 'MS',
+        AIA: 'AI',
+        VGB: 'VG',
+        CYM: 'KY',
+        TCA: 'TC',
+        BMU: 'BM',
+        DNK: 'DK',
+        ZAF: 'ZA'
+      }
+
+      const isoCode = isoCodeMap[nationCode]
+      if (!isoCode) return ''
+
+      // Get the flag SVG from the imported flags object
+      return flags[isoCode] || ''
+    },
     handleDragStart(event, index) {
       this.draggedIndex = index
       event.dataTransfer.effectAllowed = 'move'
@@ -611,15 +624,6 @@ export default {
         this.pendingEdits[index] = {}
       }
       this.pendingEdits[index][field] = value
-    },
-    handleCountryChange(event) {
-      const index = parseInt(event.target.dataset.index)
-      const value = event.target.value
-
-      if (!this.pendingEdits[index]) {
-        this.pendingEdits[index] = {}
-      }
-      this.pendingEdits[index]['country'] = value
     },
     saveChanges() {
       // Apply all pending edits to the data structure
@@ -664,21 +668,6 @@ export default {
               )
               if (carIndex !== -1) {
                 this.tableData.Cars[carIndex].Driver.Team = edits.team
-              }
-            }
-          }
-
-          // Update country if changed
-          if (edits.country) {
-            const currentDriverName = edits.name || this.tableData.Result[i].DriverName
-            const nationCode = this.getNationCode(edits.country)
-
-            if (this.tableData.Cars) {
-              const carIndex = this.tableData.Cars.findIndex(
-                (car) => car.Driver && car.Driver.Name === currentDriverName
-              )
-              if (carIndex !== -1) {
-                this.tableData.Cars[carIndex].Driver.Nation = nationCode
               }
             }
           }

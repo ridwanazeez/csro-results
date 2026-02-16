@@ -44,9 +44,6 @@
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Country
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                     Team
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
@@ -70,10 +67,14 @@
                 >
                   <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
                   <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                    {{ driver.DriverName }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getCountryName(result.data.Cars, driver.DriverName) }}
+                    <div class="flex items-center gap-2">
+                      <span
+                        v-if="getNationCode(result.data.Cars, driver.DriverName)"
+                        v-html="getCountryFlag(getNationCode(result.data.Cars, driver.DriverName))"
+                        class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
+                      ></span>
+                      <span>{{ driver.DriverName }}</span>
+                    </div>
                   </td>
                   <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
@@ -122,9 +123,6 @@
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Country
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                     Team
                   </th>
                   <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
@@ -154,10 +152,14 @@
                 >
                   <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
                   <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                    {{ driver.DriverName }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getCountryName(result.data.Cars, driver.DriverName) }}
+                    <div class="flex items-center gap-2">
+                      <span
+                        v-if="getNationCode(result.data.Cars, driver.DriverName)"
+                        v-html="getCountryFlag(getNationCode(result.data.Cars, driver.DriverName))"
+                        class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
+                      ></span>
+                      <span>{{ driver.DriverName }}</span>
+                    </div>
                   </td>
                   <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
                     {{ getTeamName(result.data.Cars, driver.DriverName) }}
@@ -206,7 +208,6 @@
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Country</th>
                 <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
                   Points
                 </th>
@@ -222,13 +223,17 @@
               >
                 <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
                 <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  {{ driver.name }}
+                  <div class="flex items-center gap-2">
+                    <span
+                      v-if="getNationCodeFromName(driver.country)"
+                      v-html="getCountryFlag(getNationCodeFromName(driver.country))"
+                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
+                    ></span>
+                    <span>{{ driver.name }}</span>
+                  </div>
                 </td>
                 <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
                   {{ driver.team }}
-                </td>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  {{ driver.country }}
                 </td>
                 <td class="px-6 py-4 text-center font-bold dark:text-white">{{ driver.points }}</td>
               </tr>
@@ -302,7 +307,14 @@
               >
                 <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
                 <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  {{ country.name }}
+                  <div class="flex items-center gap-2">
+                    <span
+                      v-if="getNationCodeFromName(country.name)"
+                      v-html="getCountryFlag(getNationCodeFromName(country.name))"
+                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
+                    ></span>
+                    <span>{{ country.name }}</span>
+                  </div>
                 </td>
                 <td class="px-6 py-4 text-center font-bold dark:text-white">
                   {{ country.points }}
@@ -318,6 +330,7 @@
 
 <script>
 import html2canvas from 'html2canvas'
+import * as flags from 'country-flag-icons/string/3x2'
 
 export default {
   props: {
@@ -530,6 +543,78 @@ export default {
         SAI: 'Saint Lucia'
       }
       return nationMap[nationCode] || ''
+    },
+    getNationCode(cars, driverName) {
+      if (!cars) return ''
+      const car = cars.find((c) => c.Driver && c.Driver.Name === driverName)
+      return car?.Driver?.Nation || ''
+    },
+    getNationCodeFromName(countryName) {
+      // Reverse map: country name to nation code
+      const nationCodeMap = {
+        Guyana: 'GUY',
+        Jamaica: 'JAM',
+        'Trinidad & Tobago': 'TTO',
+        Barbados: 'BRB',
+        Bahamas: 'BHS',
+        'Antigua and Barbuda': 'ATG',
+        Dominica: 'DMA',
+        Grenada: 'GRD',
+        'St. Kitts and Nevis': 'KNA',
+        'Saint Lucia': 'LCA',
+        'St. Vincent and the Grenadines': 'VCT',
+        Belize: 'BLZ',
+        Suriname: 'SUR',
+        Haiti: 'HTI',
+        Cuba: 'CUB',
+        Canada: 'CAN',
+        USA: 'USA',
+        Montserrat: 'MSR',
+        Anguilla: 'AIA',
+        'British Virgin Islands': 'VGB',
+        'Cayman Islands': 'CYM',
+        'Turks and Caicos Islands': 'TCA',
+        Bermuda: 'BMU',
+        Denmark: 'DNK',
+        'South Africa': 'ZAF'
+      }
+      return nationCodeMap[countryName] || ''
+    },
+    getCountryFlag(nationCode) {
+      // Map 3-letter nation codes to ISO 3166-1 alpha-2 codes used by flag library
+      const isoCodeMap = {
+        GUY: 'GY',
+        JAM: 'JM',
+        TTO: 'TT',
+        BRB: 'BB',
+        BHS: 'BS',
+        ATG: 'AG',
+        DMA: 'DM',
+        GRD: 'GD',
+        KNA: 'KN',
+        LCA: 'LC',
+        VCT: 'VC',
+        BLZ: 'BZ',
+        SUR: 'SR',
+        HTI: 'HT',
+        CUB: 'CU',
+        CAN: 'CA',
+        USA: 'US',
+        MSR: 'MS',
+        AIA: 'AI',
+        VGB: 'VG',
+        CYM: 'KY',
+        TCA: 'TC',
+        BMU: 'BM',
+        DNK: 'DK',
+        ZAF: 'ZA'
+      }
+
+      const isoCode = isoCodeMap[nationCode]
+      if (!isoCode) return ''
+
+      // Get the flag SVG from the imported flags object
+      return flags[isoCode] || ''
     },
     async captureScreenshot() {
       const element = document.getElementById('standingsTable')
