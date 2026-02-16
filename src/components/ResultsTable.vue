@@ -125,22 +125,33 @@
                 <th class="px-6 py-4 font-bold text-center dark:text-white">
                   {{ resultIndex + 1 }}
                 </th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white">
+                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white group">
                   <div class="flex items-center gap-2">
                     <span
                       v-if="getDriverNationCode(result.DriverName)"
                       v-html="getCountryFlag(getDriverNationCode(result.DriverName))"
                       class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
                     ></span>
-                    <span
-                      contenteditable="true"
-                      :data-field="'name'"
-                      :data-index="resultIndex"
-                      @blur="handleCellEdit"
-                      class="flex-1"
+                    <span class="flex-1">{{ result.DriverName }}</span>
+                    <button
+                      @click="openEditModal(resultIndex)"
+                      class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                      title="Edit driver"
                     >
-                      {{ result.DriverName }}
-                    </span>
+                      <svg
+                        class="w-4 h-4 text-gray-600 dark:text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </td>
                 <td
@@ -215,6 +226,119 @@
         </div>
       </div>
     </div>
+
+    <!-- Edit Driver Modal -->
+    <div
+      v-if="editingDriver !== null"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      @click.self="closeEditModal"
+    >
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">Edit Driver</h3>
+          <button
+            @click="closeEditModal"
+            class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Driver Name
+            </label>
+            <input
+              v-model="editForm.name"
+              type="text"
+              class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Country
+            </label>
+            <select
+              v-model="editForm.country"
+              class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            >
+              <option value="" disabled>Select Country</option>
+              <option value="Anguilla">Anguilla</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belize">Belize</option>
+              <option value="Bermuda">Bermuda</option>
+              <option value="British Virgin Islands">British Virgin Islands</option>
+              <option value="Canada">Canada</option>
+              <option value="Cayman Islands">Cayman Islands</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Dominica">Dominica</option>
+              <option value="Grenada">Grenada</option>
+              <option value="Guyana">Guyana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Jamaica">Jamaica</option>
+              <option value="Montserrat">Montserrat</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Saint Lucia">Saint Lucia</option>
+              <option value="St. Kitts and Nevis">St. Kitts and Nevis</option>
+              <option value="St. Vincent and the Grenadines">St. Vincent and the Grenadines</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+              <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+              <option value="USA">USA</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Team
+            </label>
+            <input
+              v-model="editForm.team"
+              type="text"
+              class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Car
+            </label>
+            <input
+              v-model="editForm.car"
+              type="text"
+              class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button
+            @click="closeEditModal"
+            class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            @click="saveDriverEdit"
+            class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -232,7 +356,14 @@ export default {
       draggedIndex: null,
       dragOverIndex: null,
       pendingEdits: {},
-      enablePoints: false
+      enablePoints: false,
+      editingDriver: null,
+      editForm: {
+        name: '',
+        country: '',
+        team: '',
+        car: ''
+      }
     }
   },
   props: {
@@ -625,6 +756,76 @@ export default {
       }
       this.pendingEdits[index][field] = value
     },
+    openEditModal(index) {
+      this.editingDriver = index
+      const driver = this.tableData.Result[index]
+
+      this.editForm = {
+        name: driver.DriverName,
+        country: this.getDriverNation(driver.DriverName),
+        team: this.getDriverTeam(driver.DriverName),
+        car: this.getDriverCar(driver.DriverName)
+      }
+    },
+    closeEditModal() {
+      this.editingDriver = null
+      this.editForm = {
+        name: '',
+        country: '',
+        team: '',
+        car: ''
+      }
+    },
+    saveDriverEdit() {
+      const index = this.editingDriver
+      if (index === null) return
+
+      const originalDriverName = this.tableData.Result[index].DriverName
+
+      // Update driver name in Result array
+      if (this.editForm.name !== originalDriverName) {
+        this.tableData.Result[index].DriverName = this.editForm.name
+
+        // Update in Laps array
+        if (this.tableData.Laps) {
+          this.tableData.Laps.forEach((lap) => {
+            if (lap.DriverName === originalDriverName) {
+              lap.DriverName = this.editForm.name
+            }
+          })
+        }
+      }
+
+      // Update in Cars array
+      if (this.tableData.Cars) {
+        const currentDriverName = this.editForm.name
+        const carIndex = this.tableData.Cars.findIndex(
+          (car) => car.Driver && car.Driver.Name === originalDriverName
+        )
+
+        if (carIndex !== -1) {
+          this.tableData.Cars[carIndex].Driver.Name = currentDriverName
+          this.tableData.Cars[carIndex].Driver.Team = this.editForm.team
+          this.tableData.Cars[carIndex].Driver.Nation = this.getNationCode(this.editForm.country)
+          this.tableData.Cars[carIndex].Model = this.editForm.car
+        }
+      }
+
+      // Save to localStorage and emit save event
+      this.saveDataToLocalStorage(this.tableData)
+
+      const date = this.formatDate(this.tableData.Date)
+      const type = this.tableData.Type === 'QUALIFY' ? 'Qualifying' : 'Race'
+      const suggestedName = `${type} - ${date}`
+
+      this.$emit('save-result', {
+        id: this.currentResultId,
+        data: this.tableData,
+        suggestedName: suggestedName
+      })
+
+      this.closeEditModal()
+    },
     saveChanges() {
       // Apply all pending edits to the data structure
       Object.keys(this.pendingEdits).forEach((index) => {
@@ -668,6 +869,21 @@ export default {
               )
               if (carIndex !== -1) {
                 this.tableData.Cars[carIndex].Driver.Team = edits.team
+              }
+            }
+          }
+
+          // Update country if changed
+          if (edits.country) {
+            const currentDriverName = edits.name || this.tableData.Result[i].DriverName
+            const nationCode = this.getNationCode(edits.country)
+
+            if (this.tableData.Cars) {
+              const carIndex = this.tableData.Cars.findIndex(
+                (car) => car.Driver && car.Driver.Name === currentDriverName
+              )
+              if (carIndex !== -1) {
+                this.tableData.Cars[carIndex].Driver.Nation = nationCode
               }
             }
           }

@@ -329,8 +329,8 @@
 </template>
 
 <script>
-import html2canvas from 'html2canvas'
 import * as flags from 'country-flag-icons/string/3x2'
+import html2canvas from 'html2canvas'
 
 export default {
   props: {
