@@ -3,7 +3,7 @@
     <div
       id="standingsTable"
       class="bg-white dark:bg-gray-800 p-8 space-y-8 w-full"
-      style="max-width: 1600px"
+      style="max-width: 900px"
     >
       <!-- Header -->
       <div class="flex align-middle items-center mb-5">
@@ -28,15 +28,6 @@
         </h1>
       </div>
 
-      <div class="mb-4 flex justify-end">
-        <button
-          @click="resetColumnWidths"
-          class="text-xs px-3 py-1 rounded border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        >
-          Reset Column Widths
-        </button>
-      </div>
-
       <!-- Qualifying Results -->
       <div v-if="qualifyingResults.length > 0">
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Qualifying Sessions</h2>
@@ -51,7 +42,7 @@
               v-if="result.data && result.data.Result"
               class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
             >
-              <RenderTable :table="createQualifyingTable(result.data)" />
+              <RenderTable :table="cachedTables.qualifying[index]" />
             </table>
           </div>
         </div>
@@ -71,7 +62,7 @@
               v-if="result.data && result.data.Result"
               class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
             >
-              <RenderTable :table="createRaceTable(result.data)" />
+              <RenderTable :table="cachedTables.race[index]" />
             </table>
           </div>
         </div>
@@ -87,7 +78,7 @@
             v-if="driverStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <RenderTable :table="createStandingsTable(driverStandings, 'driver')" />
+            <RenderTable :table="cachedTables.driver" />
           </table>
         </div>
       </div>
@@ -102,7 +93,7 @@
             v-if="teamStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <RenderTable :table="createStandingsTable(teamStandings, 'team')" />
+            <RenderTable :table="cachedTables.team" />
           </table>
         </div>
       </div>
@@ -117,7 +108,7 @@
             v-if="countryStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <RenderTable :table="createStandingsTable(countryStandings, 'country')" />
+            <RenderTable :table="cachedTables.country" />
           </table>
         </div>
       </div>
@@ -148,21 +139,13 @@ const RenderTable = {
                 'th',
                 {
                   key: header.id,
-                  style: { width: header.getSize() + 'px', position: 'relative' },
-                  class: 'px-6 py-4 font-medium text-gray-900 dark:text-white text-center'
+                  class: 'px-3 py-2 font-medium text-gray-900 dark:text-white text-center'
                 },
                 [
                   h(FlexRender, {
                     render: header.column.columnDef.header,
                     props: header.getContext()
-                  }),
-                  header.column.getCanResize()
-                    ? h('div', {
-                        onMousedown: header.getResizeHandler(),
-                        onTouchstart: header.getResizeHandler(),
-                        class: `absolute right-0 top-0 h-full w-1 cursor-col-resize select-none touch-none bg-gray-300 dark:bg-gray-600 opacity-0 hover:opacity-100 ${header.column.getIsResizing() ? 'opacity-100 bg-blue-500' : ''}`
-                      })
-                    : null
+                  })
                 ]
               )
             )
@@ -187,8 +170,7 @@ const RenderTable = {
                 'td',
                 {
                   key: cell.id,
-                  style: { width: cell.column.getSize() + 'px' },
-                  class: 'px-6 py-4 dark:text-gray-300'
+                  class: 'px-3 py-2 dark:text-gray-300'
                 },
                 h(FlexRender, {
                   render: cell.column.columnDef.cell,
@@ -210,8 +192,13 @@ export default {
   },
   data() {
     return {
-      columnSizing: {},
-      columnResizeMode: 'onChange'
+      cachedTables: {
+        qualifying: [],
+        race: [],
+        driver: null,
+        team: null,
+        country: null
+      }
     }
   },
   props: {
@@ -316,27 +303,53 @@ export default {
         .sort((a, b) => b.points - a.points)
     }
   },
-  mounted() {
-    this.loadColumnSizing()
+  watch: {
+    qualifyingResults: {
+      handler() {
+        this.cachedTables.qualifying = this.qualifyingResults.map((result) =>
+          this.createQualifyingTable(result.data)
+        )
+      },
+      immediate: true
+    },
+    raceResults: {
+      handler() {
+        this.cachedTables.race = this.raceResults.map((result) => this.createRaceTable(result.data))
+      },
+      immediate: true
+    },
+    driverStandings: {
+      handler() {
+        this.cachedTables.driver = this.createStandingsTable(this.driverStandings, 'driver')
+      },
+      immediate: true
+    },
+    teamStandings: {
+      handler() {
+        this.cachedTables.team = this.createStandingsTable(this.teamStandings, 'team')
+      },
+      immediate: true
+    },
+    countryStandings: {
+      handler() {
+        this.cachedTables.country = this.createStandingsTable(this.countryStandings, 'country')
+      },
+      immediate: true
+    }
   },
   methods: {
     createQualifyingTable(data) {
-      const self = this
       const columns = [
         {
           accessorKey: 'position',
           header: 'Pos',
-          size: 60,
-          minSize: 50,
-          enableResizing: true,
+          size: 40,
           cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
         },
         {
           accessorKey: 'DriverName',
           header: 'Driver',
-          size: 250,
-          minSize: 150,
-          enableResizing: true,
+          size: 140,
           cell: ({ row, getValue }) => {
             const value = getValue()
             const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
@@ -354,9 +367,7 @@ export default {
         {
           accessorKey: 'team',
           header: 'Team',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 100,
           cell: ({ row }) =>
             h(
               'span',
@@ -367,9 +378,7 @@ export default {
         {
           accessorKey: 'car',
           header: 'Car',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 100,
           cell: ({ row }) =>
             h(
               'span',
@@ -380,9 +389,7 @@ export default {
         {
           accessorKey: 'BestLap',
           header: 'Best Lap',
-          size: 140,
-          minSize: 100,
-          enableResizing: true,
+          size: 85,
           cell: ({ row, getValue }) => {
             const isBest = this.isBestLapInResult(getValue(), data.Result)
             return h(
@@ -397,9 +404,7 @@ export default {
         {
           accessorKey: 'laps',
           header: '# of Laps',
-          size: 100,
-          minSize: 80,
-          enableResizing: true,
+          size: 60,
           cell: ({ row }) =>
             h(
               'span',
@@ -412,38 +417,21 @@ export default {
       return useVueTable({
         data: data.Result || [],
         columns,
-        columnResizeMode: self.columnResizeMode,
-        get state() {
-          return { columnSizing: self.columnSizing }
-        },
-        onColumnSizingChange: (updater) => {
-          if (typeof updater === 'function') {
-            self.columnSizing = updater(self.columnSizing)
-          } else {
-            self.columnSizing = updater
-          }
-          self.saveColumnSizing()
-        },
         getCoreRowModel: getCoreRowModel()
       })
     },
     createRaceTable(data) {
-      const self = this
       const columns = [
         {
           accessorKey: 'position',
           header: 'Pos',
-          size: 60,
-          minSize: 50,
-          enableResizing: true,
+          size: 40,
           cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
         },
         {
           accessorKey: 'DriverName',
           header: 'Driver',
-          size: 250,
-          minSize: 150,
-          enableResizing: true,
+          size: 140,
           cell: ({ row, getValue }) => {
             const value = getValue()
             const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
@@ -461,9 +449,7 @@ export default {
         {
           accessorKey: 'team',
           header: 'Team',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 120,
           cell: ({ row }) =>
             h(
               'span',
@@ -474,9 +460,7 @@ export default {
         {
           accessorKey: 'car',
           header: 'Car',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 120,
           cell: ({ row }) =>
             h(
               'span',
@@ -487,18 +471,14 @@ export default {
         {
           accessorKey: 'TotalTime',
           header: 'Total Time',
-          size: 140,
-          minSize: 100,
-          enableResizing: true,
+          size: 85,
           cell: ({ getValue }) =>
             h('span', { class: 'text-center block font-mono' }, this.formatTime(getValue()))
         },
         {
           accessorKey: 'BestLap',
           header: 'Best Lap',
-          size: 140,
-          minSize: 100,
-          enableResizing: true,
+          size: 85,
           cell: ({ row, getValue }) => {
             const isBest = this.isBestLapInResult(getValue(), data.Result)
             return h(
@@ -513,9 +493,7 @@ export default {
         {
           accessorKey: 'laps',
           header: '# of Laps',
-          size: 100,
-          minSize: 80,
-          enableResizing: true,
+          size: 60,
           cell: ({ row }) =>
             h(
               'span',
@@ -526,9 +504,7 @@ export default {
         {
           accessorKey: 'points',
           header: 'Points',
-          size: 100,
-          minSize: 80,
-          enableResizing: true,
+          size: 55,
           cell: ({ row }) => {
             const points = row.original.customPoints || this.calculatePoints(row.index + 1)
             return h('span', { class: 'text-center block font-bold' }, points)
@@ -539,31 +515,16 @@ export default {
       return useVueTable({
         data: data.Result || [],
         columns,
-        columnResizeMode: self.columnResizeMode,
-        get state() {
-          return { columnSizing: self.columnSizing }
-        },
-        onColumnSizingChange: (updater) => {
-          if (typeof updater === 'function') {
-            self.columnSizing = updater(self.columnSizing)
-          } else {
-            self.columnSizing = updater
-          }
-          self.saveColumnSizing()
-        },
         getCoreRowModel: getCoreRowModel()
       })
     },
     createStandingsTable(data, type) {
-      const self = this
       const columns = []
 
       columns.push({
         accessorKey: 'position',
         header: '#',
-        size: 60,
-        minSize: 50,
-        enableResizing: true,
+        size: 40,
         cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
       })
 
@@ -571,9 +532,7 @@ export default {
         columns.push({
           accessorKey: 'name',
           header: type === 'driver' ? 'Driver' : 'Country',
-          size: 300,
-          minSize: 150,
-          enableResizing: true,
+          size: 150,
           cell: ({ row }) => {
             const item = row.original
             const name = item.name
@@ -595,9 +554,7 @@ export default {
         columns.push({
           accessorKey: 'name',
           header: 'Team',
-          size: 300,
-          minSize: 150,
-          enableResizing: true
+          size: 150
         })
       }
 
@@ -605,55 +562,22 @@ export default {
         columns.push({
           accessorKey: 'team',
           header: 'Team',
-          size: 200,
-          minSize: 120,
-          enableResizing: true
+          size: 100
         })
       }
 
       columns.push({
         accessorKey: 'points',
         header: 'Points',
-        size: 100,
-        minSize: 80,
-        enableResizing: true,
+        size: 55,
         cell: ({ getValue }) => h('span', { class: 'text-center block font-bold' }, getValue())
       })
 
       return useVueTable({
         data: data || [],
         columns,
-        columnResizeMode: self.columnResizeMode,
-        get state() {
-          return { columnSizing: self.columnSizing }
-        },
-        onColumnSizingChange: (updater) => {
-          if (typeof updater === 'function') {
-            self.columnSizing = updater(self.columnSizing)
-          } else {
-            self.columnSizing = updater
-          }
-          self.saveColumnSizing()
-        },
         getCoreRowModel: getCoreRowModel()
       })
-    },
-    loadColumnSizing() {
-      const saved = localStorage.getItem('CSRO_STANDINGS_COLUMN_SIZING')
-      if (saved) {
-        try {
-          this.columnSizing = JSON.parse(saved)
-        } catch (e) {
-          console.error('Failed to load column sizing:', e)
-        }
-      }
-    },
-    saveColumnSizing() {
-      localStorage.setItem('CSRO_STANDINGS_COLUMN_SIZING', JSON.stringify(this.columnSizing))
-    },
-    resetColumnWidths() {
-      this.columnSizing = {}
-      this.saveColumnSizing()
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]

@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center py-12 px-4">
-    <div id="resultsTable" class="bg-white dark:bg-gray-800">
+    <div id="resultsTable" class="bg-white dark:bg-gray-800" style="max-width: 900px">
       <div class="flex align-middle items-center mb-5">
         <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
         <img
@@ -44,14 +44,6 @@
           {{ formatDate(tableData.Date) }}
         </h2>
       </div>
-      <div class="mb-3 flex justify-end">
-        <button
-          @click="resetColumnWidths"
-          class="text-xs px-3 py-1 rounded border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-        >
-          Reset Column Widths
-        </button>
-      </div>
       <div
         class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
       >
@@ -64,22 +56,13 @@
               <th
                 v-for="header in headerGroup.headers"
                 :key="header.id"
-                :style="{ width: header.getSize() + 'px', position: 'relative' }"
-                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
+                class="px-3 py-2 font-medium text-gray-900 dark:text-white text-center"
               >
                 <FlexRender
                   v-if="!header.isPlaceholder"
                   :render="header.column.columnDef.header"
                   :props="header.getContext()"
                 />
-                <div
-                  v-if="header.column.getCanResize()"
-                  @mousedown="header.getResizeHandler()($event)"
-                  @touchstart="header.getResizeHandler()($event)"
-                  :class="`absolute right-0 top-0 h-full w-1 cursor-col-resize select-none touch-none bg-gray-300 dark:bg-gray-600 opacity-0 hover:opacity-100 ${
-                    header.column.getIsResizing() ? 'opacity-100 bg-blue-500' : ''
-                  }`"
-                ></div>
               </th>
             </tr>
           </thead>
@@ -100,8 +83,7 @@
               <td
                 v-for="cell in row.getVisibleCells()"
                 :key="cell.id"
-                :style="{ width: cell.column.getSize() + 'px' }"
-                class="px-6 py-4 dark:text-gray-300"
+                class="px-3 py-2 dark:text-gray-300"
               >
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
               </td>
@@ -253,9 +235,7 @@ export default {
         team: '',
         car: ''
       },
-      table: null,
-      columnSizing: {},
-      columnResizeMode: 'onChange'
+      table: null
     }
   },
   computed: {
@@ -264,18 +244,13 @@ export default {
         {
           accessorKey: 'position',
           header: '#',
-          size: 60,
-          minSize: 50,
-          maxSize: 100,
-          enableResizing: true,
+          size: 40,
           cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
         },
         {
           accessorKey: 'DriverName',
           header: 'Name',
-          size: 250,
-          minSize: 150,
-          enableResizing: true,
+          size: 140,
           cell: ({ row, getValue }) => {
             const value = getValue()
             const flagHtml = this.getCountryFlag(this.getDriverNationCode(value))
@@ -322,9 +297,7 @@ export default {
         {
           accessorKey: 'team',
           header: 'Team',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 100,
           cell: ({ row }) => {
             const driverName = row.original.DriverName
             return h(
@@ -343,9 +316,7 @@ export default {
         {
           accessorKey: 'car',
           header: 'Car',
-          size: 200,
-          minSize: 120,
-          enableResizing: true,
+          size: 100,
           cell: ({ row }) => {
             const driverName = row.original.DriverName
             return h(
@@ -364,9 +335,7 @@ export default {
         {
           accessorKey: 'TotalTime',
           header: 'Total Time',
-          size: 140,
-          minSize: 100,
-          enableResizing: true,
+          size: 85,
           cell: ({ row, getValue }) => {
             const result = row.original
             const value = result.customTotalTime || this.calculateBestLap(getValue())
@@ -386,9 +355,7 @@ export default {
         {
           accessorKey: 'BestLap',
           header: 'Best Lap',
-          size: 140,
-          minSize: 100,
-          enableResizing: true,
+          size: 85,
           cell: ({ row, getValue }) => {
             const result = row.original
             const value = result.customBestLap || this.calculateBestLap(getValue())
@@ -412,9 +379,7 @@ export default {
         cols.push({
           accessorKey: 'gap',
           header: 'Gap',
-          size: 120,
-          minSize: 80,
-          enableResizing: true,
+          size: 65,
           cell: ({ row }) => {
             const result = row.original
             const gaps = this.calculateRaceGap(this.tableData.Result)
@@ -437,9 +402,7 @@ export default {
       cols.push({
         accessorKey: 'laps',
         header: '# of Laps',
-        size: 100,
-        minSize: 80,
-        enableResizing: true,
+        size: 60,
         cell: ({ row }) => {
           const result = row.original
           const driverName = result.DriverName
@@ -463,9 +426,7 @@ export default {
         cols.push({
           accessorKey: 'points',
           header: 'Points',
-          size: 100,
-          minSize: 80,
-          enableResizing: true,
+          size: 55,
           cell: ({ row }) => {
             const result = row.original
             const value = result.customPoints || this.calculatePoints(row.index + 1)
@@ -496,7 +457,6 @@ export default {
     }
   },
   mounted() {
-    this.loadColumnSizing()
     this.initializeTable()
   },
   props: {
@@ -521,40 +481,8 @@ export default {
         get columns() {
           return self.columns
         },
-        columnResizeMode: self.columnResizeMode,
-        get state() {
-          return {
-            columnSizing: self.columnSizing
-          }
-        },
-        onColumnSizingChange: (updater) => {
-          if (typeof updater === 'function') {
-            self.columnSizing = updater(self.columnSizing)
-          } else {
-            self.columnSizing = updater
-          }
-          self.saveColumnSizing()
-        },
         getCoreRowModel: getCoreRowModel()
       })
-    },
-    loadColumnSizing() {
-      const saved = localStorage.getItem('CSRO_COLUMN_SIZING')
-      if (saved) {
-        try {
-          this.columnSizing = JSON.parse(saved)
-        } catch (e) {
-          console.error('Failed to load column sizing:', e)
-        }
-      }
-    },
-    saveColumnSizing() {
-      localStorage.setItem('CSRO_COLUMN_SIZING', JSON.stringify(this.columnSizing))
-    },
-    resetColumnWidths() {
-      this.columnSizing = {}
-      this.saveColumnSizing()
-      this.initializeTable()
     },
     calculateBestLap(x, penalty = 0) {
       //Time calculation
