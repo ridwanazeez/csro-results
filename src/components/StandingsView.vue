@@ -1,6 +1,10 @@
 <template>
-  <div class="py-12">
-    <div id="standingsTable" class="bg-white dark:bg-gray-800 p-8 space-y-8">
+  <div class="flex justify-center py-12 px-4">
+    <div
+      id="standingsTable"
+      class="bg-white dark:bg-gray-800 p-8 space-y-8 w-full"
+      style="max-width: 1600px"
+    >
       <!-- Header -->
       <div class="flex align-middle items-center mb-5">
         <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
@@ -24,6 +28,15 @@
         </h1>
       </div>
 
+      <div class="mb-4 flex justify-end">
+        <button
+          @click="resetColumnWidths"
+          class="text-xs px-3 py-1 rounded border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          Reset Column Widths
+        </button>
+      </div>
+
       <!-- Qualifying Results -->
       <div v-if="qualifyingResults.length > 0">
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Qualifying Sessions</h2>
@@ -32,72 +45,13 @@
             {{ result.name }}
           </h3>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
           >
             <table
-              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+              v-if="result.data && result.data.Result"
+              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
             >
-              <thead class="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Pos
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Team
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Car
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Best Lap
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    # of Laps
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-              >
-                <tr
-                  v-for="(driver, idx) in result.data.Result"
-                  :key="idx"
-                  class="hover:bg-gray-50 dark:hover:bg-gray-700"
-                >
-                  <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
-                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                    <div class="flex items-center gap-2">
-                      <span
-                        v-if="getNationCode(result.data.Cars, driver.DriverName)"
-                        v-html="getCountryFlag(getNationCode(result.data.Cars, driver.DriverName))"
-                        class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
-                      ></span>
-                      <span>{{ driver.DriverName }}</span>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getTeamName(result.data.Cars, driver.DriverName) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getCarName(result.data.Cars, driver.DriverName) }}
-                  </td>
-                  <td
-                    class="px-6 py-4 text-center font-mono dark:text-gray-300"
-                    :class="{
-                      'bg-green-600 text-white': isBestLapInResult(
-                        driver.BestLap,
-                        result.data.Result
-                      )
-                    }"
-                  >
-                    {{ formatTime(driver.BestLap) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal dark:text-gray-300">
-                    {{ calculateTotalLaps(result.data.Laps, driver.DriverName) }}
-                  </td>
-                </tr>
-              </tbody>
+              <RenderTable :table="createQualifyingTable(result.data)" />
             </table>
           </div>
         </div>
@@ -111,84 +65,13 @@
             {{ result.name }}
           </h3>
           <div
-            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
           >
             <table
-              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+              v-if="result.data && result.data.Result"
+              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
             >
-              <thead class="bg-gray-50 dark:bg-gray-700">
-                <tr>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Pos
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Team
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Car
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Total Time
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Best Lap
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    # of Laps
-                  </th>
-                  <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                    Points
-                  </th>
-                </tr>
-              </thead>
-              <tbody
-                class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-              >
-                <tr
-                  v-for="(driver, idx) in result.data.Result"
-                  :key="idx"
-                  class="hover:bg-gray-50 dark:hover:bg-gray-700"
-                >
-                  <th class="px-6 py-4 font-bold text-center dark:text-white">{{ idx + 1 }}</th>
-                  <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                    <div class="flex items-center gap-2">
-                      <span
-                        v-if="getNationCode(result.data.Cars, driver.DriverName)"
-                        v-html="getCountryFlag(getNationCode(result.data.Cars, driver.DriverName))"
-                        class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
-                      ></span>
-                      <span>{{ driver.DriverName }}</span>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getTeamName(result.data.Cars, driver.DriverName) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal text-gray-900 dark:text-gray-300">
-                    {{ getCarName(result.data.Cars, driver.DriverName) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-mono dark:text-gray-300">
-                    {{ formatTime(driver.TotalTime) }}
-                  </td>
-                  <td
-                    class="px-6 py-4 text-center font-mono dark:text-gray-300"
-                    :class="{
-                      'bg-green-600 text-white': isBestLapInResult(
-                        driver.BestLap,
-                        result.data.Result
-                      )
-                    }"
-                  >
-                    {{ formatTime(driver.BestLap) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-normal dark:text-gray-300">
-                    {{ calculateTotalLaps(result.data.Laps, driver.DriverName) }}
-                  </td>
-                  <td class="px-6 py-4 text-center font-bold dark:text-white">
-                    {{ driver.customPoints || calculatePoints(idx + 1) }}
-                  </td>
-                </tr>
-              </tbody>
+              <RenderTable :table="createRaceTable(result.data)" />
             </table>
           </div>
         </div>
@@ -198,46 +81,13 @@
       <div>
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Driver Standings</h2>
         <div
-          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
         >
           <table
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+            v-if="driverStandings.length > 0"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <thead class="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Driver</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                  Points
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-            >
-              <tr
-                v-for="(driver, index) in driverStandings"
-                :key="index"
-                class="hover:bg-gray-50 dark:hover:bg-gray-700"
-              >
-                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  <div class="flex items-center gap-2">
-                    <span
-                      v-if="getNationCodeFromName(driver.country)"
-                      v-html="getCountryFlag(getNationCodeFromName(driver.country))"
-                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
-                    ></span>
-                    <span>{{ driver.name }}</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  {{ driver.team }}
-                </td>
-                <td class="px-6 py-4 text-center font-bold dark:text-white">{{ driver.points }}</td>
-              </tr>
-            </tbody>
+            <RenderTable :table="createStandingsTable(driverStandings, 'driver')" />
           </table>
         </div>
       </div>
@@ -246,35 +96,13 @@
       <div>
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Team Standings</h2>
         <div
-          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
         >
           <table
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+            v-if="teamStandings.length > 0"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <thead class="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Team</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                  Points
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-            >
-              <tr
-                v-for="(team, index) in teamStandings"
-                :key="index"
-                class="hover:bg-gray-50 dark:hover:bg-gray-700"
-              >
-                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  {{ team.name }}
-                </td>
-                <td class="px-6 py-4 text-center font-bold dark:text-white">{{ team.points }}</td>
-              </tr>
-            </tbody>
+            <RenderTable :table="createStandingsTable(teamStandings, 'team')" />
           </table>
         </div>
       </div>
@@ -283,44 +111,13 @@
       <div>
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Country Standings</h2>
         <div
-          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
         >
           <table
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300 table-auto"
+            v-if="countryStandings.length > 0"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
           >
-            <thead class="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">#</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">Country</th>
-                <th class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center">
-                  Points
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-            >
-              <tr
-                v-for="(country, index) in countryStandings"
-                :key="index"
-                class="hover:bg-gray-50 dark:hover:bg-gray-700"
-              >
-                <th class="px-6 py-4 font-bold text-center dark:text-white">{{ index + 1 }}</th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-gray-300">
-                  <div class="flex items-center gap-2">
-                    <span
-                      v-if="getNationCodeFromName(country.name)"
-                      v-html="getCountryFlag(getNationCodeFromName(country.name))"
-                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
-                    ></span>
-                    <span>{{ country.name }}</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4 text-center font-bold dark:text-white">
-                  {{ country.points }}
-                </td>
-              </tr>
-            </tbody>
+            <RenderTable :table="createStandingsTable(countryStandings, 'country')" />
           </table>
         </div>
       </div>
@@ -329,10 +126,94 @@
 </template>
 
 <script>
+import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
 import html2canvas from 'html2canvas'
+import { h } from 'vue'
+
+const RenderTable = {
+  props: ['table'],
+  render() {
+    const table = this.table
+    return [
+      h(
+        'thead',
+        { class: 'bg-gray-50 dark:bg-gray-700' },
+        table.getHeaderGroups().map((headerGroup) =>
+          h(
+            'tr',
+            { key: headerGroup.id },
+            headerGroup.headers.map((header) =>
+              h(
+                'th',
+                {
+                  key: header.id,
+                  style: { width: header.getSize() + 'px', position: 'relative' },
+                  class: 'px-6 py-4 font-medium text-gray-900 dark:text-white text-center'
+                },
+                [
+                  h(FlexRender, {
+                    render: header.column.columnDef.header,
+                    props: header.getContext()
+                  }),
+                  header.column.getCanResize()
+                    ? h('div', {
+                        onMousedown: header.getResizeHandler(),
+                        onTouchstart: header.getResizeHandler(),
+                        class: `absolute right-0 top-0 h-full w-1 cursor-col-resize select-none touch-none bg-gray-300 dark:bg-gray-600 opacity-0 hover:opacity-100 ${header.column.getIsResizing() ? 'opacity-100 bg-blue-500' : ''}`
+                      })
+                    : null
+                ]
+              )
+            )
+          )
+        )
+      ),
+      h(
+        'tbody',
+        {
+          class:
+            'divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700'
+        },
+        table.getRowModel().rows.map((row) =>
+          h(
+            'tr',
+            {
+              key: row.id,
+              class: 'hover:bg-gray-50 dark:hover:bg-gray-700'
+            },
+            row.getVisibleCells().map((cell) =>
+              h(
+                'td',
+                {
+                  key: cell.id,
+                  style: { width: cell.column.getSize() + 'px' },
+                  class: 'px-6 py-4 dark:text-gray-300'
+                },
+                h(FlexRender, {
+                  render: cell.column.columnDef.cell,
+                  props: cell.getContext()
+                })
+              )
+            )
+          )
+        )
+      )
+    ]
+  }
+}
 
 export default {
+  components: {
+    FlexRender,
+    RenderTable
+  },
+  data() {
+    return {
+      columnSizing: {},
+      columnResizeMode: 'onChange'
+    }
+  },
   props: {
     savedResults: {
       type: Array,
@@ -353,7 +234,6 @@ export default {
     driverStandings() {
       const driverData = {}
 
-      // Only count points from RACE type results
       this.raceResults.forEach((result) => {
         if (result.data && result.data.Result) {
           result.data.Result.forEach((driver, index) => {
@@ -361,7 +241,6 @@ export default {
             const driverName = driver.DriverName
 
             if (!driverData[driverName]) {
-              // Find driver info from Cars array
               const car = result.data.Cars?.find((c) => c.Driver && c.Driver.Name === driverName)
               driverData[driverName] = {
                 points: 0,
@@ -386,14 +265,12 @@ export default {
     teamStandings() {
       const teamPoints = {}
 
-      // Only count points from RACE type results
       this.raceResults.forEach((result) => {
         if (result.data && result.data.Result && result.data.Cars) {
           result.data.Result.forEach((driver, index) => {
             const points = driver.customPoints || this.calculatePoints(index + 1)
             const driverName = driver.DriverName
 
-            // Find team from Cars array
             const car = result.data.Cars.find((c) => c.Driver && c.Driver.Name === driverName)
             const teamName = car?.Driver?.Team || 'No Team'
 
@@ -414,14 +291,12 @@ export default {
     countryStandings() {
       const countryPoints = {}
 
-      // Only count points from RACE type results
       this.raceResults.forEach((result) => {
         if (result.data && result.data.Result && result.data.Cars) {
           result.data.Result.forEach((driver, index) => {
             const points = driver.customPoints || this.calculatePoints(index + 1)
             const driverName = driver.DriverName
 
-            // Find country from Cars array
             const car = result.data.Cars.find((c) => c.Driver && c.Driver.Name === driverName)
             const countryCode = car?.Driver?.Nation
             const countryName = this.getNationName(countryCode) || 'Unknown'
@@ -441,7 +316,345 @@ export default {
         .sort((a, b) => b.points - a.points)
     }
   },
+  mounted() {
+    this.loadColumnSizing()
+  },
   methods: {
+    createQualifyingTable(data) {
+      const self = this
+      const columns = [
+        {
+          accessorKey: 'position',
+          header: 'Pos',
+          size: 60,
+          minSize: 50,
+          enableResizing: true,
+          cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
+        },
+        {
+          accessorKey: 'DriverName',
+          header: 'Driver',
+          size: 250,
+          minSize: 150,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const value = getValue()
+            const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
+            return h('div', { class: 'flex items-center gap-2' }, [
+              flagHtml
+                ? h('span', {
+                    innerHTML: flagHtml,
+                    class: 'inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0'
+                  })
+                : null,
+              h('span', value)
+            ])
+          }
+        },
+        {
+          accessorKey: 'team',
+          header: 'Team',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.getTeamName(data.Cars, row.original.DriverName)
+            )
+        },
+        {
+          accessorKey: 'car',
+          header: 'Car',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.getCarName(data.Cars, row.original.DriverName)
+            )
+        },
+        {
+          accessorKey: 'BestLap',
+          header: 'Best Lap',
+          size: 140,
+          minSize: 100,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const isBest = this.isBestLapInResult(getValue(), data.Result)
+            return h(
+              'span',
+              {
+                class: `text-center block font-mono ${isBest ? 'bg-green-600 text-white' : ''}`
+              },
+              this.formatTime(getValue())
+            )
+          }
+        },
+        {
+          accessorKey: 'laps',
+          header: '# of Laps',
+          size: 100,
+          minSize: 80,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.calculateTotalLaps(data.Laps, row.original.DriverName)
+            )
+        }
+      ]
+
+      return useVueTable({
+        data: data.Result || [],
+        columns,
+        columnResizeMode: self.columnResizeMode,
+        get state() {
+          return { columnSizing: self.columnSizing }
+        },
+        onColumnSizingChange: (updater) => {
+          if (typeof updater === 'function') {
+            self.columnSizing = updater(self.columnSizing)
+          } else {
+            self.columnSizing = updater
+          }
+          self.saveColumnSizing()
+        },
+        getCoreRowModel: getCoreRowModel()
+      })
+    },
+    createRaceTable(data) {
+      const self = this
+      const columns = [
+        {
+          accessorKey: 'position',
+          header: 'Pos',
+          size: 60,
+          minSize: 50,
+          enableResizing: true,
+          cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
+        },
+        {
+          accessorKey: 'DriverName',
+          header: 'Driver',
+          size: 250,
+          minSize: 150,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const value = getValue()
+            const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
+            return h('div', { class: 'flex items-center gap-2' }, [
+              flagHtml
+                ? h('span', {
+                    innerHTML: flagHtml,
+                    class: 'inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0'
+                  })
+                : null,
+              h('span', value)
+            ])
+          }
+        },
+        {
+          accessorKey: 'team',
+          header: 'Team',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.getTeamName(data.Cars, row.original.DriverName)
+            )
+        },
+        {
+          accessorKey: 'car',
+          header: 'Car',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.getCarName(data.Cars, row.original.DriverName)
+            )
+        },
+        {
+          accessorKey: 'TotalTime',
+          header: 'Total Time',
+          size: 140,
+          minSize: 100,
+          enableResizing: true,
+          cell: ({ getValue }) =>
+            h('span', { class: 'text-center block font-mono' }, this.formatTime(getValue()))
+        },
+        {
+          accessorKey: 'BestLap',
+          header: 'Best Lap',
+          size: 140,
+          minSize: 100,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const isBest = this.isBestLapInResult(getValue(), data.Result)
+            return h(
+              'span',
+              {
+                class: `text-center block font-mono ${isBest ? 'bg-green-600 text-white' : ''}`
+              },
+              this.formatTime(getValue())
+            )
+          }
+        },
+        {
+          accessorKey: 'laps',
+          header: '# of Laps',
+          size: 100,
+          minSize: 80,
+          enableResizing: true,
+          cell: ({ row }) =>
+            h(
+              'span',
+              { class: 'text-center block' },
+              this.calculateTotalLaps(data.Laps, row.original.DriverName)
+            )
+        },
+        {
+          accessorKey: 'points',
+          header: 'Points',
+          size: 100,
+          minSize: 80,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const points = row.original.customPoints || this.calculatePoints(row.index + 1)
+            return h('span', { class: 'text-center block font-bold' }, points)
+          }
+        }
+      ]
+
+      return useVueTable({
+        data: data.Result || [],
+        columns,
+        columnResizeMode: self.columnResizeMode,
+        get state() {
+          return { columnSizing: self.columnSizing }
+        },
+        onColumnSizingChange: (updater) => {
+          if (typeof updater === 'function') {
+            self.columnSizing = updater(self.columnSizing)
+          } else {
+            self.columnSizing = updater
+          }
+          self.saveColumnSizing()
+        },
+        getCoreRowModel: getCoreRowModel()
+      })
+    },
+    createStandingsTable(data, type) {
+      const self = this
+      const columns = []
+
+      columns.push({
+        accessorKey: 'position',
+        header: '#',
+        size: 60,
+        minSize: 50,
+        enableResizing: true,
+        cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
+      })
+
+      if (type === 'driver' || type === 'country') {
+        columns.push({
+          accessorKey: 'name',
+          header: type === 'driver' ? 'Driver' : 'Country',
+          size: 300,
+          minSize: 150,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const item = row.original
+            const name = item.name
+            const countryName = type === 'driver' ? item.country : name
+            const nationCode = this.getNationCodeFromName(countryName)
+            const flagHtml = this.getCountryFlag(nationCode)
+            return h('div', { class: 'flex items-center gap-2' }, [
+              flagHtml
+                ? h('span', {
+                    innerHTML: flagHtml,
+                    class: 'inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0'
+                  })
+                : null,
+              h('span', name)
+            ])
+          }
+        })
+      } else {
+        columns.push({
+          accessorKey: 'name',
+          header: 'Team',
+          size: 300,
+          minSize: 150,
+          enableResizing: true
+        })
+      }
+
+      if (type === 'driver') {
+        columns.push({
+          accessorKey: 'team',
+          header: 'Team',
+          size: 200,
+          minSize: 120,
+          enableResizing: true
+        })
+      }
+
+      columns.push({
+        accessorKey: 'points',
+        header: 'Points',
+        size: 100,
+        minSize: 80,
+        enableResizing: true,
+        cell: ({ getValue }) => h('span', { class: 'text-center block font-bold' }, getValue())
+      })
+
+      return useVueTable({
+        data: data || [],
+        columns,
+        columnResizeMode: self.columnResizeMode,
+        get state() {
+          return { columnSizing: self.columnSizing }
+        },
+        onColumnSizingChange: (updater) => {
+          if (typeof updater === 'function') {
+            self.columnSizing = updater(self.columnSizing)
+          } else {
+            self.columnSizing = updater
+          }
+          self.saveColumnSizing()
+        },
+        getCoreRowModel: getCoreRowModel()
+      })
+    },
+    loadColumnSizing() {
+      const saved = localStorage.getItem('CSRO_STANDINGS_COLUMN_SIZING')
+      if (saved) {
+        try {
+          this.columnSizing = JSON.parse(saved)
+        } catch (e) {
+          console.error('Failed to load column sizing:', e)
+        }
+      }
+    },
+    saveColumnSizing() {
+      localStorage.setItem('CSRO_STANDINGS_COLUMN_SIZING', JSON.stringify(this.columnSizing))
+    },
+    resetColumnWidths() {
+      this.columnSizing = {}
+      this.saveColumnSizing()
+    },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
       if (position <= 10) {
@@ -482,16 +695,11 @@ export default {
       return ''
     },
     formatCarName(model) {
-      // Remove common mod prefixes dynamically and format car names
       let formatted = model
-        // Remove common prefixes (rss, gtm, ks, etc.) followed by underscore
         .replace(/^(rss|gtm|ks|ac|mod)_/gi, '')
-        // Replace remaining underscores with spaces
         .replace(/_/g, ' ')
-        // Trim any extra spaces
         .trim()
 
-      // Capitalize each word
       return formatted
         .split(' ')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -550,7 +758,6 @@ export default {
       return car?.Driver?.Nation || ''
     },
     getNationCodeFromName(countryName) {
-      // Reverse map: country name to nation code
       const nationCodeMap = {
         Guyana: 'GUY',
         Jamaica: 'JAM',
@@ -581,7 +788,6 @@ export default {
       return nationCodeMap[countryName] || ''
     },
     getCountryFlag(nationCode) {
-      // Map 3-letter nation codes to ISO 3166-1 alpha-2 codes used by flag library
       const isoCodeMap = {
         GUY: 'GY',
         JAM: 'JM',
@@ -613,7 +819,6 @@ export default {
       const isoCode = isoCodeMap[nationCode]
       if (!isoCode) return ''
 
-      // Get the flag SVG from the imported flags object
       return flags[isoCode] || ''
     },
     async captureScreenshot() {
@@ -624,7 +829,6 @@ export default {
       }
 
       try {
-        // Check if dark mode is enabled
         const htmlElement = document.documentElement
         const isDarkMode = htmlElement.classList.contains('dark')
 

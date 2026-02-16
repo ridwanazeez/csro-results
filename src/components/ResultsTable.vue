@@ -1,229 +1,121 @@
 <template>
-  <div class="flex">
-    <div class="m-auto py-12">
-      <div id="resultsTable" class="bg-white dark:bg-gray-800">
-        <div class="flex align-middle items-center mb-5">
-          <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
-          <img
-            v-if="seriesLogo"
-            class="w-1/4 mx-auto"
-            :src="seriesLogo"
-            alt="CSRO Racing Series Logo"
-          />
-          <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
-        </div>
-        <div
-          v-if="tableData.Type == 'QUALIFY'"
-          class="relative mb-5 flex w-full flex-col items-center text-center"
+  <div class="flex justify-center py-12 px-4">
+    <div
+      id="resultsTable"
+      class="bg-white dark:bg-gray-800"
+      :style="{
+        width: table ? Math.min(table.getTotalSize() + 100, 1600) + 'px' : 'auto',
+        maxWidth: '100%'
+      }"
+    >
+      <div class="flex align-middle items-center mb-5">
+        <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <img
+          v-if="seriesLogo"
+          class="w-1/4 mx-auto"
+          :src="seriesLogo"
+          alt="CSRO Racing Series Logo"
+        />
+        <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+      </div>
+      <div
+        v-if="tableData.Type == 'QUALIFY'"
+        class="relative mb-5 flex w-full flex-col items-center text-center"
+      >
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
         >
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ seriesTitle }}
-          </h1>
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ resultsTitle || 'Results' }}
-          </h1>
-          <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
-            {{ formatDate(tableData.Date) }}
-          </h2>
-        </div>
-        <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ seriesTitle }}
-          </h1>
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ resultsTitle || 'Results' }}
-          </h1>
-          <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
-            {{ formatDate(tableData.Date) }}
-          </h2>
-        </div>
-        <div
-          class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md"
+          {{ seriesTitle }}
+        </h1>
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
         >
-          <table
-            class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white table-auto"
-          >
-            <thead class="bg-gray-50 dark:bg-gray-800">
-              <tr>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  #
-                </th>
-                <th scope="col" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-                  Name
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Team
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Car
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Total Time
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Best Lap
-                </th>
-                <th
-                  v-if="tableData.Type == 'QUALIFY'"
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Gap
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  # of Laps
-                </th>
-                <th
-                  v-if="tableData.Type == 'RACE'"
-                  scope="col"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
-                >
-                  Points
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
-            >
-              <tr
-                v-for="(result, resultIndex) of tableData.Result"
-                :key="resultIndex"
-                draggable="true"
-                @dragstart="handleDragStart($event, resultIndex)"
-                @dragover.prevent="handleDragOver($event, resultIndex)"
-                @drop="handleDrop($event, resultIndex)"
-                @dragend="handleDragEnd"
-                class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
-                :class="{ 'opacity-50': draggedIndex === resultIndex }"
+          {{ resultsTitle || 'Results' }}
+        </h1>
+        <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
+          {{ formatDate(tableData.Date) }}
+        </h2>
+      </div>
+      <div v-else class="relative mb-5 flex w-full flex-col items-center text-center">
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+        >
+          {{ seriesTitle }}
+        </h1>
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+        >
+          {{ resultsTitle || 'Results' }}
+        </h1>
+        <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
+          {{ formatDate(tableData.Date) }}
+        </h2>
+      </div>
+      <div class="mb-3 flex justify-end">
+        <button
+          @click="resetColumnWidths"
+          class="text-xs px-3 py-1 rounded border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          Reset Column Widths
+        </button>
+      </div>
+      <div
+        class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
+      >
+        <table
+          v-if="table"
+          class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white"
+          :style="{ width: table.getTotalSize() + 'px' }"
+        >
+          <thead class="bg-gray-50 dark:bg-gray-800">
+            <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+              <th
+                v-for="header in headerGroup.headers"
+                :key="header.id"
+                :style="{ width: header.getSize() + 'px', position: 'relative' }"
+                class="px-6 py-4 font-medium text-gray-900 dark:text-white text-center"
               >
-                <th class="px-6 py-4 font-bold text-center dark:text-white">
-                  {{ resultIndex + 1 }}
-                </th>
-                <td class="px-6 py-4 font-normal text-gray-900 dark:text-white group">
-                  <div class="flex items-center gap-2">
-                    <span
-                      v-if="getDriverNationCode(result.DriverName)"
-                      v-html="getCountryFlag(getDriverNationCode(result.DriverName))"
-                      class="inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0"
-                    ></span>
-                    <span class="flex-1">{{ result.DriverName }}</span>
-                    <button
-                      @click="openEditModal(resultIndex)"
-                      class="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
-                      title="Edit driver"
-                    >
-                      <svg
-                        class="w-4 h-4 text-gray-600 dark:text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-                <td
-                  contenteditable="true"
-                  :data-field="'team'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  @blur="handleCellEdit"
-                >
-                  {{ getDriverTeam(result.DriverName) }}
-                </td>
-                <td
-                  contenteditable="true"
-                  :data-field="'car'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  @blur="handleCellEdit"
-                >
-                  {{ getDriverCar(result.DriverName) }}
-                </td>
-                <td
-                  contenteditable="true"
-                  :data-field="'totalTime'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.customTotalTime || calculateBestLap(result.TotalTime) }}
-                </td>
-                <td
-                  contenteditable="true"
-                  :data-field="'bestLap'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  :class="{ 'bg-green-600 text-white': isBestLap(result.BestLap) }"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.customBestLap || calculateBestLap(result.BestLap) }}
-                </td>
-                <td
-                  v-if="tableData.Type == 'QUALIFY'"
-                  contenteditable="true"
-                  :data-field="'gap'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.customGap || calculateRaceGap(tableData.Result)[resultIndex] }}
-                </td>
-                <td
-                  contenteditable="true"
-                  :data-field="'laps'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center dark:text-gray-300"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.customLaps || calculateTotalLaps(tableData.Laps, result.DriverName) }}
-                </td>
-                <td
-                  v-if="tableData.Type == 'RACE'"
-                  contenteditable="true"
-                  :data-field="'points'"
-                  :data-index="resultIndex"
-                  class="px-6 py-4 text-center font-bold dark:text-white"
-                  @blur="handleCellEdit"
-                >
-                  {{ result.customPoints || calculatePoints(resultIndex + 1) }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                <FlexRender
+                  v-if="!header.isPlaceholder"
+                  :render="header.column.columnDef.header"
+                  :props="header.getContext()"
+                />
+                <div
+                  v-if="header.column.getCanResize()"
+                  @mousedown="header.getResizeHandler()($event)"
+                  @touchstart="header.getResizeHandler()($event)"
+                  :class="`absolute right-0 top-0 h-full w-1 cursor-col-resize select-none touch-none bg-gray-300 dark:bg-gray-600 opacity-0 hover:opacity-100 ${
+                    header.column.getIsResizing() ? 'opacity-100 bg-blue-500' : ''
+                  }`"
+                ></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-100 dark:divide-gray-700 border-t border-gray-100 dark:border-gray-700"
+          >
+            <tr
+              v-for="(row, rowIndex) in table.getRowModel().rows"
+              :key="row.id"
+              draggable="true"
+              @dragstart="handleDragStart($event, rowIndex)"
+              @dragover.prevent="handleDragOver($event, rowIndex)"
+              @drop="handleDrop($event, rowIndex)"
+              @dragend="handleDragEnd"
+              class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
+              :class="{ 'opacity-50': draggedIndex === rowIndex }"
+            >
+              <td
+                v-for="cell in row.getVisibleCells()"
+                :key="cell.id"
+                :style="{ width: cell.column.getSize() + 'px' }"
+                class="px-6 py-4 dark:text-gray-300"
+              >
+                <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -343,10 +235,15 @@
 </template>
 
 <script>
+import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
 import html2canvas from 'html2canvas'
+import { h } from 'vue'
 
 export default {
+  components: {
+    FlexRender
+  },
   data() {
     return {
       tableData: '',
@@ -363,8 +260,252 @@ export default {
         country: '',
         team: '',
         car: ''
-      }
+      },
+      table: null,
+      columnSizing: {},
+      columnResizeMode: 'onChange'
     }
+  },
+  computed: {
+    columns() {
+      const cols = [
+        {
+          accessorKey: 'position',
+          header: '#',
+          size: 60,
+          minSize: 50,
+          maxSize: 100,
+          enableResizing: true,
+          cell: ({ row }) => h('span', { class: 'font-bold' }, row.index + 1)
+        },
+        {
+          accessorKey: 'DriverName',
+          header: 'Name',
+          size: 250,
+          minSize: 150,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const value = getValue()
+            const flagHtml = this.getCountryFlag(this.getDriverNationCode(value))
+
+            return h('div', { class: 'flex items-center gap-2 group' }, [
+              flagHtml
+                ? h('span', {
+                    innerHTML: flagHtml,
+                    class: 'inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0'
+                  })
+                : null,
+              h('span', { class: 'flex-1' }, value),
+              h(
+                'button',
+                {
+                  onClick: () => this.openEditModal(row.index),
+                  class:
+                    'opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700',
+                  title: 'Edit driver'
+                },
+                [
+                  h(
+                    'svg',
+                    {
+                      class: 'w-4 h-4 text-gray-600 dark:text-gray-400',
+                      fill: 'none',
+                      stroke: 'currentColor',
+                      viewBox: '0 0 24 24'
+                    },
+                    [
+                      h('path', {
+                        'stroke-linecap': 'round',
+                        'stroke-linejoin': 'round',
+                        'stroke-width': '2',
+                        d: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          }
+        },
+        {
+          accessorKey: 'team',
+          header: 'Team',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const driverName = row.original.DriverName
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'team',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: 'block text-center'
+              },
+              this.getDriverTeam(driverName)
+            )
+          }
+        },
+        {
+          accessorKey: 'car',
+          header: 'Car',
+          size: 200,
+          minSize: 120,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const driverName = row.original.DriverName
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'car',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: 'block text-center'
+              },
+              this.getDriverCar(driverName)
+            )
+          }
+        },
+        {
+          accessorKey: 'TotalTime',
+          header: 'Total Time',
+          size: 140,
+          minSize: 100,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const result = row.original
+            const value = result.customTotalTime || this.calculateBestLap(getValue())
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'totalTime',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: 'block text-center'
+              },
+              value
+            )
+          }
+        },
+        {
+          accessorKey: 'BestLap',
+          header: 'Best Lap',
+          size: 140,
+          minSize: 100,
+          enableResizing: true,
+          cell: ({ row, getValue }) => {
+            const result = row.original
+            const value = result.customBestLap || this.calculateBestLap(getValue())
+            const isBest = this.isBestLap(getValue())
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'bestLap',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: `block text-center ${isBest ? 'bg-green-600 text-white' : ''}`
+              },
+              value
+            )
+          }
+        }
+      ]
+
+      if (this.tableData.Type === 'QUALIFY') {
+        cols.push({
+          accessorKey: 'gap',
+          header: 'Gap',
+          size: 120,
+          minSize: 80,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const result = row.original
+            const gaps = this.calculateRaceGap(this.tableData.Result)
+            const value = result.customGap || gaps[row.index]
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'gap',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: 'block text-center'
+              },
+              value
+            )
+          }
+        })
+      }
+
+      cols.push({
+        accessorKey: 'laps',
+        header: '# of Laps',
+        size: 100,
+        minSize: 80,
+        enableResizing: true,
+        cell: ({ row }) => {
+          const result = row.original
+          const driverName = result.DriverName
+          const value =
+            result.customLaps || this.calculateTotalLaps(this.tableData.Laps, driverName)
+          return h(
+            'span',
+            {
+              contenteditable: 'true',
+              'data-field': 'laps',
+              'data-index': row.index,
+              onBlur: this.handleCellEdit,
+              class: 'block text-center'
+            },
+            value
+          )
+        }
+      })
+
+      if (this.tableData.Type === 'RACE') {
+        cols.push({
+          accessorKey: 'points',
+          header: 'Points',
+          size: 100,
+          minSize: 80,
+          enableResizing: true,
+          cell: ({ row }) => {
+            const result = row.original
+            const value = result.customPoints || this.calculatePoints(row.index + 1)
+            return h(
+              'span',
+              {
+                contenteditable: 'true',
+                'data-field': 'points',
+                'data-index': row.index,
+                onBlur: this.handleCellEdit,
+                class: 'block text-center font-bold'
+              },
+              value
+            )
+          }
+        })
+      }
+
+      return cols
+    }
+  },
+  watch: {
+    tableData: {
+      handler() {
+        this.initializeTable()
+      },
+      deep: true
+    }
+  },
+  mounted() {
+    this.loadColumnSizing()
+    this.initializeTable()
   },
   props: {
     raceData: {
@@ -377,6 +518,52 @@ export default {
     }
   },
   methods: {
+    initializeTable() {
+      if (!this.tableData || !this.tableData.Result) return
+
+      const self = this
+      this.table = useVueTable({
+        get data() {
+          return self.tableData.Result || []
+        },
+        get columns() {
+          return self.columns
+        },
+        columnResizeMode: self.columnResizeMode,
+        get state() {
+          return {
+            columnSizing: self.columnSizing
+          }
+        },
+        onColumnSizingChange: (updater) => {
+          if (typeof updater === 'function') {
+            self.columnSizing = updater(self.columnSizing)
+          } else {
+            self.columnSizing = updater
+          }
+          self.saveColumnSizing()
+        },
+        getCoreRowModel: getCoreRowModel()
+      })
+    },
+    loadColumnSizing() {
+      const saved = localStorage.getItem('CSRO_COLUMN_SIZING')
+      if (saved) {
+        try {
+          this.columnSizing = JSON.parse(saved)
+        } catch (e) {
+          console.error('Failed to load column sizing:', e)
+        }
+      }
+    },
+    saveColumnSizing() {
+      localStorage.setItem('CSRO_COLUMN_SIZING', JSON.stringify(this.columnSizing))
+    },
+    resetColumnWidths() {
+      this.columnSizing = {}
+      this.saveColumnSizing()
+      this.initializeTable()
+    },
     calculateBestLap(x, penalty = 0) {
       //Time calculation
       //Some steps below are a bit repetitive because of how numbers work in JS

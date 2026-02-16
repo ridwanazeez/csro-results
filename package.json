@@ -10,6 +10,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tanstack/vue-table": "^8.21.3",
     "@vueuse/core": "^14.2.1",
     "country-flag-icons": "^1.6.13",
     "html2canvas": "^1.4.1",
