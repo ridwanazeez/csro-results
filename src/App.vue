@@ -93,6 +93,7 @@ export default {
             this.jsonData = fileData
             this.saveDataToLocalStorage(this.jsonData)
             this.currentResultId = null // New upload, not saved yet
+            localStorage.removeItem('CSRO_CURRENT_RESULT_ID')
             this.currentView = 'table'
             this.uploaded = true
           } catch (error) {
@@ -115,6 +116,11 @@ export default {
       const savedResultsData = localStorage.getItem('CSRO_SAVED_RESULTS')
       if (savedResultsData) {
         this.savedResults = JSON.parse(savedResultsData)
+      }
+      // Restore currentResultId
+      const savedCurrentResultId = localStorage.getItem('CSRO_CURRENT_RESULT_ID')
+      if (savedCurrentResultId) {
+        this.currentResultId = savedCurrentResultId
       }
     },
     updateResultsTable(data) {
@@ -167,6 +173,7 @@ export default {
       const result = this.savedResults.find((r) => r.id === resultId)
       if (result) {
         localStorage.setItem('CSRO_RESULT', JSON.stringify(result.data))
+        localStorage.setItem('CSRO_CURRENT_RESULT_ID', result.id)
         this.currentResultId = result.id
         this.currentView = 'table'
         this.uploaded = true
