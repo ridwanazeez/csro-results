@@ -21,7 +21,7 @@
             CSRO Results Generator
           </h1>
           <p class="text-center text-sm dark:text-white">
-            v{{ version }} | Last updated: 11/02/2026
+            v{{ version }} | Last updated: 16/05/2026
           </p>
           <form class="my-4">
             <div class="flex items-center">
