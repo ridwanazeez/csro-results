@@ -28,46 +28,6 @@
         </h1>
       </div>
 
-      <!-- Qualifying Results -->
-      <div v-if="qualifyingResults.length > 0">
-        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Qualifying Sessions</h2>
-        <div v-for="(result, index) in qualifyingResults" :key="'qualify-' + index" class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            {{ result.name }}
-          </h3>
-          <div
-            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
-          >
-            <table
-              v-if="result.data && result.data.Result"
-              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
-            >
-              <RenderTable :table="cachedTables.qualifying[index]" />
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Race Results -->
-      <div v-if="raceResults.length > 0">
-        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Race Results</h2>
-        <div v-for="(result, index) in raceResults" :key="'race-' + index" class="mb-6">
-          <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            {{ result.name }}
-          </h3>
-          <div
-            class="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 shadow-md overflow-x-auto"
-          >
-            <table
-              v-if="result.data && result.data.Result"
-              class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
-            >
-              <RenderTable :table="cachedTables.race[index]" />
-            </table>
-          </div>
-        </div>
-      </div>
-
       <!-- Driver Standings -->
       <div>
         <h2 class="text-2xl font-bold text-black dark:text-white mb-4">Driver Standings</h2>
