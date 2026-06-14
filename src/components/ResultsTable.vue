@@ -12,25 +12,22 @@
         <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
       </div>
       <div class="relative mb-5 flex w-full flex-col items-center text-center">
-        <template v-if="currentResultId">
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ tableData.Type === 'QUALIFY' ? 'Qualifying Results' : 'Race Results' }}
-          </h1>
-        </template>
-        <template v-else>
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ seriesTitle }}
-          </h1>
-          <h1
-            class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
-          >
-            {{ resultsTitle || 'Results' }}
-          </h1>
-        </template>
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+        >
+          {{ seriesTitle }}
+        </h1>
+        <h1
+          class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
+        >
+          {{
+            currentResultId
+              ? tableData.Type === 'QUALIFY'
+                ? 'Qualifying Results'
+                : 'Race Results'
+              : resultsTitle || 'Results'
+          }}
+        </h1>
         <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
           {{ formatDate(tableData.Date) }}
         </h2>
