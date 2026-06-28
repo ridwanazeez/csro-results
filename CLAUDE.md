@@ -8,6 +8,10 @@ Single-page Vue 3 application for formatting Assetto Corsa racing server results
 
 **Always use the `frontend-design` skill when building, modifying, or styling any UI** (components, pages, layout, or visual changes). This project is UI-heavy and design quality matters — invoke it before writing frontend code.
 
+## Helpers
+
+- You can use the `.json` files in the `files` directory to give dummy data to help test the app.
+
 ## Architecture & Data Flow
 
 ### Core Components (4-component system)

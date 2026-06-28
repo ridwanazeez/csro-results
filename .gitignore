@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 files
+
+# Local-only demo data seeder — must never ship to GitHub Pages
+public/seed.html
