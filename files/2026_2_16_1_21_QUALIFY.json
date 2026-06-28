@@ -1,0 +1,3483 @@
+{
+  "Version": 7,
+  "Cars": [
+    {
+      "BallastKG": 0,
+      "CarId": 0,
+      "Driver": {
+        "Guid": "76561198217305152",
+        "GuidsList": [
+          "76561198217305152"
+        ],
+        "Name": "Anton C. Auditore",
+        "Nation": "TTO",
+        "Team": "Team BlackTide Motorsport",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "05_carbon_fibre",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 81,
+      "MaxPing": 970
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 1,
+      "Driver": {
+        "Guid": "76561199066552426",
+        "GuidsList": [
+          "76561199066552426"
+        ],
+        "Name": "Christopher Persaud",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_hyperion_v8",
+      "Restrictor": 0,
+      "Skin": "03_carbon_fiber",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561198219523111",
+        "GuidsList": [
+          "76561198219523111"
+        ],
+        "Name": "Kymani Eastman",
+        "Nation": "JAM",
+        "Team": "KEN Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_furiano_96_v6",
+      "Restrictor": 0,
+      "Skin": "04_camo",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 57,
+      "MaxPing": 340
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 3,
+      "Driver": {
+        "Guid": "76561198978035572",
+        "GuidsList": [
+          "76561198978035572"
+        ],
+        "Name": "Stephen Bhola",
+        "Nation": "",
+        "Team": "CSRO Admin",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_adonis_v8_evo",
+      "Restrictor": 0,
+      "Skin": "06_carbon",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 4,
+      "Driver": {
+        "Guid": "76561198280422682",
+        "GuidsList": [
+          "76561198280422682"
+        ],
+        "Name": "Jaden Searam",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "01_white_red_72",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "Golden Arrow Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "03_white_34",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 85,
+      "MaxPing": 1286
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "H.P Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "00_rss_racing_2",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 88,
+      "MaxPing": 105
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198397024352",
+        "GuidsList": [
+          "76561198397024352"
+        ],
+        "Name": "Michael McNamee",
+        "Nation": "JAM",
+        "Team": "LimeLight MotorWorks",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_adonis_v8_evo",
+      "Restrictor": 0,
+      "Skin": "03_camo_5",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 86,
+      "MaxPing": 281
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561198208970404",
+        "GuidsList": [
+          "76561198208970404"
+        ],
+        "Name": "Ghervoni Melville",
+        "Nation": "SAI",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "03_white_34",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 90,
+      "MaxPing": 714
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 9,
+      "Driver": {
+        "Guid": "76561198174169190",
+        "GuidsList": [
+          "76561198174169190"
+        ],
+        "Name": "Bidesh Dwarka",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_adonis_v8_evo",
+      "Restrictor": 0,
+      "Skin": "00_verstappen",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "Sada Roti Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "01_rss_racing_18",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 87,
+      "MaxPing": 1476
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 11,
+      "Driver": {
+        "Guid": "76561199029332215",
+        "GuidsList": [
+          "76561199029332215"
+        ],
+        "Name": "Joshua Browne",
+        "Nation": "",
+        "Team": "Storm Bees Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_adonis_v8_evo",
+      "Restrictor": 0,
+      "Skin": "06_carbon",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "Driver": {
+        "Guid": "76561198805533202",
+        "GuidsList": [
+          "76561198805533202"
+        ],
+        "Name": "Jayden Harrison",
+        "Nation": "JAM",
+        "Team": "Team Jamaica By JDMCoaching.Com",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_adonis_v8_evo",
+      "Restrictor": 0,
+      "Skin": "05_carbon_009",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 85,
+      "MaxPing": 91
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "GUY",
+        "Team": "LTM Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "02_protech_factory_92",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 104,
+      "MaxPing": 136
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "Driver": {
+        "Guid": "76561198149522978",
+        "GuidsList": [
+          "76561198149522978"
+        ],
+        "Name": "Dominic Charles",
+        "Nation": "TTO",
+        "Team": "Calypso Racing by JDMCoaching.com",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_furiano_96_v6",
+      "Restrictor": 0,
+      "Skin": "05_carbons",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 74,
+      "MaxPing": 1147
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 15,
+      "Driver": {
+        "Guid": "76561199480321992",
+        "GuidsList": [
+          "76561199480321992"
+        ],
+        "Name": "Metish Sanicharra",
+        "Nation": "",
+        "Team": "Sada Roti Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "02_red_70",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 16,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "01_rss_racing_18",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "Team Subbys",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "01_white_red_72",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 88,
+      "MaxPing": 97
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 18,
+      "Driver": {
+        "Guid": "76561198084429459",
+        "GuidsList": [
+          "76561198084429459"
+        ],
+        "Name": "Stefan Gajie",
+        "Nation": "GUY",
+        "Team": "CSRO Admin",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_protech_p92_f6",
+      "Restrictor": 0,
+      "Skin": "05_carbon_fibre",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 96,
+      "MaxPing": 2133
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "",
+        "Team": "Golden Arrow Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_macca_72_evo_v8",
+      "Restrictor": 0,
+      "Skin": "00_orange_78",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "Driver": {
+        "Guid": "76561199041876476",
+        "GuidsList": [
+          "76561199041876476"
+        ],
+        "Name": "Peter Arrindell",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_furiano_96_v6",
+      "Restrictor": 0,
+      "Skin": "06_racesphere",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 78,
+      "MaxPing": 319
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "Driver": {
+        "Guid": "76561198436033952",
+        "GuidsList": [
+          "76561198436033952"
+        ],
+        "Name": "Mitesh Ramdhani",
+        "Nation": "GUY",
+        "Team": "MRR Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "Model": "rss_gtm_furiano_96_v6",
+      "Restrictor": 0,
+      "Skin": "01_red_21",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "MinPing": 91,
+      "MaxPing": 94
+    }
+  ],
+  "Events": [
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "GUY",
+        "Team": "LTM Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 17.249002,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -1.0221975,
+        "Y": -0.29104236,
+        "Z": 2.0273092
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -425.51074,
+        "Y": -1.5044452,
+        "Z": -199.48537
+      },
+      "Timestamp": 1771203927,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 0,
+      "Driver": {
+        "Guid": "76561198217305152",
+        "GuidsList": [
+          "76561198217305152"
+        ],
+        "Name": "Anton C. Auditore",
+        "Nation": "TTO",
+        "Team": "Team BlackTide Motorsport",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 35.086174,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 1.0317341,
+        "Y": -0.27766293,
+        "Z": -1.486999
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 500.33017,
+        "Y": -2.0744858,
+        "Z": -78.78914
+      },
+      "Timestamp": 1771203942,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "H.P Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 61.3625,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 0.9462273,
+        "Y": 0.8736332,
+        "Z": -1.7900374
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 496.344,
+        "Y": -0.8725114,
+        "Z": -72.02828
+      },
+      "Timestamp": 1771203963,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "Team Subbys",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 72.60627,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 0.8422216,
+        "Y": -0.10527,
+        "Z": 2.1587996
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -367.51428,
+        "Y": -0.99549794,
+        "Z": 267.0103
+      },
+      "Timestamp": 1771203970,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 0,
+      "Driver": {
+        "Guid": "76561198217305152",
+        "GuidsList": [
+          "76561198217305152"
+        ],
+        "Name": "Anton C. Auditore",
+        "Nation": "TTO",
+        "Team": "Team BlackTide Motorsport",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 38.193497,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.9303851,
+        "Y": 0.8814729,
+        "Z": -2.2169466
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -330.46802,
+        "Y": 0.6927335,
+        "Z": 469.87558
+      },
+      "Timestamp": 1771203972,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 5,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "Golden Arrow Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 67.32404,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 0.9554278,
+        "Y": -0.010915074,
+        "Z": 2.0546885
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 360.94543,
+        "Y": -1.4850049,
+        "Z": 14.291051
+      },
+      "Timestamp": 1771203977,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 5,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "Golden Arrow Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 52.718754,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 1.0212945,
+        "Y": 0.16766907,
+        "Z": -0.87547904
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 361.2066,
+        "Y": -1.3268195,
+        "Z": 14.346452
+      },
+      "Timestamp": 1771203982,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 14,
+      "Driver": {
+        "Guid": "76561198149522978",
+        "GuidsList": [
+          "76561198149522978"
+        ],
+        "Name": "Dominic Charles",
+        "Nation": "TTO",
+        "Team": "Calypso Racing by JDMCoaching.com",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 53.427166,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.9519919,
+        "Y": 0.78314596,
+        "Z": -2.248071
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -198.09424,
+        "Y": 1.0553848,
+        "Z": 550.93164
+      },
+      "Timestamp": 1771204084,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "Team Subbys",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 26.233006,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -1.058761,
+        "Y": 0.11404491,
+        "Z": -1.5662924
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -104.23196,
+        "Y": 0.5797529,
+        "Z": 692.3645
+      },
+      "Timestamp": 1771204190,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 0,
+      "Driver": {
+        "Guid": "76561198217305152",
+        "GuidsList": [
+          "76561198217305152"
+        ],
+        "Name": "Anton C. Auditore",
+        "Nation": "TTO",
+        "Team": "Team BlackTide Motorsport",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 6.9076495,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.000022398284,
+        "Y": -0.25956437,
+        "Z": 2.564437
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -487.8318,
+        "Y": -1.3184841,
+        "Z": 745.93427
+      },
+      "Timestamp": 1771204197,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "H.P Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 60.676575,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 0.47671878,
+        "Y": 0.06359461,
+        "Z": 2.4569814
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 515.3251,
+        "Y": -1.741385,
+        "Z": 355.4819
+      },
+      "Timestamp": 1771204273,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "GUY",
+        "Team": "LTM Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 40.25454,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.47671762,
+        "Y": -0.28214416,
+        "Z": 2.5110636
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 514.1122,
+        "Y": -2.0567176,
+        "Z": -101.99735
+      },
+      "Timestamp": 1771204317,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "GUY",
+        "Team": "LTM Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 0.23888882,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.95468616,
+        "Y": -0.28119665,
+        "Z": 2.239656
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 514.2712,
+        "Y": -2.0493286,
+        "Z": -102.23415
+      },
+      "Timestamp": 1771204322,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "GUY",
+        "Team": "LTM Racing",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 16.71065,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.9477177,
+        "Y": -0.2818926,
+        "Z": 2.2369857
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 515.8707,
+        "Y": -2.0543196,
+        "Z": -104.693665
+      },
+      "Timestamp": 1771204327,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198397024352",
+        "GuidsList": [
+          "76561198397024352"
+        ],
+        "Name": "Michael McNamee",
+        "Nation": "JAM",
+        "Team": "LimeLight MotorWorks",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 57.78406,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 0.995855,
+        "Y": 0.06613187,
+        "Z": -1.685442
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -362.6101,
+        "Y": -0.6383707,
+        "Z": 296.91556
+      },
+      "Timestamp": 1771204429,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198397024352",
+        "GuidsList": [
+          "76561198397024352"
+        ],
+        "Name": "Michael McNamee",
+        "Nation": "JAM",
+        "Team": "LimeLight MotorWorks",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 4.180332,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": 1.0288379,
+        "Y": -0.33559886,
+        "Z": 2.0425897
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -375.79675,
+        "Y": -1.1851746,
+        "Z": 52.637962
+      },
+      "Timestamp": 1771204699,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "Team Subbys",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "ImpactSpeed": 60.319885,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485"
+      },
+      "RelPosition": {
+        "X": -0.49191654,
+        "Y": -0.2875005,
+        "Z": 2.4452012
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -355.9908,
+        "Y": -0.67046964,
+        "Z": 343.80823
+      },
+      "Timestamp": 1771204810,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    }
+  ],
+  "Laps": [
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 156044,
+      "Restrictor": 0,
+      "Sectors": [
+        81916,
+        47268,
+        26860
+      ],
+      "Timestamp": 1771203940,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 156508,
+      "Restrictor": 0,
+      "Sectors": [
+        80480,
+        47656,
+        28372
+      ],
+      "Timestamp": 1771203941,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561198219523111",
+      "DriverName": "Kymani Eastman",
+      "LapTime": 160913,
+      "Restrictor": 0,
+      "Sectors": [
+        85642,
+        48375,
+        26896
+      ],
+      "Timestamp": 1771203943,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 0,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 2,
+      "DriverGuid": "76561198217305152",
+      "DriverName": "Anton C. Auditore",
+      "LapTime": 162179,
+      "Restrictor": 0,
+      "Sectors": [
+        85247,
+        48465,
+        28467
+      ],
+      "Timestamp": 1771203946,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 2,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 165624,
+      "Restrictor": 0,
+      "Sectors": [
+        90577,
+        48118,
+        26929
+      ],
+      "Timestamp": 1771203948,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 1,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 167285,
+      "Restrictor": 0,
+      "Sectors": [
+        89850,
+        49148,
+        28287
+      ],
+      "Timestamp": 1771203950,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 172154,
+      "Restrictor": 0,
+      "Sectors": [
+        94858,
+        49927,
+        27369
+      ],
+      "Timestamp": 1771203955,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 2,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 173308,
+      "Restrictor": 0,
+      "Sectors": [
+        93195,
+        48478,
+        31635
+      ],
+      "Timestamp": 1771203956,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 178487,
+      "Restrictor": 0,
+      "Sectors": [
+        101537,
+        49289,
+        27661
+      ],
+      "Timestamp": 1771203961,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 182431,
+      "Restrictor": 0,
+      "Sectors": [
+        92544,
+        47956,
+        41931
+      ],
+      "Timestamp": 1771203965,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 190616,
+      "Restrictor": 0,
+      "Sectors": [
+        106332,
+        48820,
+        35464
+      ],
+      "Timestamp": 1771203973,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 120620,
+      "Restrictor": 0,
+      "Sectors": [
+        46254,
+        47479,
+        26887
+      ],
+      "Timestamp": 1771204060,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 122397,
+      "Restrictor": 0,
+      "Sectors": [
+        47526,
+        48078,
+        26793
+      ],
+      "Timestamp": 1771204063,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198219523111",
+      "DriverName": "Kymani Eastman",
+      "LapTime": 121930,
+      "Restrictor": 0,
+      "Sectors": [
+        46938,
+        48087,
+        26905
+      ],
+      "Timestamp": 1771204065,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 121189,
+      "Restrictor": 0,
+      "Sectors": [
+        46835,
+        47431,
+        26923
+      ],
+      "Timestamp": 1771204069,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 2,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 124716,
+      "Restrictor": 0,
+      "Sectors": [
+        46866,
+        50669,
+        27181
+      ],
+      "Timestamp": 1771204074,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 122608,
+      "Restrictor": 0,
+      "Sectors": [
+        47089,
+        48253,
+        27266
+      ],
+      "Timestamp": 1771204078,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 30,
+        "Grip": 1,
+        "WindSpeed": 3,
+        "WindDirection": 18,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 125215,
+      "Restrictor": 0,
+      "Sectors": [
+        49556,
+        48268,
+        27391
+      ],
+      "Timestamp": 1771204086,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.98333,
+        "Grip": 1,
+        "WindSpeed": 3.166667,
+        "WindDirection": 18.066666,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 122302,
+      "Restrictor": 0,
+      "Sectors": [
+        47814,
+        47610,
+        26878
+      ],
+      "Timestamp": 1771204087,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.979162,
+        "Grip": 1,
+        "WindSpeed": 3.2083337,
+        "WindDirection": 18.083332,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 320335,
+      "Restrictor": 0,
+      "Sectors": [
+        242233,
+        49698,
+        28404
+      ],
+      "Timestamp": 1771204103,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.912481,
+        "Grip": 1,
+        "WindSpeed": 3.8750017,
+        "WindDirection": 18.349995,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 0,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 2,
+      "DriverGuid": "76561198217305152",
+      "DriverName": "Anton C. Auditore",
+      "LapTime": 160266,
+      "Restrictor": 0,
+      "Sectors": [
+        83689,
+        49109,
+        27468
+      ],
+      "Timestamp": 1771204106,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.895811,
+        "Grip": 1,
+        "WindSpeed": 4.0416684,
+        "WindDirection": 18.41666,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 135534,
+      "Restrictor": 0,
+      "Sectors": [
+        47599,
+        47799,
+        40136
+      ],
+      "Timestamp": 1771204108,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.887476,
+        "Grip": 1,
+        "WindSpeed": 4.1250014,
+        "WindDirection": 18.449993,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 2,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 331984,
+      "Restrictor": 0,
+      "Sectors": [
+        256384,
+        48424,
+        27176
+      ],
+      "Timestamp": 1771204116,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.858303,
+        "Grip": 1,
+        "WindSpeed": 4.416667,
+        "WindDirection": 18.566658,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 3,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 167501,
+      "Restrictor": 0,
+      "Sectors": [
+        90588,
+        49274,
+        27639
+      ],
+      "Timestamp": 1771204122,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.833298,
+        "Grip": 1,
+        "WindSpeed": 4.666666,
+        "WindDirection": 18.666656,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 121391,
+      "Restrictor": 0,
+      "Sectors": [
+        46737,
+        47915,
+        26739
+      ],
+      "Timestamp": 1771204185,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.570742,
+        "Grip": 1,
+        "WindSpeed": 7.291656,
+        "WindDirection": 19.71664,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198219523111",
+      "DriverName": "Kymani Eastman",
+      "LapTime": 120826,
+      "Restrictor": 0,
+      "Sectors": [
+        46446,
+        47722,
+        26658
+      ],
+      "Timestamp": 1771204186,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.566574,
+        "Grip": 1,
+        "WindSpeed": 7.3333225,
+        "WindDirection": 19.733307,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 120961,
+      "Restrictor": 0,
+      "Sectors": [
+        46815,
+        47276,
+        26870
+      ],
+      "Timestamp": 1771204190,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.549904,
+        "Grip": 1,
+        "WindSpeed": 7.4999886,
+        "WindDirection": 19.799973,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 120833,
+      "Restrictor": 0,
+      "Sectors": [
+        46458,
+        47366,
+        27009
+      ],
+      "Timestamp": 1771204195,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.529066,
+        "Grip": 1,
+        "WindSpeed": 7.708321,
+        "WindDirection": 19.883305,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 122712,
+      "Restrictor": 0,
+      "Sectors": [
+        47112,
+        48410,
+        27190
+      ],
+      "Timestamp": 1771204201,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.50406,
+        "Grip": 1,
+        "WindSpeed": 7.95832,
+        "WindDirection": 19.983303,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 123197,
+      "Restrictor": 0,
+      "Sectors": [
+        47728,
+        48533,
+        26936
+      ],
+      "Timestamp": 1771204209,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.47072,
+        "Grip": 1,
+        "WindSpeed": 8.291656,
+        "WindDirection": 20.116634,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 123787,
+      "Restrictor": 0,
+      "Sectors": [
+        47652,
+        48563,
+        27572
+      ],
+      "Timestamp": 1771204226,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.395704,
+        "Grip": 1,
+        "WindSpeed": 9.041661,
+        "WindDirection": 20.41663,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 125582,
+      "Restrictor": 0,
+      "Sectors": [
+        50081,
+        48286,
+        27215
+      ],
+      "Timestamp": 1771204242,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.33319,
+        "Grip": 1,
+        "WindSpeed": 9.666666,
+        "WindDirection": 20.666626,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 128923,
+      "Restrictor": 0,
+      "Sectors": [
+        47950,
+        53307,
+        27666
+      ],
+      "Timestamp": 1771204251,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.295683,
+        "Grip": 1,
+        "WindSpeed": 10.041669,
+        "WindDirection": 20.816624,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 1,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 194268,
+      "Restrictor": 0,
+      "Sectors": [
+        120027,
+        47421,
+        26820
+      ],
+      "Timestamp": 1771204255,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.279013,
+        "Grip": 1,
+        "WindSpeed": 10.208337,
+        "WindDirection": 20.88329,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 165599,
+      "Restrictor": 0,
+      "Sectors": [
+        89248,
+        48969,
+        27382
+      ],
+      "Timestamp": 1771204274,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.19983,
+        "Grip": 1,
+        "WindSpeed": 11.00001,
+        "WindDirection": 21.199951,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 201759,
+      "Restrictor": 0,
+      "Sectors": [
+        127068,
+        47753,
+        26938
+      ],
+      "Timestamp": 1771204289,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.137316,
+        "Grip": 1,
+        "WindSpeed": 11.625014,
+        "WindDirection": 21.449947,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 120868,
+      "Restrictor": 0,
+      "Sectors": [
+        46649,
+        47538,
+        26681
+      ],
+      "Timestamp": 1771204306,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.066467,
+        "Grip": 1,
+        "WindSpeed": 12.333353,
+        "WindDirection": 21.733276,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 120462,
+      "Restrictor": 0,
+      "Sectors": [
+        46346,
+        47237,
+        26879
+      ],
+      "Timestamp": 1771204311,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 29.04563,
+        "Grip": 1,
+        "WindSpeed": 12.541688,
+        "WindDirection": 21.816608,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 122781,
+      "Restrictor": 0,
+      "Sectors": [
+        47455,
+        48047,
+        27279
+      ],
+      "Timestamp": 1771204332,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 140768,
+      "Restrictor": 0,
+      "Sectors": [
+        46619,
+        48047,
+        46102
+      ],
+      "Timestamp": 1771204342,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 122749,
+      "Restrictor": 0,
+      "Sectors": [
+        47801,
+        47736,
+        27212
+      ],
+      "Timestamp": 1771204364,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 125078,
+      "Restrictor": 0,
+      "Sectors": [
+        47413,
+        49594,
+        28071
+      ],
+      "Timestamp": 1771204376,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 127692,
+      "Restrictor": 0,
+      "Sectors": [
+        45985,
+        47606,
+        34101
+      ],
+      "Timestamp": 1771204382,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 121557,
+      "Restrictor": 0,
+      "Sectors": [
+        46690,
+        47812,
+        27055
+      ],
+      "Timestamp": 1771204396,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 121239,
+      "Restrictor": 0,
+      "Sectors": [
+        46696,
+        47763,
+        26780
+      ],
+      "Timestamp": 1771204410,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 1,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 218144,
+      "Restrictor": 0,
+      "Sectors": [
+        143418,
+        47555,
+        27171
+      ],
+      "Timestamp": 1771204413,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 120754,
+      "Restrictor": 0,
+      "Sectors": [
+        46860,
+        47182,
+        26712
+      ],
+      "Timestamp": 1771204426,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 120384,
+      "Restrictor": 0,
+      "Sectors": [
+        46521,
+        47155,
+        26708
+      ],
+      "Timestamp": 1771204431,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 232548,
+      "Restrictor": 0,
+      "Sectors": [
+        156065,
+        48488,
+        27995
+      ],
+      "Timestamp": 1771204459,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 120393,
+      "Restrictor": 0,
+      "Sectors": [
+        46453,
+        47165,
+        26775
+      ],
+      "Timestamp": 1771204503,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 172352,
+      "Restrictor": 0,
+      "Sectors": [
+        96694,
+        48375,
+        27283
+      ],
+      "Timestamp": 1771204514,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 121175,
+      "Restrictor": 0,
+      "Sectors": [
+        46728,
+        47511,
+        26936
+      ],
+      "Timestamp": 1771204517,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 190300,
+      "Restrictor": 0,
+      "Sectors": [
+        114376,
+        48101,
+        27823
+      ],
+      "Timestamp": 1771204522,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 120860,
+      "Restrictor": 0,
+      "Sectors": [
+        46629,
+        47375,
+        26856
+      ],
+      "Timestamp": 1771204531,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "LapTime": 120140,
+      "Restrictor": 0,
+      "Sectors": [
+        46143,
+        47227,
+        26770
+      ],
+      "Timestamp": 1771204551,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 0,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 2,
+      "DriverGuid": "76561198217305152",
+      "DriverName": "Anton C. Auditore",
+      "LapTime": 453897,
+      "Restrictor": 0,
+      "Sectors": [
+        377221,
+        49091,
+        27585
+      ],
+      "Timestamp": 1771204560,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 3,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 154258,
+      "Restrictor": 0,
+      "Sectors": [
+        79248,
+        47911,
+        27099
+      ],
+      "Timestamp": 1771204568,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 1,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 145770,
+      "Restrictor": 0,
+      "Sectors": [
+        67955,
+        50338,
+        27477
+      ],
+      "Timestamp": 1771204572,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 122993,
+      "Restrictor": 0,
+      "Sectors": [
+        47169,
+        48330,
+        27494
+      ],
+      "Timestamp": 1771204582,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995619,
+        "Grip": 1,
+        "WindSpeed": 13.041692,
+        "WindDirection": 22.016605,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 119951,
+      "Restrictor": 0,
+      "Sectors": [
+        46097,
+        47008,
+        26846
+      ],
+      "Timestamp": 1771204623,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995638,
+        "Grip": 1,
+        "WindSpeed": 13.037352,
+        "WindDirection": 21.991537,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 120989,
+      "Restrictor": 0,
+      "Sectors": [
+        46371,
+        47677,
+        26941
+      ],
+      "Timestamp": 1771204638,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995924,
+        "Grip": 1,
+        "WindSpeed": 12.972249,
+        "WindDirection": 21.615513,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 125170,
+      "Restrictor": 0,
+      "Sectors": [
+        47208,
+        48145,
+        29817
+      ],
+      "Timestamp": 1771204639,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.995943,
+        "Grip": 1,
+        "WindSpeed": 12.967909,
+        "WindDirection": 21.590445,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 122630,
+      "Restrictor": 0,
+      "Sectors": [
+        47382,
+        48014,
+        27234
+      ],
+      "Timestamp": 1771204645,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.996058,
+        "Grip": 1,
+        "WindSpeed": 12.941868,
+        "WindDirection": 21.440035,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "LapTime": 120166,
+      "Restrictor": 0,
+      "Sectors": [
+        46528,
+        47043,
+        26595
+      ],
+      "Timestamp": 1771204651,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.996172,
+        "Grip": 1,
+        "WindSpeed": 12.915827,
+        "WindDirection": 21.289625,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 1,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 291175,
+      "Restrictor": 0,
+      "Sectors": [
+        214333,
+        49333,
+        27509
+      ],
+      "Timestamp": 1771204667,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.996477,
+        "Grip": 1,
+        "WindSpeed": 12.846384,
+        "WindDirection": 20.888533,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 120894,
+      "Restrictor": 0,
+      "Sectors": [
+        46554,
+        47524,
+        26816
+      ],
+      "Timestamp": 1771204689,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.996878,
+        "Grip": 1,
+        "WindSpeed": 12.75524,
+        "WindDirection": 20.362099,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 121464,
+      "Restrictor": 0,
+      "Sectors": [
+        46817,
+        47826,
+        26821
+      ],
+      "Timestamp": 1771204694,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.996973,
+        "Grip": 1,
+        "WindSpeed": 12.73354,
+        "WindDirection": 20.236757,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 122070,
+      "Restrictor": 0,
+      "Sectors": [
+        46816,
+        47839,
+        27415
+      ],
+      "Timestamp": 1771204704,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.997183,
+        "Grip": 1,
+        "WindSpeed": 12.685798,
+        "WindDirection": 19.961006,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "Cuts": 0,
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "LapTime": 120620,
+      "Restrictor": 0,
+      "Sectors": [
+        46190,
+        47543,
+        26887
+      ],
+      "Timestamp": 1771204758,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.998213,
+        "Grip": 1,
+        "WindSpeed": 12.451428,
+        "WindDirection": 18.607319,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "Cuts": 0,
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "LapTime": 121762,
+      "Restrictor": 0,
+      "Sectors": [
+        46599,
+        47834,
+        27329
+      ],
+      "Timestamp": 1771204761,
+      "Tyre": "H",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.99827,
+        "Grip": 1,
+        "WindSpeed": 12.438408,
+        "WindDirection": 18.532114,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 125078,
+      "Restrictor": 0,
+      "Sectors": [
+        47823,
+        49882,
+        27373
+      ],
+      "Timestamp": 1771204792,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.998861,
+        "Grip": 1,
+        "WindSpeed": 12.303863,
+        "WindDirection": 17.754997,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "Cuts": 0,
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "LapTime": 121189,
+      "Restrictor": 0,
+      "Sectors": [
+        46660,
+        47741,
+        26788
+      ],
+      "Timestamp": 1771204810,
+      "Tyre": "D",
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 28.999186,
+        "Grip": 1,
+        "WindSpeed": 12.23008,
+        "WindDirection": 17.328836,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    }
+  ],
+  "Result": [
+    {
+      "BallastKG": 0,
+      "BestLap": 119951,
+      "CarId": 14,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "Restrictor": 0,
+      "TotalTime": 840308,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 8
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120140,
+      "CarId": 12,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "DriverGuid": "76561198805533202",
+      "DriverName": "Jayden Harrison",
+      "Restrictor": 0,
+      "TotalTime": 768806,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 2
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120166,
+      "CarId": 21,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "DriverGuid": "76561198436033952",
+      "DriverName": "Mitesh Ramdhani",
+      "Restrictor": 0,
+      "TotalTime": 868840,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 14
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120620,
+      "CarId": 20,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "DriverGuid": "76561199041876476",
+      "DriverName": "Peter Arrindell",
+      "Restrictor": 0,
+      "TotalTime": 976124,
+      "NumLaps": 7,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 13
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120754,
+      "CarId": 10,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "Restrictor": 0,
+      "TotalTime": 911282,
+      "NumLaps": 7,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 6
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120826,
+      "CarId": 2,
+      "CarModel": "rss_gtm_furiano_96_v6",
+      "DriverGuid": "76561198219523111",
+      "DriverName": "Kymani Eastman",
+      "Restrictor": 0,
+      "TotalTime": 403714,
+      "NumLaps": 3,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 1
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 120833,
+      "CarId": 7,
+      "CarModel": "rss_gtm_adonis_v8_evo",
+      "DriverGuid": "76561198397024352",
+      "DriverName": "Michael McNamee",
+      "Restrictor": 0,
+      "TotalTime": 1027399,
+      "NumLaps": 7,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 10
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 121762,
+      "CarId": 13,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "DriverGuid": "76561199036192400",
+      "DriverName": "Christian Rajnauth",
+      "Restrictor": 0,
+      "TotalTime": 978663,
+      "NumLaps": 7,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 3
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 122070,
+      "CarId": 6,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "Restrictor": 0,
+      "TotalTime": 921790,
+      "NumLaps": 5,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 7
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 122749,
+      "CarId": 5,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "Restrictor": 0,
+      "TotalTime": 582035,
+      "NumLaps": 3,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 4
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 122781,
+      "CarId": 8,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "Restrictor": 0,
+      "TotalTime": 862637,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 11
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 125078,
+      "CarId": 17,
+      "CarModel": "rss_gtm_macca_72_evo_v8",
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "Restrictor": 0,
+      "TotalTime": 1009985,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 9
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 999999999,
+      "CarId": 0,
+      "CarModel": "rss_gtm_protech_p92_f6",
+      "DriverGuid": "76561198217305152",
+      "DriverName": "Anton C. Auditore",
+      "Restrictor": 0,
+      "TotalTime": 778106,
+      "NumLaps": 3,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "52086d6a-a6a1-49a4-bcfe-5f249a891485",
+      "GridPosition": 5
+    }
+  ],
+  "Penalties": null,
+  "TrackConfig": "imsa2025",
+  "TrackName": "rt_sebring",
+  "Type": "QUALIFY",
+  "Date": "2026-02-16T01:21:00Z",
+  "SessionFile": "2026_2_16_1_21_QUALIFY",
+  "SessionConfig": {
+    "session_type": 2,
+    "name": "Qualify",
+    "time": 15,
+    "laps": 0,
+    "is_open": 1,
+    "wait_time": 0,
+    "visibility_mode": 0,
+    "qualifying_type": 0,
+    "qualifying_number_of_laps_to_average": 0,
+    "count_out_lap": false,
+    "disable_push_to_pass": false
+  },
+  "ChampionshipID": "6b8dfcc9-7e04-4917-88a2-ba8de4d7733f",
+  "RaceWeekendID": "",
+  "EventName": "Sebring - 2026 CGT3 Championship - Round Two"
+}

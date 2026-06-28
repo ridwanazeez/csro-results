@@ -1,0 +1,4170 @@
+{
+  "Version": 7,
+  "Cars": [
+    {
+      "BallastKG": 0,
+      "CarId": 0,
+      "Driver": {
+        "Guid": "76561198217305152",
+        "GuidsList": [
+          "76561198217305152"
+        ],
+        "Name": "Anton C. Auditore",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "22_TeamBlacktide_03",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 1,
+      "Driver": {
+        "Guid": "76561199094214529",
+        "GuidsList": [
+          "76561199094214529"
+        ],
+        "Name": "Michael Paisley",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "shotel_teamjamaica_604",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "11_racing_923",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 89,
+      "MaxPing": 92
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 3,
+      "Driver": {
+        "Guid": "76561199106654850",
+        "GuidsList": [
+          "76561199106654850"
+        ],
+        "Name": "Daville Parke",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "20_racing_931",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 4,
+      "Driver": {
+        "Guid": "76561198980927847",
+        "GuidsList": [
+          "76561198980927847"
+        ],
+        "Name": "Jalen Masduki",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "14_racing_926",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 90,
+      "MaxPing": 137
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "Driver": {
+        "Guid": "76561198149522978",
+        "GuidsList": [
+          "76561198149522978"
+        ],
+        "Name": "Dominic Charles",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "23_CalypsoRacing_333",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 78,
+      "MaxPing": 553
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "0_cup_b",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 156,
+      "MaxPing": 2284
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "25_SubbysByTeamBlacktide_72",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 89,
+      "MaxPing": 3930
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "sada_roti_racing_white",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 89,
+      "MaxPing": 509
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 9,
+      "Driver": {
+        "Guid": "76561199108080900",
+        "GuidsList": [
+          "76561199108080900"
+        ],
+        "Name": "Rashad Razack",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "24_TeamBlacktide_144",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "Driver": {
+        "Guid": "76561199838019584",
+        "GuidsList": [
+          "76561199838019584"
+        ],
+        "Name": "Safeer Roshandin",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "19_racing_916",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 88,
+      "MaxPing": 99
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 11,
+      "Driver": {
+        "Guid": "76561198084429459",
+        "GuidsList": [
+          "76561198084429459"
+        ],
+        "Name": "Stefan Gajie",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "11_racing_923",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 88,
+      "MaxPing": 713
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 12,
+      "Driver": {
+        "Guid": "76561198755727348",
+        "GuidsList": [
+          "76561198755727348"
+        ],
+        "Name": "Alex Siebss",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "00_cup",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "20_racing_931",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 92,
+      "MaxPing": 2309
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 14,
+      "Driver": {
+        "Guid": "76561199153045117",
+        "GuidsList": [
+          "76561199153045117"
+        ],
+        "Name": "Aditya Mohanlall",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "Aditya Mohanlall - Team Zypher",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 15,
+      "Driver": {
+        "Guid": "76561198805533202",
+        "GuidsList": [
+          "76561198805533202"
+        ],
+        "Name": "Jayden Harrison",
+        "Nation": "JAM",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "shotel_teamjamaica_604",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 50,
+      "MaxPing": 75
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 16,
+      "Driver": {
+        "Guid": "76561199058154171",
+        "GuidsList": [
+          "76561199058154171"
+        ],
+        "Name": "Azaad Hassan",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "12_racing_924",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "15_racing_927",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 89,
+      "MaxPing": 925
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 18,
+      "Driver": {
+        "Guid": "76561199036192400",
+        "GuidsList": [
+          "76561199036192400"
+        ],
+        "Name": "Christian Rajnauth",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "Team Zypher - C.Rajnauth 1",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "Driver": {
+        "Guid": "76561198208970404",
+        "GuidsList": [
+          "76561198208970404"
+        ],
+        "Name": "Ghervoni Melville",
+        "Nation": "SAI",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "758_Racing",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "MinPing": 143,
+      "MaxPing": 5172
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 20,
+      "Driver": {
+        "Guid": "76561198978035572",
+        "GuidsList": [
+          "76561198978035572"
+        ],
+        "Name": "Stephen Bhola",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "0_cup_b",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 21,
+      "Driver": {
+        "Guid": "76561198174169190",
+        "GuidsList": [
+          "76561198174169190"
+        ],
+        "Name": "Bidesh Dwarka",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "06_racing_922",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 22,
+      "Driver": {
+        "Guid": "76561198394244241",
+        "GuidsList": [
+          "76561198394244241"
+        ],
+        "Name": "Tyreke Wilson",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "06_racing_922",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 23,
+      "Driver": {
+        "Guid": "76561199029332215",
+        "GuidsList": [
+          "76561199029332215"
+        ],
+        "Name": "Joshua Browne",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "Joshua Browne - Hawlucha Racing #86",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 24,
+      "Driver": {
+        "Guid": "76561198436033952",
+        "GuidsList": [
+          "76561198436033952"
+        ],
+        "Name": "Mitesh Ramdhani",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "MRR_Racing",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 25,
+      "Driver": {
+        "Guid": "76561199480321992",
+        "GuidsList": [
+          "76561199480321992"
+        ],
+        "Name": "Metish Sanicharra",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "Model": "ks_porsche_911_gt3_cup_2017",
+      "Restrictor": 0,
+      "Skin": "sada_roti_racing_black",
+      "ClassID": "00000000-0000-0000-0000-000000000000",
+      "MinPing": 0,
+      "MaxPing": 0
+    }
+  ],
+  "Events": [
+    {
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 5.2553177,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.99506724,
+        "Y": 0.47591153,
+        "Z": 0.61278343
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 463.16696,
+        "Y": 0.870707,
+        "Z": 24.314688
+      },
+      "Timestamp": 1782090168,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 0.30475345,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.99507123,
+        "Y": 0.47591114,
+        "Z": 0.6127689
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 352.71686,
+        "Y": 0.8611447,
+        "Z": 45.140457
+      },
+      "Timestamp": 1782090223,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 19,
+      "Driver": {
+        "Guid": "76561198208970404",
+        "GuidsList": [
+          "76561198208970404"
+        ],
+        "Name": "Ghervoni Melville",
+        "Nation": "SAI",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 8.130357,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950685,
+        "Y": 0.4759115,
+        "Z": 0.6127821
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 28.215637,
+        "Y": 0.906147,
+        "Z": -98.7224
+      },
+      "Timestamp": 1782090237,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 7.232626,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.99506545,
+        "Y": 0.4759116,
+        "Z": 0.6127833
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 104.64295,
+        "Y": 0.9128887,
+        "Z": -9.931297
+      },
+      "Timestamp": 1782090288,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 37.28409,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.99271864,
+        "Y": 0.4738466,
+        "Z": 0.616021
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 22.511871,
+        "Y": 0.9026157,
+        "Z": -98.7001
+      },
+      "Timestamp": 1782090293,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 4,
+      "Driver": {
+        "Guid": "76561198980927847",
+        "GuidsList": [
+          "76561198980927847"
+        ],
+        "Name": "Jalen Masduki",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 4.0902057,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9203046,
+        "Y": -0.32117474,
+        "Z": 1.894972
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 330.42477,
+        "Y": 0.041883424,
+        "Z": 42.105103
+      },
+      "Timestamp": 1782090317,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 4,
+      "Driver": {
+        "Guid": "76561198980927847",
+        "GuidsList": [
+          "76561198980927847"
+        ],
+        "Name": "Jalen Masduki",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 0.11198496,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950677,
+        "Y": 0.47591174,
+        "Z": 0.6127921
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 331.4031,
+        "Y": 0.8899418,
+        "Z": 42.22189
+      },
+      "Timestamp": 1782090322,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 7.012277,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950706,
+        "Y": 0.4759115,
+        "Z": 0.61278147
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 31.446405,
+        "Y": 0.9010918,
+        "Z": -98.735146
+      },
+      "Timestamp": 1782090343,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 10.337124,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.89294285,
+        "Y": 0.8341342,
+        "Z": -1.9633616
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 33.02668,
+        "Y": 1.2804797,
+        "Z": -98.747765
+      },
+      "Timestamp": 1782090343,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 2.3940969,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950744,
+        "Y": 0.47591156,
+        "Z": 0.6127728
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -471.28198,
+        "Y": 0.87160254,
+        "Z": -64.33059
+      },
+      "Timestamp": 1782090368,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 7.3949747,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8929406,
+        "Y": 0.8341343,
+        "Z": -1.9633654
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 447.62265,
+        "Y": 1.2502633,
+        "Z": 19.798107
+      },
+      "Timestamp": 1782090388,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 5.3590164,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8929414,
+        "Y": 0.8341343,
+        "Z": -1.9633614
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 34.814125,
+        "Y": 1.280379,
+        "Z": -98.74023
+      },
+      "Timestamp": 1782090403,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 10.448124,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.89294136,
+        "Y": 0.8341342,
+        "Z": -1.9633628
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 34.993885,
+        "Y": 1.2822595,
+        "Z": -98.74652
+      },
+      "Timestamp": 1782090403,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 76.22731,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9910394,
+        "Y": 0.4742309,
+        "Z": 0.61096066
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 22.088303,
+        "Y": 0.92062163,
+        "Z": -98.68619
+      },
+      "Timestamp": 1782090407,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 20.751774,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.84374434,
+        "Y": -0.31994808,
+        "Z": 2.2517369
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -0.77447873,
+        "Y": 0.12064682,
+        "Z": -98.62119
+      },
+      "Timestamp": 1782090408,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 12.151903,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.89294165,
+        "Y": 0.8341343,
+        "Z": -1.9633669
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 456.3993,
+        "Y": 1.2522349,
+        "Z": 22.25477
+      },
+      "Timestamp": 1782090444,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 13.683987,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8929375,
+        "Y": 0.8341344,
+        "Z": -1.9633482
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 467.1158,
+        "Y": 1.2649592,
+        "Z": 25.584059
+      },
+      "Timestamp": 1782090499,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 13,
+      "Driver": {
+        "Guid": "76561199299749337",
+        "GuidsList": [
+          "76561199299749337"
+        ],
+        "Name": "Xavier Pratt",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 20.467657,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8437508,
+        "Y": -0.31994832,
+        "Z": 2.2517238
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 458.3582,
+        "Y": 0.111711,
+        "Z": 22.792604
+      },
+      "Timestamp": 1782090503,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 6,
+      "Driver": {
+        "Guid": "76561198395699593",
+        "GuidsList": [
+          "76561198395699593"
+        ],
+        "Name": "Raul Partab",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 4.739211,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950654,
+        "Y": 0.4759115,
+        "Z": 0.61278224
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 29.919222,
+        "Y": 0.8911993,
+        "Z": -98.72284
+      },
+      "Timestamp": 1782090603,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 17,
+      "Driver": {
+        "Guid": "76561199023986969",
+        "GuidsList": [
+          "76561199023986969"
+        ],
+        "Name": "Mateus Parker",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 72.22418,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": 0.79610616,
+        "Y": -0.29757443,
+        "Z": 2.230124
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 80.94476,
+        "Y": 0.10738164,
+        "Z": -74.1307
+      },
+      "Timestamp": 1782090612,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 8,
+      "Driver": {
+        "Guid": "76561199051535772",
+        "GuidsList": [
+          "76561199051535772"
+        ],
+        "Name": "Zeyaad Razack",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 34.039257,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": 0.92952114,
+        "Y": 0.4119871,
+        "Z": 0.69029504
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -499.26822,
+        "Y": 0.85323435,
+        "Z": -126.8893
+      },
+      "Timestamp": 1782090638,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 30.542194,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.47298884,
+        "Y": -0.320082,
+        "Z": 2.5076702
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 102.2462,
+        "Y": 0.17956468,
+        "Z": -56.15304
+      },
+      "Timestamp": 1782090654,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 19,
+      "Driver": {
+        "Guid": "76561198208970404",
+        "GuidsList": [
+          "76561198208970404"
+        ],
+        "Name": "Ghervoni Melville",
+        "Nation": "SAI",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 2.9059393,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950712,
+        "Y": 0.47591144,
+        "Z": 0.6127737
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 465.0945,
+        "Y": 0.87657785,
+        "Z": 24.942158
+      },
+      "Timestamp": 1782090662,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 10,
+      "Driver": {
+        "Guid": "76561199838019584",
+        "GuidsList": [
+          "76561199838019584"
+        ],
+        "Name": "Safeer Roshandin",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 4.6449714,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950692,
+        "Y": 0.47591147,
+        "Z": 0.61278117
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 27.332407,
+        "Y": 0.894679,
+        "Z": -98.708755
+      },
+      "Timestamp": 1782090672,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 4.180772,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.9950689,
+        "Y": 0.4759115,
+        "Z": 0.6127787
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 445.59225,
+        "Y": 0.8778319,
+        "Z": 19.263569
+      },
+      "Timestamp": 1782090683,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 10,
+      "Driver": {
+        "Guid": "76561199838019584",
+        "GuidsList": [
+          "76561199838019584"
+        ],
+        "Name": "Safeer Roshandin",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 18.088072,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8929394,
+        "Y": 0.8341343,
+        "Z": -1.9633638
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 40.33944,
+        "Y": 1.2795905,
+        "Z": -98.77984
+      },
+      "Timestamp": 1782090722,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 17.983934,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.90649843,
+        "Y": -0.32145566,
+        "Z": 1.9347081
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 456.67017,
+        "Y": 0.07282149,
+        "Z": 22.34
+      },
+      "Timestamp": 1782090733,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 3.764202,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8929377,
+        "Y": 0.83413434,
+        "Z": -1.9633532
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 457.84344,
+        "Y": 1.2547549,
+        "Z": 22.657269
+      },
+      "Timestamp": 1782090738,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 14.126416,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.84375167,
+        "Y": -0.319948,
+        "Z": 2.2517352
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 521.8953,
+        "Y": 0.06181423,
+        "Z": 73.86675
+      },
+      "Timestamp": 1782090754,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 7,
+      "Driver": {
+        "Guid": "76561198280413888",
+        "GuidsList": [
+          "76561198280413888"
+        ],
+        "Name": "Raymond Seebarran",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 4.0185747,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.8437462,
+        "Y": -0.31994808,
+        "Z": 2.2517304
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": 520.4687,
+        "Y": 0.05997129,
+        "Z": 71.83878
+      },
+      "Timestamp": 1782090759,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 2,
+      "Driver": {
+        "Guid": "76561199224216117",
+        "GuidsList": [
+          "76561199224216117"
+        ],
+        "Name": "Kyle Pragg",
+        "Nation": "TTO",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 23.726686,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": -0.91816115,
+        "Y": -0.3214918,
+        "Z": 1.8877459
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -396.28934,
+        "Y": 0.037925288,
+        "Z": 5.5957947
+      },
+      "Timestamp": 1782090768,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    },
+    {
+      "CarId": 10,
+      "Driver": {
+        "Guid": "76561199838019584",
+        "GuidsList": [
+          "76561199838019584"
+        ],
+        "Name": "Safeer Roshandin",
+        "Nation": "GUY",
+        "Team": "",
+        "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe"
+      },
+      "ImpactSpeed": 29.36268,
+      "OtherCarId": 0,
+      "OtherDriver": {
+        "Guid": "",
+        "GuidsList": null,
+        "Name": "",
+        "Nation": "",
+        "Team": "",
+        "ClassID": "00000000-0000-0000-0000-000000000000"
+      },
+      "RelPosition": {
+        "X": 0.9214138,
+        "Y": -0.32038134,
+        "Z": 1.8433312
+      },
+      "Type": "COLLISION_WITH_ENV",
+      "WorldPosition": {
+        "X": -498.66696,
+        "Y": 0.092260405,
+        "Z": -128.10011
+      },
+      "Timestamp": 1782090787,
+      "AfterSessionEnd": false,
+      "ReplayURL": ""
+    }
+  ],
+  "Laps": [
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 65739,
+      "Restrictor": 0,
+      "Sectors": [
+        27876,
+        18139,
+        19724
+      ],
+      "Timestamp": 1782090205,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 66974,
+      "Restrictor": 0,
+      "Sectors": [
+        29274,
+        18621,
+        19079
+      ],
+      "Timestamp": 1782090207,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 66419,
+      "Restrictor": 0,
+      "Sectors": [
+        28925,
+        18145,
+        19349
+      ],
+      "Timestamp": 1782090209,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "LapTime": 69096,
+      "Restrictor": 0,
+      "Sectors": [
+        30459,
+        17945,
+        20692
+      ],
+      "Timestamp": 1782090212,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 72566,
+      "Restrictor": 0,
+      "Sectors": [
+        36134,
+        17596,
+        18836
+      ],
+      "Timestamp": 1782090212,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 76219,
+      "Restrictor": 0,
+      "Sectors": [
+        37546,
+        18806,
+        19867
+      ],
+      "Timestamp": 1782090216,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 76188,
+      "Restrictor": 0,
+      "Sectors": [
+        29405,
+        23077,
+        23706
+      ],
+      "Timestamp": 1782090217,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 89650,
+      "Restrictor": 0,
+      "Sectors": [
+        52718,
+        17974,
+        18958
+      ],
+      "Timestamp": 1782090234,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 51839,
+      "Restrictor": 0,
+      "Sectors": [
+        15759,
+        17289,
+        18791
+      ],
+      "Timestamp": 1782090257,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 53238,
+      "Restrictor": 0,
+      "Sectors": [
+        16315,
+        17995,
+        18928
+      ],
+      "Timestamp": 1782090260,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52050,
+      "Restrictor": 0,
+      "Sectors": [
+        15978,
+        17459,
+        18613
+      ],
+      "Timestamp": 1782090261,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "LapTime": 52136,
+      "Restrictor": 0,
+      "Sectors": [
+        16001,
+        17460,
+        18675
+      ],
+      "Timestamp": 1782090264,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 51979,
+      "Restrictor": 0,
+      "Sectors": [
+        15817,
+        17420,
+        18742
+      ],
+      "Timestamp": 1782090269,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 53304,
+      "Restrictor": 0,
+      "Sectors": [
+        16242,
+        17747,
+        19315
+      ],
+      "Timestamp": 1782090269,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 131906,
+      "Restrictor": 0,
+      "Sectors": [
+        95056,
+        18220,
+        18630
+      ],
+      "Timestamp": 1782090274,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": null,
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 66274,
+      "Restrictor": 0,
+      "Sectors": [
+        29585,
+        17946,
+        18743
+      ],
+      "Timestamp": 1782090279,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 53060,
+      "Restrictor": 0,
+      "Sectors": [
+        16161,
+        17910,
+        18989
+      ],
+      "Timestamp": 1782090287,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 51415,
+      "Restrictor": 0,
+      "Sectors": [
+        15834,
+        17208,
+        18373
+      ],
+      "Timestamp": 1782090309,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 52937,
+      "Restrictor": 0,
+      "Sectors": [
+        16172,
+        17803,
+        18962
+      ],
+      "Timestamp": 1782090313,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52874,
+      "Restrictor": 0,
+      "Sectors": [
+        16164,
+        17509,
+        19201
+      ],
+      "Timestamp": 1782090314,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "LapTime": 52302,
+      "Restrictor": 0,
+      "Sectors": [
+        16058,
+        17542,
+        18702
+      ],
+      "Timestamp": 1782090316,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 52897,
+      "Restrictor": 0,
+      "Sectors": [
+        16424,
+        17848,
+        18625
+      ],
+      "Timestamp": 1782090322,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 54950,
+      "Restrictor": 0,
+      "Sectors": [
+        17250,
+        18549,
+        19151
+      ],
+      "Timestamp": 1782090324,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 51689,
+      "Restrictor": 0,
+      "Sectors": [
+        15896,
+        17361,
+        18432
+      ],
+      "Timestamp": 1782090326,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52071,
+      "Restrictor": 0,
+      "Sectors": [
+        16035,
+        17509,
+        18527
+      ],
+      "Timestamp": 1782090331,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 52329,
+      "Restrictor": 0,
+      "Sectors": [
+        16068,
+        17568,
+        18693
+      ],
+      "Timestamp": 1782090365,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52248,
+      "Restrictor": 0,
+      "Sectors": [
+        16239,
+        17307,
+        18702
+      ],
+      "Timestamp": 1782090366,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 53164,
+      "Restrictor": 0,
+      "Sectors": [
+        16098,
+        18373,
+        18693
+      ],
+      "Timestamp": 1782090375,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 52153,
+      "Restrictor": 0,
+      "Sectors": [
+        15861,
+        17477,
+        18815
+      ],
+      "Timestamp": 1782090376,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 51725,
+      "Restrictor": 0,
+      "Sectors": [
+        15897,
+        17275,
+        18553
+      ],
+      "Timestamp": 1782090378,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 91987,
+      "Restrictor": 0,
+      "Sectors": [
+        48814,
+        23616,
+        19557
+      ],
+      "Timestamp": 1782090379,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52312,
+      "Restrictor": 0,
+      "Sectors": [
+        15997,
+        17482,
+        18833
+      ],
+      "Timestamp": 1782090383,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52343,
+      "Restrictor": 0,
+      "Sectors": [
+        15965,
+        17587,
+        18791
+      ],
+      "Timestamp": 1782090418,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 52655,
+      "Restrictor": 0,
+      "Sectors": [
+        16142,
+        17672,
+        18841
+      ],
+      "Timestamp": 1782090428,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 52076,
+      "Restrictor": 0,
+      "Sectors": [
+        15829,
+        17563,
+        18684
+      ],
+      "Timestamp": 1782090430,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 52840,
+      "Restrictor": 0,
+      "Sectors": [
+        16228,
+        17789,
+        18823
+      ],
+      "Timestamp": 1782090432,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 56714,
+      "Restrictor": 0,
+      "Sectors": [
+        15918,
+        19525,
+        21271
+      ],
+      "Timestamp": 1782090433,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "LapTime": 118440,
+      "Restrictor": 0,
+      "Sectors": [
+        81270,
+        17856,
+        19314
+      ],
+      "Timestamp": 1782090435,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52206,
+      "Restrictor": 0,
+      "Sectors": [
+        16102,
+        17501,
+        18603
+      ],
+      "Timestamp": 1782090435,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 91854,
+      "Restrictor": 0,
+      "Sectors": [
+        15961,
+        18004,
+        57889
+      ],
+      "Timestamp": 1782090457,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 51960,
+      "Restrictor": 0,
+      "Sectors": [
+        16009,
+        17320,
+        18631
+      ],
+      "Timestamp": 1782090470,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 52157,
+      "Restrictor": 0,
+      "Sectors": [
+        15915,
+        17486,
+        18756
+      ],
+      "Timestamp": 1782090482,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 54250,
+      "Restrictor": 0,
+      "Sectors": [
+        16031,
+        17883,
+        20336
+      ],
+      "Timestamp": 1782090482,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 53231,
+      "Restrictor": 0,
+      "Sectors": [
+        16250,
+        18207,
+        18774
+      ],
+      "Timestamp": 1782090485,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "LapTime": 51718,
+      "Restrictor": 0,
+      "Sectors": [
+        15880,
+        17392,
+        18446
+      ],
+      "Timestamp": 1782090486,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52307,
+      "Restrictor": 0,
+      "Sectors": [
+        16136,
+        17425,
+        18746
+      ],
+      "Timestamp": 1782090487,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 55217,
+      "Restrictor": 0,
+      "Sectors": [
+        15978,
+        17540,
+        21699
+      ],
+      "Timestamp": 1782090488,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52848,
+      "Restrictor": 0,
+      "Sectors": [
+        16181,
+        17982,
+        18685
+      ],
+      "Timestamp": 1782090523,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 51851,
+      "Restrictor": 0,
+      "Sectors": [
+        15897,
+        17199,
+        18755
+      ],
+      "Timestamp": 1782090534,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52360,
+      "Restrictor": 0,
+      "Sectors": [
+        16247,
+        17474,
+        18639
+      ],
+      "Timestamp": 1782090540,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 56810,
+      "Restrictor": 0,
+      "Sectors": [
+        17147,
+        19854,
+        19809
+      ],
+      "Timestamp": 1782090545,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 243644,
+      "Restrictor": 0,
+      "Sectors": [
+        207132,
+        17540,
+        18972
+      ],
+      "Timestamp": 1782090552,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 82968,
+      "Restrictor": 0,
+      "Sectors": [
+        46598,
+        17834,
+        18536
+      ],
+      "Timestamp": 1782090565,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 52389,
+      "Restrictor": 0,
+      "Sectors": [
+        16371,
+        17397,
+        18621
+      ],
+      "Timestamp": 1782090575,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 51829,
+      "Restrictor": 0,
+      "Sectors": [
+        15879,
+        17333,
+        18617
+      ],
+      "Timestamp": 1782090586,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52219,
+      "Restrictor": 0,
+      "Sectors": [
+        16196,
+        17415,
+        18608
+      ],
+      "Timestamp": 1782090592,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 52275,
+      "Restrictor": 0,
+      "Sectors": [
+        16081,
+        17482,
+        18712
+      ],
+      "Timestamp": 1782090597,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 51694,
+      "Restrictor": 0,
+      "Sectors": [
+        15887,
+        17227,
+        18580
+      ],
+      "Timestamp": 1782090604,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 51970,
+      "Restrictor": 0,
+      "Sectors": [
+        15939,
+        17500,
+        18531
+      ],
+      "Timestamp": 1782090617,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 141779,
+      "Restrictor": 0,
+      "Sectors": [
+        105086,
+        17865,
+        18828
+      ],
+      "Timestamp": 1782090627,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 51929,
+      "Restrictor": 0,
+      "Sectors": [
+        16038,
+        17316,
+        18575
+      ],
+      "Timestamp": 1782090627,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 52889,
+      "Restrictor": 0,
+      "Sectors": [
+        15764,
+        18576,
+        18549
+      ],
+      "Timestamp": 1782090638,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 51792,
+      "Restrictor": 0,
+      "Sectors": [
+        16021,
+        17275,
+        18496
+      ],
+      "Timestamp": 1782090644,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "LapTime": 52083,
+      "Restrictor": 0,
+      "Sectors": [
+        15956,
+        17456,
+        18671
+      ],
+      "Timestamp": 1782090649,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 52156,
+      "Restrictor": 0,
+      "Sectors": [
+        15922,
+        17582,
+        18652
+      ],
+      "Timestamp": 1782090669,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 60464,
+      "Restrictor": 0,
+      "Sectors": [
+        16819,
+        24925,
+        18720
+      ],
+      "Timestamp": 1782090687,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "LapTime": 52382,
+      "Restrictor": 0,
+      "Sectors": [
+        16027,
+        17519,
+        18836
+      ],
+      "Timestamp": 1782090691,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 52290,
+      "Restrictor": 0,
+      "Sectors": [
+        16051,
+        17455,
+        18784
+      ],
+      "Timestamp": 1782090696,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 1,
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "LapTime": 94483,
+      "Restrictor": 0,
+      "Sectors": [
+        15935,
+        17326,
+        61222
+      ],
+      "Timestamp": 1782090698,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 72610,
+      "Restrictor": 0,
+      "Sectors": [
+        35237,
+        17614,
+        19759
+      ],
+      "Timestamp": 1782090700,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 2,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 246140,
+      "Restrictor": 0,
+      "Sectors": [
+        206338,
+        18734,
+        21068
+      ],
+      "Timestamp": 1782090703,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "LapTime": 52331,
+      "Restrictor": 0,
+      "Sectors": [
+        15828,
+        17532,
+        18971
+      ],
+      "Timestamp": 1782090722,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "LapTime": 52472,
+      "Restrictor": 0,
+      "Sectors": [
+        16067,
+        17523,
+        18882
+      ],
+      "Timestamp": 1782090739,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "LapTime": 51956,
+      "Restrictor": 0,
+      "Sectors": [
+        15884,
+        17541,
+        18531
+      ],
+      "Timestamp": 1782090748,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "LapTime": 51917,
+      "Restrictor": 0,
+      "Sectors": [
+        15981,
+        17325,
+        18611
+      ],
+      "Timestamp": 1782090752,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": true,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    },
+    {
+      "BallastKG": 0,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "Cuts": 0,
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "LapTime": 55037,
+      "Restrictor": 0,
+      "Sectors": [
+        17193,
+        18589,
+        19255
+      ],
+      "Timestamp": 1782090758,
+      "Tyre": "H",
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "ContributedToFastestLap": false,
+      "SpeedTrapHits": [],
+      "Conditions": {
+        "Ambient": 25,
+        "Road": 36,
+        "Grip": 1,
+        "WindSpeed": 4,
+        "WindDirection": 23,
+        "RainIntensity": 0,
+        "RainWetness": 0,
+        "RainWater": 0
+      }
+    }
+  ],
+  "Result": [
+    {
+      "BallastKG": 0,
+      "BestLap": 51415,
+      "CarId": 5,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561198149522978",
+      "DriverName": "Dominic Charles",
+      "Restrictor": 0,
+      "TotalTime": 558863,
+      "NumLaps": 6,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 2
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51689,
+      "CarId": 17,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561199023986969",
+      "DriverName": "Mateus Parker",
+      "Restrictor": 0,
+      "TotalTime": 551184,
+      "NumLaps": 9,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 1
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51718,
+      "CarId": 13,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561199299749337",
+      "DriverName": "Xavier Pratt",
+      "Restrictor": 0,
+      "TotalTime": 346612,
+      "NumLaps": 5,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 3
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51792,
+      "CarId": 10,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561199838019584",
+      "DriverName": "Safeer Roshandin",
+      "Restrictor": 0,
+      "TotalTime": 608399,
+      "NumLaps": 11,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 5
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51917,
+      "CarId": 6,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561198395699593",
+      "DriverName": "Raul Partab",
+      "Restrictor": 0,
+      "TotalTime": 612257,
+      "NumLaps": 11,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 4
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51970,
+      "CarId": 2,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561199224216117",
+      "DriverName": "Kyle Pragg",
+      "Restrictor": 0,
+      "TotalTime": 581961,
+      "NumLaps": 10,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 9
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 51979,
+      "CarId": 8,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561199051535772",
+      "DriverName": "Zeyaad Razack",
+      "Restrictor": 0,
+      "TotalTime": 509642,
+      "NumLaps": 9,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 6
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 52329,
+      "CarId": 19,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561198208970404",
+      "DriverName": "Ghervoni Melville",
+      "Restrictor": 0,
+      "TotalTime": 618532,
+      "NumLaps": 7,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 7
+    },
+    {
+      "BallastKG": 0,
+      "BestLap": 52472,
+      "CarId": 7,
+      "CarModel": "ks_porsche_911_gt3_cup_2017",
+      "DriverGuid": "76561198280413888",
+      "DriverName": "Raymond Seebarran",
+      "Restrictor": 0,
+      "TotalTime": 599860,
+      "NumLaps": 8,
+      "HasPenalty": false,
+      "PenaltyTime": 0,
+      "LapPenalty": 0,
+      "Disqualified": false,
+      "ClassID": "5b350392-865e-46d5-a653-3b6b7a29a3fe",
+      "GridPosition": 8
+    }
+  ],
+  "Penalties": null,
+  "TrackConfig": "",
+  "TrackName": "norisring_thr",
+  "Type": "QUALIFY",
+  "Date": "2026-06-22T01:15:00Z",
+  "SessionFile": "2026_6_22_1_15_QUALIFY",
+  "SessionConfig": {
+    "session_type": 2,
+    "name": "Qualify",
+    "time": 10,
+    "laps": 0,
+    "is_open": 1,
+    "wait_time": 0,
+    "visibility_mode": 0,
+    "qualifying_type": 0,
+    "qualifying_number_of_laps_to_average": 0,
+    "count_out_lap": false,
+    "disable_push_to_pass": false
+  },
+  "ChampionshipID": "c5aa0191-c32f-4fc5-b5b5-ce83572531e1",
+  "RaceWeekendID": "",
+  "EventName": "Norisring - 2026 Caribbean Porsche Cup - Round #7"
+}
