@@ -147,7 +147,6 @@ const RenderTable = {
 
 export default {
   components: {
-    FlexRender,
     RenderTable
   },
   data() {
@@ -310,7 +309,7 @@ export default {
           accessorKey: 'DriverName',
           header: 'Driver',
           size: 140,
-          cell: ({ row, getValue }) => {
+          cell: ({ getValue }) => {
             const value = getValue()
             const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
             return h('div', { class: 'flex items-center gap-2' }, [
@@ -350,7 +349,7 @@ export default {
           accessorKey: 'BestLap',
           header: 'Best Lap',
           size: 85,
-          cell: ({ row, getValue }) => {
+          cell: ({ getValue }) => {
             const isBest = this.isBestLapInResult(getValue(), data.Result)
             return h(
               'span',
@@ -392,7 +391,7 @@ export default {
           accessorKey: 'DriverName',
           header: 'Driver',
           size: 140,
-          cell: ({ row, getValue }) => {
+          cell: ({ getValue }) => {
             const value = getValue()
             const flagHtml = this.getCountryFlag(this.getNationCode(data.Cars, value))
             return h('div', { class: 'flex items-center gap-2' }, [
@@ -439,7 +438,7 @@ export default {
           accessorKey: 'BestLap',
           header: 'Best Lap',
           size: 85,
-          cell: ({ row, getValue }) => {
+          cell: ({ getValue }) => {
             const isBest = this.isBestLapInResult(getValue(), data.Result)
             return h(
               'span',

@@ -444,9 +444,6 @@ export default {
       deep: true
     }
   },
-  mounted() {
-    this.initializeTable()
-  },
   props: {
     raceData: {
       type: Object,
@@ -1091,6 +1088,7 @@ export default {
       this.seriesLogo = this.raceData.seriesLogo
       this.enablePoints = this.raceData.enablePoints || false
     }
+    this.initializeTable()
   }
 }
 </script>
