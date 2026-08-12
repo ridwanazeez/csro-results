@@ -197,7 +197,7 @@
 </template>
 
 <script>
-import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
+import { FlexRender, useTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
 import html2canvas from 'html2canvas'
 import { h } from 'vue'
@@ -459,14 +459,13 @@ export default {
       if (!this.tableData || !this.tableData.Result) return
 
       const self = this
-      this.table = useVueTable({
+      this.table = useTable({
         get data() {
           return self.tableData.Result || []
         },
         get columns() {
           return self.columns
-        },
-        getCoreRowModel: getCoreRowModel()
+        }
       })
     },
     calculateBestLap(x, penalty = 0) {
