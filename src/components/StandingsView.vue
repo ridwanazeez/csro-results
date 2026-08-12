@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
+import { FlexRender, useTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
 import html2canvas from 'html2canvas'
 import { h } from 'vue'
@@ -373,10 +373,9 @@ export default {
         }
       ]
 
-      return useVueTable({
+      return useTable({
         data: data.Result || [],
-        columns,
-        getCoreRowModel: getCoreRowModel()
+        columns
       })
     },
     createRaceTable(data) {
@@ -471,10 +470,9 @@ export default {
         }
       ]
 
-      return useVueTable({
+      return useTable({
         data: data.Result || [],
-        columns,
-        getCoreRowModel: getCoreRowModel()
+        columns
       })
     },
     createStandingsTable(data, type) {
@@ -532,10 +530,9 @@ export default {
         cell: ({ getValue }) => h('span', { class: 'text-center block font-bold' }, getValue())
       })
 
-      return useVueTable({
+      return useTable({
         data: data || [],
-        columns,
-        getCoreRowModel: getCoreRowModel()
+        columns
       })
     },
     calculatePoints(position) {
