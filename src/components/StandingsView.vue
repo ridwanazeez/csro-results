@@ -125,7 +125,7 @@ const RenderTable = {
               key: row.id,
               class: 'hover:bg-gray-50 dark:hover:bg-gray-700'
             },
-            row.getVisibleCells().map((cell) =>
+            row.getAllCells().map((cell) =>
               h(
                 'td',
                 {

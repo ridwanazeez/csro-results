@@ -69,7 +69,7 @@
               :class="{ 'opacity-50': draggedIndex === rowIndex }"
             >
               <td
-                v-for="cell in row.getVisibleCells()"
+                v-for="cell in row.getAllCells()"
                 :key="cell.id"
                 class="px-3 py-2 dark:text-gray-300"
               >
