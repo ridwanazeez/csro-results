@@ -187,7 +187,7 @@ export default {
   data() {
     return {
       seriesTitle: '2023 CSRO Championship',
-      resultsTitle: 'Race Results',
+      resultsTitle: '',
       seriesLogo: null,
       enablePoints: false
     }
@@ -224,7 +224,7 @@ export default {
       if (savedSettings) {
         const settings = JSON.parse(savedSettings)
         this.seriesTitle = settings.seriesTitle || 'CSRO Championship'
-        this.resultsTitle = settings.resultsTitle || 'Results'
+        this.resultsTitle = settings.resultsTitle || ''
         this.seriesLogo = settings.seriesLogo || null
         this.enablePoints = settings.enablePoints || false
       }

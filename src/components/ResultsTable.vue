@@ -1,6 +1,10 @@
 <template>
   <div class="flex justify-center py-12 px-4">
-    <div id="resultsTable" class="bg-white dark:bg-gray-800" style="max-width: 900px">
+    <div
+      id="resultsTable"
+      class="bg-white dark:bg-gray-800 px-8 pt-12 pb-8"
+      style="max-width: 900px"
+    >
       <div class="flex items-center justify-center gap-8 mb-5">
         <img class="w-1/4" src="/images/csro-logo.png" alt="CSRO Logo" />
         <img v-if="seriesLogo" class="w-1/4" :src="seriesLogo" alt="CSRO Racing Series Logo" />
@@ -14,13 +18,7 @@
         <h1
           class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
         >
-          {{
-            currentResultId
-              ? tableData.Type === 'QUALIFY'
-                ? 'Qualifying Results'
-                : 'Race Results'
-              : resultsTitle || 'Results'
-          }}
+          {{ resultsTitle || defaultResultsTitle }}
         </h1>
         <h2 class="flex items-center tracking-tight text-black dark:text-gray-300">
           {{ formatDate(tableData.Date) }}
@@ -78,7 +76,7 @@
     <!-- Edit Driver Modal -->
     <div
       v-if="editingDriver !== null"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       @click.self="closeEditModal"
     >
       <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
@@ -193,8 +191,9 @@
 <script>
 import { FlexRender, useTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
-import html2canvas from 'html2canvas'
 import { h } from 'vue'
+import { captureElement } from '@/screenshot'
+import { hasTime } from '@/time'
 
 export default {
   components: {
@@ -221,6 +220,11 @@ export default {
     }
   },
   computed: {
+    // Falls back to the session type when the user hasn't set a Results Title,
+    // so a qualifying result never gets labelled "Race Results".
+    defaultResultsTitle() {
+      return this.tableData.Type === 'QUALIFY' ? 'Qualifying Results' : 'Race Results'
+    },
     columns() {
       const cols = [
         {
@@ -463,6 +467,9 @@ export default {
       })
     },
     calculateBestLap(x, penalty = 0) {
+      // No timed lap (AC's 999999999 sentinel), or no time at all — the
+      // arithmetic below would render it as a bogus duration like 16666:39.999
+      if (!hasTime(x)) return '-'
       //Time calculation
       //Some steps below are a bit repetitive because of how numbers work in JS
       var a = x / 1000 //milliseconds after decimal point
@@ -569,6 +576,9 @@ export default {
         if (i === 0) {
           // For the first row, the race gap is 0
           raceGap.push(this.formatTime(0))
+        } else if (!hasTime(results[i].BestLap) || !hasTime(results[0].BestLap)) {
+          // No lap to measure from or to
+          raceGap.push('-')
         } else {
           // Calculate the difference between the current lap and the first lap
           const gap = results[i].BestLap - results[0].BestLap
@@ -614,11 +624,16 @@ export default {
       localStorage.setItem('CSRO_RESULT', jsonData)
     },
     isBestLap(currentBestLap) {
-      const allBestLaps = this.tableData.Result.map((result) => result.BestLap)
-      const smallestBestLap = Math.min(...allBestLaps)
-      return currentBestLap === smallestBestLap
+      // Only real laps can be the fastest. Without this, a field where nobody
+      // set a lap makes every row the "best lap" and turns the column green.
+      const allBestLaps = this.tableData.Result.map((r) => r.BestLap).filter(hasTime)
+      if (!allBestLaps.length || !hasTime(currentBestLap)) return false
+      return currentBestLap === Math.min(...allBestLaps)
     },
     formatTime(milliseconds) {
+      // A gap of exactly 0 is real (P1), but negatives and the no-lap sentinel
+      // are not — both produce garbage from the arithmetic below.
+      if (milliseconds !== 0 && !hasTime(milliseconds)) return '-'
       const minutes = Math.floor(milliseconds / (60 * 1000))
       const seconds = Math.floor((milliseconds % (60 * 1000)) / 1000)
       const millisecondsPart = milliseconds % 1000
@@ -815,14 +830,29 @@ export default {
         return
       }
 
+      const from = this.draggedIndex
       const results = [...this.tableData.Result]
-      const draggedItem = results[this.draggedIndex]
+      const draggedItem = results[from]
 
       // Remove dragged item
-      results.splice(this.draggedIndex, 1)
+      results.splice(from, 1)
 
       // Insert at new position
       results.splice(dropIndex, 0, draggedItem)
+
+      // Move unsaved cell edits along with their rows. pendingEdits is keyed by
+      // row index, so without this an edit made before a reorder is applied to
+      // whichever driver ends up in that slot.
+      const moved = {}
+      Object.keys(this.pendingEdits).forEach((key) => {
+        const i = parseInt(key)
+        let next
+        if (i === from) next = dropIndex
+        else if (from < dropIndex) next = i > from && i <= dropIndex ? i - 1 : i
+        else next = i >= dropIndex && i < from ? i + 1 : i
+        moved[next] = this.pendingEdits[key]
+      })
+      this.pendingEdits = moved
 
       this.tableData.Result = results
       this.saveDataToLocalStorage(this.tableData)
@@ -1029,48 +1059,7 @@ export default {
       })
     },
     async captureScreenshot() {
-      const element = document.getElementById('resultsTable')
-      if (!element) {
-        console.error('Results table element not found')
-        return
-      }
-
-      try {
-        // Check if dark mode is enabled
-        const htmlElement = document.documentElement
-        const isDarkMode = htmlElement.classList.contains('dark')
-
-        // Add padding for screenshot
-        element.style.padding = '2.5rem'
-
-        const canvas = await html2canvas(element, {
-          backgroundColor: isDarkMode ? '#111827' : '#ffffff',
-          scale: 2,
-          logging: false,
-          useCORS: true
-        })
-
-        // Remove padding after capture
-        element.style.padding = ''
-
-        // Convert canvas to blob
-        canvas.toBlob((blob) => {
-          // Create download link
-          const url = URL.createObjectURL(blob)
-          const link = document.createElement('a')
-          const date = new Date().toISOString().split('T')[0]
-          link.download = `csro-results-${date}.png`
-          link.href = url
-          link.click()
-
-          // Cleanup
-          URL.revokeObjectURL(url)
-        })
-      } catch (error) {
-        console.error('Error capturing screenshot:', error)
-        // Make sure to remove padding even if error occurs
-        element.style.padding = ''
-      }
+      await captureElement('resultsTable', 'csro-results').catch(() => {})
     }
   },
   mounted() {

@@ -62,7 +62,7 @@
     <!-- Name & Save Result Modal (replaces native prompt, which browsers can block) -->
     <div
       v-if="saveModal.open"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       @click.self="cancelSaveResult"
     >
       <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
@@ -125,7 +125,7 @@
     <!-- Confirm Modal (replaces native confirm, which browsers can block) -->
     <div
       v-if="confirmDialog.open"
-      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
       @click.self="closeConfirmDialog"
     >
       <div
@@ -243,6 +243,7 @@ export default {
             this.uploaded = true
           } catch (error) {
             console.error('Error parsing JSON:', error)
+            this.showToast("That file isn't valid Assetto Corsa results JSON.", 5000)
           }
         }
         reader.readAsText(file)

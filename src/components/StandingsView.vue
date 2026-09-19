@@ -2,7 +2,7 @@
   <div class="flex justify-center py-12 px-4">
     <div
       id="standingsTable"
-      class="bg-white dark:bg-gray-800 p-8 space-y-8 w-full"
+      class="bg-white dark:bg-gray-800 px-8 pt-12 pb-8 space-y-8 w-full"
       style="max-width: 900px"
     >
       <!-- Header -->
@@ -23,7 +23,7 @@
         <h1
           class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
         >
-          {{ settings?.resultsTitle || 'Results' }}
+          {{ settings?.resultsTitle || 'Standings' }}
         </h1>
       </div>
 
@@ -78,8 +78,9 @@
 <script>
 import { FlexRender, useTable } from '@tanstack/vue-table'
 import * as flags from 'country-flag-icons/string/3x2'
-import html2canvas from 'html2canvas'
 import { h } from 'vue'
+import { captureElement } from '@/screenshot'
+import { hasTime } from '@/time'
 
 const RenderTable = {
   props: ['table'],
@@ -543,7 +544,8 @@ export default {
       return 0
     },
     formatTime(milliseconds) {
-      if (!milliseconds || milliseconds === 0) return '-'
+      // Covers 0/missing and AC's 999999999 "no lap set" sentinel
+      if (!hasTime(milliseconds)) return '-'
 
       const totalSeconds = Math.floor(milliseconds / 1000)
       const minutes = Math.floor(totalSeconds / 60)
@@ -597,9 +599,10 @@ export default {
     },
     isBestLapInResult(currentBestLap, results) {
       if (!results || results.length === 0) return false
-      const allBestLaps = results.map((result) => result.BestLap)
-      const smallestBestLap = Math.min(...allBestLaps)
-      return currentBestLap === smallestBestLap
+      // Drivers who never set a lap can't hold the fastest one
+      const allBestLaps = results.map((r) => r.BestLap).filter(hasTime)
+      if (!allBestLaps.length || !hasTime(currentBestLap)) return false
+      return currentBestLap === Math.min(...allBestLaps)
     },
     getNationName(nationCode) {
       const nationMap = {
@@ -702,35 +705,7 @@ export default {
       return flags[isoCode] || ''
     },
     async captureScreenshot() {
-      const element = document.getElementById('standingsTable')
-      if (!element) {
-        console.error('Standings table element not found')
-        return
-      }
-
-      try {
-        const htmlElement = document.documentElement
-        const isDarkMode = htmlElement.classList.contains('dark')
-
-        const canvas = await html2canvas(element, {
-          backgroundColor: isDarkMode ? '#111827' : '#ffffff',
-          scale: 2,
-          logging: false,
-          useCORS: true
-        })
-
-        canvas.toBlob((blob) => {
-          const url = URL.createObjectURL(blob)
-          const link = document.createElement('a')
-          const date = new Date().toISOString().split('T')[0]
-          link.download = `csro-standings-${date}.png`
-          link.href = url
-          link.click()
-          URL.revokeObjectURL(url)
-        })
-      } catch (error) {
-        console.error('Error capturing screenshot:', error)
-      }
+      await captureElement('standingsTable', 'csro-standings').catch(() => {})
     }
   }
 }
