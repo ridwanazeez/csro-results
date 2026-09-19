@@ -70,6 +70,7 @@
             id="seriesLogo"
             name="seriesLogo"
             type="file"
+            accept="image/*"
             class="sr-only"
             @change="changeSeriesLogo"
           />

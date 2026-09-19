@@ -15,8 +15,8 @@
     ></SideNav>
     <div class="mx-auto px-6 lg:px-8 max-w-[80%]">
       <div class="mx-auto">
-        <div v-if="!uploaded">
-          <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <div v-if="!uploaded" class="flex min-h-screen flex-col justify-center py-12">
+          <img class="mx-auto w-full max-w-sm" src="/images/csro-logo.png" alt="CSRO Logo" />
           <h1 class="mt-4 text-3xl text-center font-bold dark:text-white">
             CSRO Results Generator
           </h1>
@@ -34,6 +34,7 @@
                   id="fileUpload"
                   name="file-upload"
                   type="file"
+                  accept=".json,application/json"
                   class="sr-only"
                   @change="handleFileUpload"
                 />
