@@ -1,15 +1,9 @@
 <template>
   <div class="flex justify-center py-12 px-4">
     <div id="resultsTable" class="bg-white dark:bg-gray-800" style="max-width: 900px">
-      <div class="flex align-middle items-center mb-5">
-        <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
-        <img
-          v-if="seriesLogo"
-          class="w-1/4 mx-auto"
-          :src="seriesLogo"
-          alt="CSRO Racing Series Logo"
-        />
-        <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+      <div class="flex items-center justify-center gap-8 mb-5">
+        <img class="w-1/4" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <img v-if="seriesLogo" class="w-1/4" :src="seriesLogo" alt="CSRO Racing Series Logo" />
       </div>
       <div class="relative mb-5 flex w-full flex-col items-center text-center">
         <h1
@@ -37,14 +31,14 @@
       >
         <table
           v-if="table"
-          class="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-800 dark:text-white"
+          class="w-full border-collapse bg-white text-left text-sm text-gray-700 dark:bg-gray-800 dark:text-white"
         >
           <thead class="bg-gray-50 dark:bg-gray-800">
             <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
               <th
                 v-for="header in headerGroup.headers"
                 :key="header.id"
-                class="px-3 py-2 font-medium text-gray-900 dark:text-white text-center"
+                class="px-3 py-2 font-medium text-gray-900 dark:text-white text-center whitespace-nowrap"
               >
                 <FlexRender
                   v-if="!header.isPlaceholder"
@@ -250,7 +244,7 @@ export default {
                     class: 'inline-block w-6 h-4 rounded-sm overflow-hidden flex-shrink-0'
                   })
                 : null,
-              h('span', { class: 'flex-1' }, value),
+              h('span', { class: 'flex-1 whitespace-nowrap' }, value),
               h(
                 'button',
                 {

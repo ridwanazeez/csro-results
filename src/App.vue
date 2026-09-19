@@ -13,7 +13,7 @@
       :saved-results="savedResults"
       :current-view="currentView"
     ></SideNav>
-    <div class="m-auto px-6 lg:px-8 max-w-[80%]">
+    <div class="mx-auto px-6 lg:px-8 max-w-[80%]">
       <div class="mx-auto">
         <div v-if="!uploaded">
           <img class="w-1/2 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
@@ -21,7 +21,7 @@
             CSRO Results Generator
           </h1>
           <p class="text-center text-sm dark:text-white">
-            v{{ version }} | Last updated: 28/06/2026
+            v{{ version }} | Last updated: 19/09/2026
           </p>
           <form class="my-4">
             <div class="flex items-center">

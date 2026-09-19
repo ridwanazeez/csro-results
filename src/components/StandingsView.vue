@@ -6,15 +6,14 @@
       style="max-width: 900px"
     >
       <!-- Header -->
-      <div class="flex align-middle items-center mb-5">
-        <img class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
+      <div class="flex items-center justify-center gap-8 mb-5">
+        <img class="w-1/4" src="/images/csro-logo.png" alt="CSRO Logo" />
         <img
           v-if="settings && settings.seriesLogo"
-          class="w-1/4 mx-auto"
+          class="w-1/4"
           :src="settings.seriesLogo"
           alt="CSRO Racing Series Logo"
         />
-        <img v-else class="w-1/4 mx-auto" src="/images/csro-logo.png" alt="CSRO Logo" />
       </div>
 
       <div class="text-center mb-8">
@@ -36,7 +35,7 @@
         >
           <table
             v-if="driverStandings.length > 0"
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
             <RenderTable :table="cachedTables.driver" />
           </table>
@@ -51,7 +50,7 @@
         >
           <table
             v-if="teamStandings.length > 0"
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
             <RenderTable :table="cachedTables.team" />
           </table>
@@ -66,7 +65,7 @@
         >
           <table
             v-if="countryStandings.length > 0"
-            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-500 dark:text-gray-300"
+            class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
             <RenderTable :table="cachedTables.country" />
           </table>
@@ -99,7 +98,8 @@ const RenderTable = {
                 'th',
                 {
                   key: header.id,
-                  class: 'px-3 py-2 font-medium text-gray-900 dark:text-white text-center'
+                  class:
+                    'px-3 py-2 font-medium text-gray-900 dark:text-white text-center whitespace-nowrap'
                 },
                 [
                   h(FlexRender, {
