@@ -7,7 +7,11 @@
     >
       <!-- Header -->
       <div class="flex items-center justify-center gap-8 mb-5">
-        <img class="w-1/4" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <img
+          class="w-1/4"
+          :src="(settings && settings.mainLogo) || '/images/csro-logo.png'"
+          alt="CSRO Logo"
+        />
         <img
           v-if="settings && settings.seriesLogo"
           class="w-1/4"

@@ -63,6 +63,31 @@
           />
         </div>
         <div class="mb-4">
+          <label for="mainLogo" class="block text-sm font-medium leading-6 text-white">
+            Main Logo
+          </label>
+          <input
+            id="mainLogo"
+            name="mainLogo"
+            type="file"
+            accept="image/*"
+            class="sr-only"
+            @change="changeLogo($event, 'mainLogo')"
+          />
+          <label for="mainLogo" class="cursor-pointer">
+            <span class="bg-blue-500 text-white py-2 px-4 inline-block rounded-md"
+              >Upload Image</span
+            >
+          </label>
+          <button
+            v-if="mainLogo"
+            @click="mainLogo = null; saveSettings()"
+            class="ml-2 text-sm text-gray-300 hover:text-white underline"
+          >
+            Reset
+          </button>
+        </div>
+        <div class="mb-4">
           <label for="seriesLogo" class="block text-sm font-medium leading-6 text-white">
             Series Logo
           </label>
@@ -72,7 +97,7 @@
             type="file"
             accept="image/*"
             class="sr-only"
-            @change="changeSeriesLogo"
+            @change="changeLogo($event, 'seriesLogo')"
           />
           <label for="seriesLogo" class="cursor-pointer">
             <span class="bg-blue-500 text-white py-2 px-4 inline-block rounded-md"
@@ -189,18 +214,19 @@ export default {
       seriesTitle: '2023 CSRO Championship',
       resultsTitle: '',
       seriesLogo: null,
+      mainLogo: null,
       enablePoints: false
     }
   },
   methods: {
-    changeSeriesLogo(event) {
+    changeLogo(event, key) {
       const file = event.target.files[0]
 
       if (file) {
         const reader = new FileReader()
 
         reader.onload = (e) => {
-          this.seriesLogo = e.target.result
+          this[key] = e.target.result
           this.saveSettings()
         }
 
@@ -212,6 +238,7 @@ export default {
         seriesTitle: this.seriesTitle,
         resultsTitle: this.resultsTitle,
         seriesLogo: this.seriesLogo,
+        mainLogo: this.mainLogo,
         enablePoints: this.enablePoints
       }
       // Save to localStorage
@@ -226,6 +253,7 @@ export default {
         this.seriesTitle = settings.seriesTitle || 'CSRO Championship'
         this.resultsTitle = settings.resultsTitle || ''
         this.seriesLogo = settings.seriesLogo || null
+        this.mainLogo = settings.mainLogo || null
         this.enablePoints = settings.enablePoints || false
       }
     },

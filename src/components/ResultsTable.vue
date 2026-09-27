@@ -6,7 +6,7 @@
       style="max-width: 900px"
     >
       <div class="flex items-center justify-center gap-8 mb-5">
-        <img class="w-1/4" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <img class="w-1/4" :src="mainLogo || '/images/csro-logo.png'" alt="CSRO Logo" />
         <img v-if="seriesLogo" class="w-1/4" :src="seriesLogo" alt="CSRO Racing Series Logo" />
       </div>
       <div class="relative mb-5 flex w-full flex-col items-center text-center">
@@ -205,6 +205,7 @@ export default {
       seriesTitle: null,
       resultsTitle: '',
       seriesLogo: null,
+      mainLogo: null,
       draggedIndex: null,
       dragOverIndex: null,
       pendingEdits: {},
@@ -1068,6 +1069,7 @@ export default {
       this.seriesTitle = this.raceData.seriesTitle
       this.resultsTitle = this.raceData.resultsTitle || ''
       this.seriesLogo = this.raceData.seriesLogo
+      this.mainLogo = this.raceData.mainLogo
       this.enablePoints = this.raceData.enablePoints || false
     }
     this.initializeTable()
