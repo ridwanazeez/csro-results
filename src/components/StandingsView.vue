@@ -9,7 +9,7 @@
       <div class="flex items-center justify-center gap-8 mb-5">
         <img
           class="w-1/4"
-          :src="(settings && settings.mainLogo) || '/images/csro-logo.png'"
+          :src="(settings && settings.mainLogo) || defaultLogo"
           alt="CSRO Logo"
         />
         <img
