@@ -156,6 +156,7 @@ export default {
   },
   data() {
     return {
+      defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
       cachedTables: {
         qualifying: [],
         race: [],
