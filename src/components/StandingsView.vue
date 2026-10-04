@@ -106,6 +106,9 @@ import { h } from 'vue'
 import { captureElement } from '@/screenshot'
 import { hasTime } from '@/time'
 
+// Decimal points (20.5) sum with float noise; keep two places
+const round2 = (n) => Math.round(n * 100) / 100
+
 const RenderTable = {
   // remove(row): when given, each row gets a remove button (left out of screenshots)
   props: ['table', 'remove'],
@@ -257,7 +260,7 @@ export default {
                 country: this.getNationName(car?.Driver?.Nation) || 'Unknown'
               }
             }
-            driverData[driverName].points += parseInt(points) || 0
+            driverData[driverName].points += Number(points) || 0
           })
         }
       })
@@ -289,7 +292,7 @@ export default {
               if (!teamPoints[teamName]) {
                 teamPoints[teamName] = 0
               }
-              teamPoints[teamName] += parseInt(points) || 0
+              teamPoints[teamName] += Number(points) || 0
             }
           })
         }
@@ -318,7 +321,7 @@ export default {
               if (!countryPoints[countryName]) {
                 countryPoints[countryName] = 0
               }
-              countryPoints[countryName] += parseInt(points) || 0
+              countryPoints[countryName] += Number(points) || 0
             }
           })
         }
@@ -638,13 +641,14 @@ export default {
     },
     applyAdjustment(row, type) {
       const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0
-      return { ...row, basePoints: row.points, points: row.points + adjustment }
+      const basePoints = round2(row.points)
+      return { ...row, basePoints, points: round2(basePoints + adjustment) }
     },
     editPoints(type, row, event) {
       const key = `${type}:${row.name}`
       const previous = { ...this.pointAdjustments }
       const text = event.target.textContent.trim()
-      const value = parseInt(text)
+      const value = Number(text)
 
       if (text === '') {
         delete this.pointAdjustments[key]
@@ -654,14 +658,14 @@ export default {
       } else if (value === row.basePoints) {
         delete this.pointAdjustments[key]
       } else {
-        this.pointAdjustments[key] = value - row.basePoints
+        this.pointAdjustments[key] = round2(value - row.basePoints)
       }
       // An unsaved edit must not stay on screen looking saved
       if (!this.persist('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))) {
         this.pointAdjustments = previous
       }
       // Clearing to the calculated total may not change `points`, so restore the text directly
-      event.target.textContent = row.basePoints + (this.pointAdjustments[key] || 0)
+      event.target.textContent = round2(row.basePoints + (this.pointAdjustments[key] || 0))
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
