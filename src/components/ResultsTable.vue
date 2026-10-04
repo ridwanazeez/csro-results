@@ -30,6 +30,7 @@
         <table
           v-if="table"
           class="w-full border-collapse bg-white text-left text-sm text-gray-700 dark:bg-gray-800 dark:text-white"
+          @focusin="focusText = $event.target.textContent.trim()"
         >
           <thead class="bg-gray-50 dark:bg-gray-800">
             <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
@@ -221,6 +222,7 @@ export default {
       draggedIndex: null,
       dragOverIndex: null,
       pendingEdits: {},
+      focusText: null, // a cell's text when it was focused, to skip saves that change nothing
       enablePoints: false,
       editingDriver: null,
       editForm: {
@@ -859,6 +861,7 @@ export default {
       this.pendingEdits = moved
 
       this.tableData.Result = results
+      this.saveChanges(true)
     },
     removeRow(index) {
       // Drop the row's unsaved cell edits and shift the ones below it up a slot
@@ -870,6 +873,7 @@ export default {
       this.pendingEdits = shifted
 
       this.tableData.Result = this.tableData.Result.filter((_, i) => i !== index)
+      this.saveChanges(true)
     },
     handleDragEnd() {
       this.draggedIndex = null
@@ -879,11 +883,13 @@ export default {
       const index = parseInt(event.target.dataset.index)
       const field = event.target.dataset.field
       const value = event.target.textContent.trim()
+      if (value === this.focusText) return
 
       if (!this.pendingEdits[index]) {
         this.pendingEdits[index] = {}
       }
       this.pendingEdits[index][field] = value
+      this.saveChanges(true)
     },
     openEditModal(index) {
       this.editingDriver = index
@@ -940,19 +946,12 @@ export default {
         }
       }
 
-      const date = this.formatDate(this.tableData.Date)
-      const type = this.tableData.Type === 'QUALIFY' ? 'Qualifying' : 'Race'
-      const suggestedName = `${type} - ${date}`
-
-      this.$emit('save-result', {
-        id: this.currentResultId,
-        data: this.tableData,
-        suggestedName: suggestedName
-      })
-
+      this.saveChanges(true)
       this.closeEditModal()
     },
-    saveChanges() {
+    // auto: a click-away edit. The parent saves it straight away if the result
+    // is already saved, instead of asking for a name.
+    saveChanges(auto = false) {
       // Apply all pending edits to the data structure
       Object.keys(this.pendingEdits).forEach((index) => {
         const edits = this.pendingEdits[index]
@@ -1063,7 +1062,8 @@ export default {
       this.$emit('save-result', {
         id: this.currentResultId,
         data: this.tableData,
-        suggestedName: suggestedName
+        suggestedName: suggestedName,
+        auto
       })
     },
     async captureScreenshot() {

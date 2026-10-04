@@ -152,7 +152,7 @@
 
   <div v-else class="flex dark:bg-gray-900 w-full min-h-screen">
     <SideNav
-      :key="event.id"
+      :key="`${event.id}:${currentResultId}`"
       :event-name="event.name"
       @switch-event="switchEvent"
       @settings="updateSettings"
@@ -398,6 +398,7 @@ export default {
       currentResultId: localStorage.getItem('CSRO_CURRENT_RESULT_ID'),
       currentView: 'table',
       saveModal: { open: false, name: '', pending: null },
+      autoSaving: Promise.resolve(),
       confirmDialog: {
         open: false,
         title: '',
@@ -697,7 +698,9 @@ export default {
         // Result rows are small and hold the user's inline edits (customPoints,
         // customBestLap, …) — preserve them untouched.
         Result: data.Result,
-        Laps: Array.isArray(data.Laps) ? data.Laps.map(trimLap) : data.Laps
+        Laps: Array.isArray(data.Laps) ? data.Laps.map(trimLap) : data.Laps,
+        // Titles shown when this result was saved (restored when it's opened)
+        Titles: data.Titles
       }
     },
     updateSettings(data) {
@@ -706,10 +709,19 @@ export default {
       // Settings change per keystroke; write once typing pauses, to the event they were typed in
       const id = this.event.id
       clearTimeout(this.settingsTimer)
-      this.settingsTimer = setTimeout(
-        () => this.updateEvent({ settings: data }, 'settings', id),
-        800
-      )
+      this.settingsTimer = setTimeout(() => {
+        this.updateEvent({ settings: data }, 'settings', id)
+        // Titles belong to the open result as well
+        const saved = this.savedResults.find((r) => r.id === this.currentResultId)
+        const titles = saved?.data.Titles || {}
+        if (
+          saved &&
+          this.event?.id === id &&
+          (titles.seriesTitle !== data.seriesTitle || titles.resultsTitle !== data.resultsTitle)
+        ) {
+          this.saveResult({ id: saved.id, data: this.currentData, auto: true })
+        }
+      }, 800)
     },
     saveAdjustments(adjustments) {
       this.pointAdjustments = adjustments
@@ -722,11 +734,22 @@ export default {
     saveResult(resultData) {
       // Keep the edited copy as the working result even if the save is cancelled
       this.currentData = resultData.data
+      const saved = this.savedResults.find((r) => r.id === resultData.id)
+
+      // Click-away edits save a saved result straight away. A new upload has no
+      // name yet, so its edits stay in the working copy until Save Changes.
+      if (resultData.auto) {
+        if (saved) {
+          // One at a time, so an older snapshot can't land after a newer one
+          this.autoSaving = this.autoSaving.then(() => this.storeResult(saved.name, resultData))
+        }
+        return
+      }
+
       // Open the in-app naming modal. We deliberately avoid native prompt():
       // browsers can block page dialogs ("prevent this page from creating
       // additional dialogs"), which made saves vanish with no error.
       // Re-saving keeps the result's name; only new uploads get the suggestion
-      const saved = this.savedResults.find((r) => r.id === resultData.id)
       this.saveModal = {
         open: true,
         name: saved ? saved.name : resultData.suggestedName || 'Result',
@@ -749,6 +772,12 @@ export default {
       // Enter or a second click while saving would store the upload twice
       if (!resultName || !resultData || this.saveModal.busy) return
 
+      this.saveModal.busy = true
+      if (await this.storeResult(resultName, resultData)) this.cancelSaveResult()
+      else this.saveModal.busy = false
+    },
+    // Writes a result with the titles on screen. Returns whether it saved.
+    async storeResult(resultName, resultData) {
       // Overwrite an existing result that shares this name
       const existingByName = this.savedResults.find((r) => r.name === resultName)
 
@@ -763,11 +792,18 @@ export default {
         id: resultId,
         name: resultName,
         // Snapshot, so later unsaved edits to the working copy don't leak into it
-        data: JSON.parse(JSON.stringify(this.trimResultData(resultData.data))),
+        data: JSON.parse(
+          JSON.stringify({
+            ...this.trimResultData(resultData.data),
+            Titles: {
+              seriesTitle: this.settings.seriesTitle,
+              resultsTitle: this.settings.resultsTitle
+            }
+          })
+        ),
         timestamp: Date.now()
       }
 
-      this.saveModal.busy = true
       try {
         await this.call('csro_save_result', {
           p_event_id: this.event.id,
@@ -777,8 +813,7 @@ export default {
         })
       } catch (error) {
         this.showToast(`Couldn't save “${resultName}”: ${error.message}`, 6000)
-        this.saveModal.busy = false
-        return
+        return false
       }
 
       const existingIndex = this.savedResults.findIndex((r) => r.id === result.id)
@@ -787,12 +822,14 @@ export default {
           ? this.savedResults.map((r, i) => (i === existingIndex ? result : r))
           : [...this.savedResults, result]
       this.setCurrentResultId(result.id)
-      this.cancelSaveResult()
       this.showToast(`Saved “${resultName}”`)
+      return true
     },
     openResult(result) {
       // Work on a copy so unsaved edits don't change the saved result
       this.currentData = JSON.parse(JSON.stringify(result.data))
+      // Show the titles it was saved with; results saved before titles were stored keep the current ones
+      if (result.data.Titles) this.settings = { ...this.settings, ...result.data.Titles }
       this.setCurrentResultId(result.id)
       this.currentView = 'table'
       this.resultsTableKey += 1
