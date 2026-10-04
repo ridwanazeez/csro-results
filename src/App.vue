@@ -304,7 +304,9 @@ export default {
         // Result rows are small and hold the user's inline edits (customPoints,
         // customBestLap, …) — preserve them untouched.
         Result: data.Result,
-        Laps: Array.isArray(data.Laps) ? data.Laps.map(trimLap) : data.Laps
+        Laps: Array.isArray(data.Laps) ? data.Laps.map(trimLap) : data.Laps,
+        // Titles shown when this result was saved (restored when it's opened)
+        Titles: data.Titles
       }
     },
     compactStorage() {
@@ -414,7 +416,13 @@ export default {
       const result = {
         id: resultId,
         name: resultName,
-        data: this.trimResultData(resultData.data),
+        data: {
+          ...this.trimResultData(resultData.data),
+          Titles: {
+            seriesTitle: this.settings?.seriesTitle,
+            resultsTitle: this.settings?.resultsTitle
+          }
+        },
         timestamp: Date.now()
       }
 
@@ -438,6 +446,11 @@ export default {
       const result = this.savedResults.find((r) => r.id === resultId)
       if (result) {
         this.persist('CSRO_RESULT', JSON.stringify(result.data))
+        // Show the titles it was saved with; results saved before titles were stored keep the current ones
+        if (result.data.Titles) {
+          const settings = JSON.parse(localStorage.getItem('CSRO_SETTINGS')) || {}
+          this.persist('CSRO_SETTINGS', JSON.stringify({ ...settings, ...result.data.Titles }))
+        }
         localStorage.setItem('CSRO_CURRENT_RESULT_ID', result.id)
         this.currentResultId = result.id
         this.currentView = 'table'
