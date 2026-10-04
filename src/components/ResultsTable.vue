@@ -44,6 +44,7 @@
                   :props="header.getContext()"
                 />
               </th>
+              <th data-html2canvas-ignore><span class="sr-only">Remove</span></th>
             </tr>
           </thead>
           <tbody
@@ -57,7 +58,7 @@
               @dragover.prevent="handleDragOver($event, rowIndex)"
               @drop="handleDrop($event, rowIndex)"
               @dragend="handleDragEnd"
-              class="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
+              class="group/row hover:bg-gray-50 dark:hover:bg-gray-700 cursor-move"
               :class="{ 'opacity-50': draggedIndex === rowIndex }"
             >
               <td
@@ -66,6 +67,16 @@
                 class="px-3 py-2 dark:text-gray-300"
               >
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
+              </td>
+              <td data-html2canvas-ignore>
+                <button
+                  @click="removeRow(rowIndex)"
+                  title="Remove row"
+                  :aria-label="`Remove ${row.original.DriverName}`"
+                  class="opacity-0 group-hover/row:opacity-100 focus:opacity-100 px-2 text-lg leading-none text-gray-400 hover:text-red-600 dark:hover:text-red-400"
+                >
+                  ×
+                </button>
               </td>
             </tr>
           </tbody>
@@ -848,6 +859,17 @@ export default {
       this.pendingEdits = moved
 
       this.tableData.Result = results
+    },
+    removeRow(index) {
+      // Drop the row's unsaved cell edits and shift the ones below it up a slot
+      const shifted = {}
+      Object.keys(this.pendingEdits).forEach((key) => {
+        const i = parseInt(key)
+        if (i !== index) shifted[i > index ? i - 1 : i] = this.pendingEdits[key]
+      })
+      this.pendingEdits = shifted
+
+      this.tableData.Result = this.tableData.Result.filter((_, i) => i !== index)
     },
     handleDragEnd() {
       this.draggedIndex = null
