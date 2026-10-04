@@ -76,8 +76,85 @@
     </div>
   </div>
 
+  <!-- Event picker: every result belongs to one event -->
+  <div
+    v-else-if="!event"
+    class="flex min-h-screen items-center justify-center bg-gray-900 px-4 py-12 text-white"
+  >
+    <div class="w-full max-w-md">
+      <img class="mx-auto w-48" :src="defaultLogo" alt="CSRO Logo" />
+      <h1 class="mt-6 text-center text-2xl font-bold">Choose an event</h1>
+      <p class="mt-1 text-center text-sm text-gray-400">
+        Each event keeps its own results, standings and logos.
+      </p>
+
+      <ul
+        v-if="events.length"
+        class="mt-8 divide-y divide-gray-700 overflow-hidden rounded-md bg-gray-800 ring-1 ring-gray-700"
+      >
+        <li v-for="item in events" :key="item.id" class="group flex items-center">
+          <button
+            @click="pickEvent(item.id)"
+            :disabled="eventForm.busy"
+            class="flex min-w-0 flex-1 items-baseline justify-between gap-4 px-4 py-3 text-left hover:bg-gray-700 focus:outline-none focus-visible:bg-gray-700 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 disabled:cursor-wait"
+          >
+            <span class="truncate font-medium">{{ item.name }}</span>
+            <span class="shrink-0 text-sm text-gray-400">
+              {{ item.resultCount }} {{ item.resultCount === 1 ? 'result' : 'results' }}
+            </span>
+          </button>
+          <button
+            @click="deleteEvent(item)"
+            title="Delete event"
+            :aria-label="`Delete ${item.name}`"
+            class="px-4 py-3 text-lg leading-none text-gray-500 opacity-0 hover:text-red-400 focus:opacity-100 focus:outline-none focus-visible:text-red-400 group-hover:opacity-100"
+          >
+            ×
+          </button>
+        </li>
+      </ul>
+      <p v-else class="mt-8 rounded-md bg-gray-800 p-4 text-sm text-gray-300">
+        No events yet. Create one to start saving results.
+      </p>
+
+      <form class="mt-6" @submit.prevent="createEvent">
+        <label for="eventName" class="block text-sm font-medium text-gray-300">New event</label>
+        <div class="mt-1 flex gap-2">
+          <input
+            id="eventName"
+            v-model="eventForm.name"
+            type="text"
+            placeholder="e.g. GT3 Winter Cup 2026"
+            required
+            class="min-w-0 flex-1 rounded-md border-0 bg-gray-800 text-white ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500"
+          />
+          <button
+            type="submit"
+            :disabled="eventForm.busy || !eventForm.name.trim()"
+            class="shrink-0 rounded-md bg-blue-600 px-4 py-2 font-bold hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Create event
+          </button>
+        </div>
+        <p v-if="eventForm.error" class="mt-2 text-sm text-red-400" role="alert">
+          {{ eventForm.error }}
+        </p>
+      </form>
+
+      <button
+        @click="lock()"
+        class="mx-auto mt-10 block text-sm text-gray-400 underline hover:text-white"
+      >
+        Lock
+      </button>
+    </div>
+  </div>
+
   <div v-else class="flex dark:bg-gray-900 w-full min-h-screen">
     <SideNav
+      :key="event.id"
+      :event-name="event.name"
+      @switch-event="switchEvent"
       @settings="updateSettings"
       @load-result="loadSavedResult"
       @delete-result="deleteSavedResult"
@@ -143,7 +220,9 @@
           :saved-results="savedResults"
           :settings="settings"
           :initial-adjustments="pointAdjustments"
+          :initial-hidden="hiddenStandings"
           @adjustments="saveAdjustments"
+          @hidden="saveHidden"
         ></StandingsView>
       </div>
     </div>
@@ -210,65 +289,65 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Confirm Modal (replaces native confirm, which browsers can block) -->
+  <!-- Confirm Modal (replaces native confirm, which browsers can block) -->
+  <div
+    v-if="confirmDialog.open"
+    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+    @click.self="closeConfirmDialog"
+  >
     <div
-      v-if="confirmDialog.open"
-      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-      @click.self="closeConfirmDialog"
+      ref="confirmCard"
+      tabindex="-1"
+      class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl focus:outline-none"
+      @keydown.esc.prevent="closeConfirmDialog"
     >
-      <div
-        ref="confirmCard"
-        tabindex="-1"
-        class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 shadow-xl focus:outline-none"
-        @keydown.esc.prevent="closeConfirmDialog"
-      >
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ confirmDialog.title }}</h3>
-          <button
-            @click="closeConfirmDialog"
-            class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-            aria-label="Close"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-        <p class="text-sm text-gray-600 dark:text-gray-300">{{ confirmDialog.message }}</p>
-        <div class="flex gap-3 mt-6">
-          <button
-            @click="closeConfirmDialog"
-            class="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            @click="confirmDialogProceed"
-            :class="[
-              'flex-1 px-4 py-2 text-white rounded-md transition-colors',
-              confirmDialog.danger ? 'bg-red-600 hover:bg-red-700' : 'bg-blue-600 hover:bg-blue-700'
-            ]"
-          >
-            {{ confirmDialog.confirmLabel }}
-          </button>
-        </div>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ confirmDialog.title }}</h3>
+        <button
+          @click="closeConfirmDialog"
+          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          aria-label="Close"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-300">{{ confirmDialog.message }}</p>
+      <div class="flex gap-3 mt-6">
+        <button
+          @click="closeConfirmDialog"
+          class="flex-1 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+        >
+          Cancel
+        </button>
+        <button
+          @click="confirmDialogProceed"
+          :class="[
+            'flex-1 px-4 py-2 text-white rounded-md transition-colors',
+            confirmDialog.danger ? 'bg-red-600 hover:bg-red-700' : 'bg-blue-600 hover:bg-blue-700'
+          ]"
+        >
+          {{ confirmDialog.confirmLabel }}
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Transient confirmation (replaces native alert) -->
-    <div
-      v-if="toast"
-      class="fixed bottom-6 right-6 z-50 rounded-md bg-gray-900 dark:bg-gray-700 text-white px-4 py-3 shadow-xl text-sm"
-      role="status"
-    >
-      {{ toast }}
-    </div>
+  <!-- Transient confirmation (replaces native alert) -->
+  <div
+    v-if="toast"
+    class="fixed bottom-6 right-6 z-50 rounded-md bg-gray-900 dark:bg-gray-700 text-white px-4 py-3 shadow-xl text-sm"
+    role="status"
+  >
+    {{ toast }}
   </div>
 </template>
 
@@ -288,7 +367,13 @@ const DEFAULT_SETTINGS = {
 }
 
 // Keys from before data moved to Supabase; imported once, then removed
-const LEGACY_KEYS = ['CSRO_RESULT', 'CSRO_SAVED_RESULTS', 'CSRO_SETTINGS', 'CSRO_POINT_ADJUSTMENTS']
+const LEGACY_KEYS = [
+  'CSRO_RESULT',
+  'CSRO_SAVED_RESULTS',
+  'CSRO_SETTINGS',
+  'CSRO_POINT_ADJUSTMENTS',
+  'CSRO_HIDDEN_STANDINGS'
+]
 
 export default {
   components: { ResultsTable, SideNav, StandingsView },
@@ -299,14 +384,18 @@ export default {
       authForm: { password: '', confirm: '', error: '', busy: false },
       password: localStorage.getItem('CSRO_PASSWORD'),
       defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
+      events: [],
+      event: null, // { id, name } of the open event
+      eventForm: { name: '', error: '', busy: false },
       currentData: null,
       settings: { ...DEFAULT_SETTINGS },
       settingsTimer: null,
       pointAdjustments: {},
+      hiddenStandings: [],
       resultsTableKey: 0,
       version: version,
       savedResults: [],
-      currentResultId: null,
+      currentResultId: localStorage.getItem('CSRO_CURRENT_RESULT_ID'),
       currentView: 'table',
       saveModal: { open: false, name: '', pending: null },
       confirmDialog: {
@@ -379,30 +468,106 @@ export default {
       }
     },
     async unlock(password) {
-      let workspace = await rpc('csro_load', { p_password: password })
+      this.events = await rpc('csro_load', { p_password: password })
       this.password = password
       localStorage.setItem('CSRO_PASSWORD', password)
-      if (await this.importLegacyData(workspace)) {
-        workspace = await rpc('csro_load', { p_password: password })
+      try {
+        if (await this.importLegacyData()) this.events = await this.call('csro_load')
+      } catch (error) {
+        // Local copies are kept, so the import retries on the next unlock
+        this.showToast(`Couldn't move this browser's saved results: ${error.message}`, 8000)
       }
-      this.settings = { ...DEFAULT_SETTINGS, ...workspace.settings }
-      this.pointAdjustments = workspace.pointAdjustments
-      this.savedResults = workspace.results
-
-      // Reopen the result this device was last looking at
-      const lastId = localStorage.getItem('CSRO_CURRENT_RESULT_ID')
-      const last = this.savedResults.find((r) => r.id === lastId)
-      if (last && !this.currentData) this.openResult(last)
-      else this.currentResultId = last ? last.id : null
+      // A reload goes back to the event this device had open
+      const last = this.events.find((e) => e.id === localStorage.getItem('CSRO_EVENT_ID'))
+      if (last) await this.openEvent(last.id).catch(() => {})
       this.authState = 'ready'
     },
     lock(message = '') {
       this.password = null
       localStorage.removeItem('CSRO_PASSWORD')
       this.currentData = null
-      this.savedResults = []
+      this.closeEvent()
       this.authForm = { password: '', confirm: '', error: message, busy: false }
       this.authState = 'locked'
+    },
+    async openEvent(id) {
+      const event = await this.call('csro_load_event', { p_id: id })
+      this.event = { id: event.id, name: event.name }
+      this.settings = { ...DEFAULT_SETTINGS, ...event.settings }
+      this.pointAdjustments = event.pointAdjustments
+      this.hiddenStandings = event.hiddenStandings
+      this.savedResults = event.results
+      localStorage.setItem('CSRO_EVENT_ID', id)
+
+      // Reopen this device's last result if it's in this event. A result from
+      // another event is closed; an unsaved upload stays so it can be saved here.
+      const last = this.savedResults.find((r) => r.id === this.currentResultId)
+      if (last) this.openResult(last)
+      else if (this.currentResultId) this.newUpload()
+      this.currentView = 'table'
+      this.resultsTableKey += 1
+    },
+    closeEvent() {
+      this.event = null
+      this.savedResults = []
+      localStorage.removeItem('CSRO_EVENT_ID')
+    },
+    async pickEvent(id) {
+      this.eventForm.busy = true
+      try {
+        await this.openEvent(id)
+      } catch (error) {
+        this.showToast(`Couldn't open the event: ${error.message}`, 6000)
+      }
+      this.eventForm.busy = false
+    },
+    async switchEvent() {
+      this.closeEvent()
+      try {
+        this.events = await this.call('csro_load') // result counts may have changed
+      } catch (error) {
+        this.showToast(`Couldn't refresh events: ${error.message}`, 6000)
+      }
+    },
+    async createEvent() {
+      const name = this.eventForm.name.trim()
+      if (!name) return
+      const id = Date.now().toString()
+      this.eventForm.busy = true
+      this.eventForm.error = ''
+      try {
+        await this.call('csro_create_event', { p_id: id, p_name: name })
+        this.events = [{ id, name, resultCount: 0 }, ...this.events]
+        await this.openEvent(id)
+        this.eventForm = { name: '', error: '', busy: false }
+      } catch (error) {
+        this.eventForm.busy = false
+        this.eventForm.error = error.message
+      }
+    },
+    deleteEvent(item) {
+      this.requestConfirm(
+        {
+          title: 'Delete event',
+          message: `Delete “${item.name}” and its ${item.resultCount} saved result(s) for everyone? This can't be undone.`,
+          confirmLabel: 'Delete event',
+          danger: true
+        },
+        async () => {
+          try {
+            await this.call('csro_delete_event', { p_id: item.id })
+            this.events = this.events.filter((e) => e.id !== item.id)
+          } catch (error) {
+            this.showToast(`Couldn't delete the event: ${error.message}`, 6000)
+          }
+        }
+      )
+    },
+    // Writes one field of the open event (settings, pointAdjustments, hiddenStandings)
+    updateEvent(patch, what) {
+      return this.call('csro_update_event', { p_id: this.event.id, p_patch: patch }).catch(
+        (error) => this.showToast(`Couldn't save ${what}: ${error.message}`, 6000)
+      )
     },
     // Every write goes through here so a password changed elsewhere locks the app
     async call(fn, args = {}) {
@@ -413,9 +578,10 @@ export default {
         throw error
       }
     },
-    async importLegacyData(workspace) {
+    async importLegacyData() {
       // One-time move of results saved in this browser before the Supabase
-      // switch. Local copies are only removed once every upload has succeeded.
+      // switch, into a new event. Local copies are only removed once every
+      // upload has succeeded.
       const read = (key) => {
         try {
           return JSON.parse(localStorage.getItem(key))
@@ -424,29 +590,39 @@ export default {
         }
       }
       const results = read('CSRO_SAVED_RESULTS') || []
-      const settings = read('CSRO_SETTINGS')
-      const adjustments = read('CSRO_POINT_ADJUSTMENTS')
       const draft = read('CSRO_RESULT') // unsaved working copy
-      if (!results.length && !settings && !adjustments && !draft) return false
+      if (!results.length && !draft) {
+        LEGACY_KEYS.forEach((key) => localStorage.removeItem(key))
+        return false
+      }
 
-      const taken = new Set(workspace.results.flatMap((r) => [r.id, r.name]))
-      for (const r of results) {
-        if (taken.has(r.id) || taken.has(r.name)) continue
-        await this.call('csro_save_result', {
-          p_id: r.id,
-          p_name: r.name,
-          p_data: this.trimResultData(r.data)
-        })
-      }
-      if (settings && !Object.keys(workspace.settings).length) {
-        await this.call('csro_save_settings', { p_settings: settings })
-      }
-      if (adjustments && !Object.keys(workspace.pointAdjustments).length) {
-        await this.call('csro_save_adjustments', { p_adjustments: adjustments })
+      if (results.length) {
+        const settings = read('CSRO_SETTINGS')
+        const adjustments = read('CSRO_POINT_ADJUSTMENTS')
+        const hidden = read('CSRO_HIDDEN_STANDINGS')
+        let name = settings?.seriesTitle?.trim() || 'Imported results'
+        if (this.events.some((e) => e.name === name)) name += ' (imported)'
+        const id = Date.now().toString()
+
+        await this.call('csro_create_event', { p_id: id, p_name: name })
+        for (const r of results) {
+          await this.call('csro_save_result', {
+            p_event_id: id,
+            p_id: r.id,
+            p_name: r.name,
+            p_data: this.trimResultData(r.data)
+          })
+        }
+        const patch = {}
+        if (settings) patch.settings = settings
+        if (adjustments) patch.pointAdjustments = adjustments
+        if (hidden) patch.hiddenStandings = hidden
+        await this.call('csro_update_event', { p_id: id, p_patch: patch })
+        localStorage.setItem('CSRO_EVENT_ID', id)
       }
       LEGACY_KEYS.forEach((key) => localStorage.removeItem(key))
       if (draft) this.currentData = this.trimResultData(draft)
-      this.showToast("Moved this browser's saved data to the database", 5000)
+      this.showToast("Moved this browser's saved results to the database", 5000)
       return true
     },
     handleFileUpload(event) {
@@ -517,19 +693,15 @@ export default {
       this.resultsTableKey += 1
       // Settings change per keystroke; write once typing pauses
       clearTimeout(this.settingsTimer)
-      this.settingsTimer = setTimeout(() => {
-        this.call('csro_save_settings', { p_settings: data }).catch((error) =>
-          this.showToast(`Couldn't save settings: ${error.message}`, 6000)
-        )
-      }, 800)
+      this.settingsTimer = setTimeout(() => this.updateEvent({ settings: data }, 'settings'), 800)
     },
-    async saveAdjustments(adjustments) {
+    saveAdjustments(adjustments) {
       this.pointAdjustments = adjustments
-      try {
-        await this.call('csro_save_adjustments', { p_adjustments: adjustments })
-      } catch (error) {
-        this.showToast(`Couldn't save points: ${error.message}`, 6000)
-      }
+      this.updateEvent({ pointAdjustments: adjustments }, 'points')
+    },
+    saveHidden(hidden) {
+      this.hiddenStandings = hidden
+      this.updateEvent({ hiddenStandings: hidden }, 'removed rows')
     },
     saveResult(resultData) {
       // Keep the edited copy as the working result even if the save is cancelled
@@ -578,6 +750,7 @@ export default {
 
       try {
         await this.call('csro_save_result', {
+          p_event_id: this.event.id,
           p_id: result.id,
           p_name: result.name,
           p_data: result.data
@@ -654,7 +827,7 @@ export default {
         {
           title: 'Reset everything',
           message:
-            'This permanently deletes all saved results, settings, and uploaded images for every device. The password stays the same. This cannot be undone.',
+            'This permanently deletes every event, with all its results, settings and logos, for every device. The password stays the same. This cannot be undone.',
           confirmLabel: 'Delete everything',
           danger: true
         },
@@ -662,6 +835,7 @@ export default {
           try {
             await this.call('csro_reset')
             localStorage.removeItem('CSRO_CURRENT_RESULT_ID')
+            localStorage.removeItem('CSRO_EVENT_ID')
             window.location.reload()
           } catch (error) {
             this.showToast(`Couldn't reset: ${error.message}`, 6000)

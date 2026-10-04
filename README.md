@@ -8,7 +8,7 @@
 
 ## 🗄 Supabase Setup
 
-Results, settings and point adjustments are stored in Supabase behind one shared password.
+Results are stored in Supabase behind one shared password and grouped into events. After unlocking, pick an event (or create one); each event has its own results, standings, points edits and branding.
 
 1. Create a Supabase project.
 2. In the dashboard, open **SQL Editor → New query**, paste [`supabase/schema.sql`](supabase/schema.sql) and run it. It's safe to re-run.
@@ -20,7 +20,7 @@ Results, settings and point adjustments are stored in Supabase behind one shared
    VITE_SUPABASE_KEY=sb_publishable_...
    ```
 
-5. `npm run dev`. On first run, the lock screen asks you to set the shared password (8+ characters). Any results already in the browser's localStorage are moved to the database on first unlock.
+5. `npm run dev`. On first run, the lock screen asks you to set the shared password (8+ characters). Any results already in the browser's localStorage are moved into a new event on first unlock.
 
 ### Deploying (GitHub Pages)
 

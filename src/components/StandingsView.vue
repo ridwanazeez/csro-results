@@ -215,8 +215,7 @@ export default {
       // Manual corrections stored as deltas ("type:name" -> points) so later races still add on top
       pointAdjustments: { ...this.initialAdjustments },
       // Rows removed from the standings tables ("type:name")
-      // ponytail: per-browser only; move into the workspace row if other admins need to see it
-      hiddenRows: this.load('CSRO_HIDDEN_STANDINGS', []),
+      hiddenRows: [...this.initialHidden],
       cachedTables: {
         qualifying: [],
         race: [],
@@ -234,6 +233,10 @@ export default {
     settings: {
       type: Object,
       default: null
+    },
+    initialHidden: {
+      type: Array,
+      default: () => []
     },
     initialAdjustments: {
       type: Object,
@@ -624,13 +627,6 @@ export default {
         columns
       })
     },
-    load(key, fallback) {
-      try {
-        return JSON.parse(localStorage.getItem(key)) || fallback
-      } catch {
-        return fallback
-      }
-    },
     hiddenCount(type) {
       return this.hiddenRows.filter((key) => key.startsWith(`${type}:`)).length
     },
@@ -642,11 +638,7 @@ export default {
     },
     saveHidden(next) {
       this.hiddenRows = next
-      try {
-        localStorage.setItem('CSRO_HIDDEN_STANDINGS', JSON.stringify(next))
-      } catch {
-        // Hiding still works for this session
-      }
+      this.$emit('hidden', next)
     },
     applyAdjustment(row, type) {
       const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0

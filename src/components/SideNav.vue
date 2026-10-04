@@ -1,6 +1,17 @@
 <template>
   <aside class="w-[300px] min-h-screen bg-gray-800 text-white p-4 overflow-y-auto flex flex-col">
     <div class="flex-grow">
+      <div class="mb-4 rounded-md bg-gray-700 p-3">
+        <p class="text-xs text-gray-400">Event</p>
+        <p class="font-semibold break-words">{{ eventName }}</p>
+        <button
+          @click="$emit('switch-event')"
+          class="mt-1 text-sm text-blue-300 underline hover:text-white"
+        >
+          Switch event
+        </button>
+      </div>
+
       <div class="mb-4">
         <h1 class="text-2xl font-bold">Settings</h1>
       </div>
@@ -207,6 +218,10 @@ export default {
     }
   },
   props: {
+    eventName: {
+      type: String,
+      default: ''
+    },
     savedResults: {
       type: Array,
       default: () => []
