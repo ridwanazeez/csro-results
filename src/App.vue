@@ -281,10 +281,10 @@
           </button>
           <button
             @click="confirmSaveResult"
-            :disabled="!saveModal.name.trim()"
+            :disabled="!saveModal.name.trim() || saveModal.busy"
             class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Save result
+            {{ saveModal.busy ? 'Saving…' : 'Save result' }}
           </button>
         </div>
       </div>
@@ -356,7 +356,7 @@ import { version } from '../package.json'
 import ResultsTable from './components/ResultsTable.vue'
 import SideNav from './components/SideNav.vue'
 import StandingsView from './components/StandingsView.vue'
-import { configured, rpc, WRONG_PASSWORD } from './db.js'
+import { configured, EVENT_GONE, rpc, WRONG_PASSWORD } from './db.js'
 
 const DEFAULT_SETTINGS = {
   seriesTitle: 'CSRO Championship',
@@ -508,6 +508,7 @@ export default {
       this.resultsTableKey += 1
     },
     closeEvent() {
+      this.cancelSaveResult() // the edited copy stays open as an unsaved upload
       this.event = null
       this.savedResults = []
       localStorage.removeItem('CSRO_EVENT_ID')
@@ -567,9 +568,9 @@ export default {
       )
     },
     // Writes one field of the open event (settings, pointAdjustments, hiddenStandings)
-    updateEvent(patch, what) {
-      return this.call('csro_update_event', { p_id: this.event.id, p_patch: patch }).catch(
-        (error) => this.showToast(`Couldn't save ${what}: ${error.message}`, 6000)
+    updateEvent(patch, what, id = this.event.id) {
+      return this.call('csro_update_event', { p_id: id, p_patch: patch }).catch((error) =>
+        this.showToast(`Couldn't save ${what}: ${error.message}`, 6000)
       )
     },
     // Every write goes through here so a password changed elsewhere locks the app
@@ -578,6 +579,14 @@ export default {
         return await rpc(fn, { p_password: this.password, ...args })
       } catch (error) {
         if (error.code === WRONG_PASSWORD) this.lock('The password has changed. Enter the new one.')
+        if (EVENT_GONE.includes(error.code)) {
+          error.message = 'This event was deleted, maybe on another device.'
+          // Leave it only if it's the event on screen, not a late write for an old one
+          if (this.event && [args.p_id, args.p_event_id].includes(this.event.id)) {
+            this.events = this.events.filter((e) => e.id !== this.event.id)
+            this.switchEvent()
+          }
+        }
         throw error
       }
     },
@@ -694,9 +703,13 @@ export default {
     updateSettings(data) {
       this.settings = data
       this.resultsTableKey += 1
-      // Settings change per keystroke; write once typing pauses
+      // Settings change per keystroke; write once typing pauses, to the event they were typed in
+      const id = this.event.id
       clearTimeout(this.settingsTimer)
-      this.settingsTimer = setTimeout(() => this.updateEvent({ settings: data }, 'settings'), 800)
+      this.settingsTimer = setTimeout(
+        () => this.updateEvent({ settings: data }, 'settings', id),
+        800
+      )
     },
     saveAdjustments(adjustments) {
       this.pointAdjustments = adjustments
@@ -712,9 +725,11 @@ export default {
       // Open the in-app naming modal. We deliberately avoid native prompt():
       // browsers can block page dialogs ("prevent this page from creating
       // additional dialogs"), which made saves vanish with no error.
+      // Re-saving keeps the result's name; only new uploads get the suggestion
+      const saved = this.savedResults.find((r) => r.id === resultData.id)
       this.saveModal = {
         open: true,
-        name: resultData.suggestedName || 'Result',
+        name: saved ? saved.name : resultData.suggestedName || 'Result',
         pending: resultData
       }
       this.$nextTick(() => {
@@ -731,7 +746,8 @@ export default {
     async confirmSaveResult() {
       const resultName = this.saveModal.name.trim()
       const resultData = this.saveModal.pending
-      if (!resultName || !resultData) return
+      // Enter or a second click while saving would store the upload twice
+      if (!resultName || !resultData || this.saveModal.busy) return
 
       // Overwrite an existing result that shares this name
       const existingByName = this.savedResults.find((r) => r.name === resultName)
@@ -751,6 +767,7 @@ export default {
         timestamp: Date.now()
       }
 
+      this.saveModal.busy = true
       try {
         await this.call('csro_save_result', {
           p_event_id: this.event.id,
@@ -760,6 +777,7 @@ export default {
         })
       } catch (error) {
         this.showToast(`Couldn't save “${resultName}”: ${error.message}`, 6000)
+        this.saveModal.busy = false
         return
       }
 

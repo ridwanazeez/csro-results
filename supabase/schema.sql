@@ -136,7 +136,7 @@ begin
   ) into v
   from events e where e.id = p_id;
   if v is null then
-    raise exception 'Event not found';
+    raise exception 'Event not found' using errcode = 'P0002';
   end if;
   return v;
 end $$;
@@ -166,7 +166,7 @@ begin
     hidden_standings = coalesce(p_patch -> 'hiddenStandings', hidden_standings)
   where id = p_id;
   if not found then
-    raise exception 'Event not found';
+    raise exception 'Event not found' using errcode = 'P0002';
   end if;
 end $$;
 

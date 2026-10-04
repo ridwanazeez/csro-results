@@ -29,3 +29,5 @@ export async function rpc(fn, args = {}) {
 }
 
 export const WRONG_PASSWORD = '28P01'
+// csro_* "Event not found" (P0002), or a result saved into a deleted event (FK, 23503)
+export const EVENT_GONE = ['P0002', '23503']
