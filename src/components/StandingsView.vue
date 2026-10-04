@@ -7,11 +7,7 @@
     >
       <!-- Header -->
       <div class="flex items-center justify-center gap-8 mb-5">
-        <img
-          class="w-1/4"
-          :src="(settings && settings.mainLogo) || defaultLogo"
-          alt="CSRO Logo"
-        />
+        <img class="w-1/4" :src="(settings && settings.mainLogo) || defaultLogo" alt="CSRO Logo" />
         <img
           v-if="settings && settings.seriesLogo"
           class="w-1/4"
@@ -157,6 +153,8 @@ export default {
   data() {
     return {
       defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
+      // Manual corrections stored as deltas ("type:name" -> points) so later races still add on top
+      pointAdjustments: this.loadAdjustments(),
       cachedTables: {
         qualifying: [],
         race: [],
@@ -212,6 +210,7 @@ export default {
           team: data.team,
           country: data.country
         }))
+        .map((row) => this.applyAdjustment(row, 'driver'))
         .sort((a, b) => b.points - a.points)
     },
     teamStandings() {
@@ -238,6 +237,7 @@ export default {
 
       return Object.entries(teamPoints)
         .map(([name, points]) => ({ name, points }))
+        .map((row) => this.applyAdjustment(row, 'team'))
         .sort((a, b) => b.points - a.points)
     },
     countryStandings() {
@@ -265,6 +265,7 @@ export default {
 
       return Object.entries(countryPoints)
         .map(([name, points]) => ({ name, points }))
+        .map((row) => this.applyAdjustment(row, 'country'))
         .sort((a, b) => b.points - a.points)
     }
   },
@@ -533,13 +534,56 @@ export default {
         accessorKey: 'points',
         header: 'Points',
         size: 55,
-        cell: ({ getValue }) => h('span', { class: 'text-center block font-bold' }, getValue())
+        cell: ({ row }) =>
+          h(
+            'span',
+            {
+              key: `${row.original.name}:${row.original.points}`,
+              contenteditable: 'true',
+              title: `Calculated: ${row.original.basePoints}. Clear to reset.`,
+              onBlur: (event) => this.editPoints(type, row.original, event),
+              onKeydown: (event) =>
+                event.key === 'Enter' && (event.preventDefault(), event.target.blur()),
+              class: 'text-center block font-bold'
+            },
+            row.original.points
+          )
       })
 
       return useTable({
         data: data || [],
         columns
       })
+    },
+    loadAdjustments() {
+      try {
+        return JSON.parse(localStorage.getItem('CSRO_POINT_ADJUSTMENTS')) || {}
+      } catch {
+        return {}
+      }
+    },
+    applyAdjustment(row, type) {
+      const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0
+      return { ...row, basePoints: row.points, points: row.points + adjustment }
+    },
+    editPoints(type, row, event) {
+      const key = `${type}:${row.name}`
+      const text = event.target.textContent.trim()
+      const value = parseInt(text)
+
+      if (text === '') {
+        delete this.pointAdjustments[key]
+      } else if (isNaN(value)) {
+        event.target.textContent = row.points
+        return
+      } else if (value === row.basePoints) {
+        delete this.pointAdjustments[key]
+      } else {
+        this.pointAdjustments[key] = value - row.basePoints
+      }
+      // Clearing to the calculated total may not change `points`, so restore the text directly
+      event.target.textContent = row.basePoints + (this.pointAdjustments[key] || 0)
+      localStorage.setItem('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
