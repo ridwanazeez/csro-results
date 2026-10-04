@@ -522,6 +522,9 @@ export default {
       this.eventForm.busy = false
     },
     async switchEvent() {
+      // Show the right count at once; the refresh below catches other devices' changes
+      const open = this.events.find((e) => e.id === this.event.id)
+      if (open) open.resultCount = this.savedResults.length
       this.closeEvent()
       try {
         this.events = await this.call('csro_load') // result counts may have changed
