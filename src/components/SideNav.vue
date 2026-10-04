@@ -81,7 +81,7 @@
           </label>
           <button
             v-if="mainLogo"
-            @click="mainLogo = null; saveSettings()"
+            @click="((mainLogo = null), saveSettings())"
             class="ml-2 text-sm text-gray-300 hover:text-white underline"
           >
             Reset
@@ -146,7 +146,7 @@
           </button>
           <button
             class="rounded-md bg-yellow-600 hover:bg-yellow-700 p-2 text-base text-white w-full mb-2"
-            @click="clearJsonOnly()"
+            @click="$emit('new-upload')"
           >
             Upload New JSON
           </button>
@@ -161,13 +161,20 @@
     </div>
 
     <!-- Dark Mode Toggle -->
-    <div class="mt-auto pt-4 border-t border-gray-700">
+    <div class="mt-auto pt-4 border-t border-gray-700 space-y-2">
       <button
         @click="toggleDark()"
         class="w-full rounded-md bg-gray-700 hover:bg-gray-600 p-3 text-white font-medium text-sm flex items-center justify-center gap-2"
       >
         <span v-if="isDark">🌙 Dark Mode</span>
         <span v-else>☀️ Light Mode</span>
+      </button>
+      <button
+        @click="$emit('lock')"
+        class="w-full rounded-md bg-gray-700 hover:bg-gray-600 p-3 text-white font-medium text-sm"
+        title="Forget the password on this device"
+      >
+        🔒 Lock
       </button>
     </div>
 
@@ -207,15 +214,19 @@ export default {
     currentView: {
       type: String,
       default: 'table'
+    },
+    settings: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {
     return {
-      seriesTitle: '2023 CSRO Championship',
-      resultsTitle: '',
-      seriesLogo: null,
-      mainLogo: null,
-      enablePoints: false
+      seriesTitle: this.settings.seriesTitle,
+      resultsTitle: this.settings.resultsTitle,
+      seriesLogo: this.settings.seriesLogo,
+      mainLogo: this.settings.mainLogo,
+      enablePoints: this.settings.enablePoints
     }
   },
   methods: {
@@ -241,34 +252,11 @@ export default {
         mainLogo: this.mainLogo,
         enablePoints: this.enablePoints
       }
-      // Save to localStorage
-      localStorage.setItem('CSRO_SETTINGS', JSON.stringify(settings))
-      // Emit to parent
       this.$emit('settings', settings)
-    },
-    loadSettings() {
-      const savedSettings = localStorage.getItem('CSRO_SETTINGS')
-      if (savedSettings) {
-        const settings = JSON.parse(savedSettings)
-        this.seriesTitle = settings.seriesTitle || 'CSRO Championship'
-        this.resultsTitle = settings.resultsTitle || ''
-        this.seriesLogo = settings.seriesLogo || null
-        this.mainLogo = settings.mainLogo || null
-        this.enablePoints = settings.enablePoints || false
-      }
-    },
-    clearJsonOnly() {
-      localStorage.removeItem('CSRO_RESULT')
-      window.location.reload()
     }
-  },
-  mounted() {
-    this.loadSettings()
-    this.saveSettings()
   }
 }
 </script>
-
 <style scoped>
 .flex-grow {
   flex: 1 1 auto;

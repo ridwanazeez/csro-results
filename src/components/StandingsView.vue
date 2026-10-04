@@ -154,7 +154,7 @@ export default {
     return {
       defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
       // Manual corrections stored as deltas ("type:name" -> points) so later races still add on top
-      pointAdjustments: this.loadAdjustments(),
+      pointAdjustments: { ...this.initialAdjustments },
       cachedTables: {
         qualifying: [],
         race: [],
@@ -172,6 +172,10 @@ export default {
     settings: {
       type: Object,
       default: null
+    },
+    initialAdjustments: {
+      type: Object,
+      default: () => ({})
     }
   },
   computed: {
@@ -555,13 +559,6 @@ export default {
         columns
       })
     },
-    loadAdjustments() {
-      try {
-        return JSON.parse(localStorage.getItem('CSRO_POINT_ADJUSTMENTS')) || {}
-      } catch {
-        return {}
-      }
-    },
     applyAdjustment(row, type) {
       const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0
       return { ...row, basePoints: row.points, points: row.points + adjustment }
@@ -583,7 +580,7 @@ export default {
       }
       // Clearing to the calculated total may not change `points`, so restore the text directly
       event.target.textContent = row.basePoints + (this.pointAdjustments[key] || 0)
-      localStorage.setItem('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))
+      this.$emit('adjustments', { ...this.pointAdjustments })
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]

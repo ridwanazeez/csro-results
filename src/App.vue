@@ -1,8 +1,84 @@
 <template>
-  <div class="flex dark:bg-gray-900 w-full min-h-screen">
+  <!-- Lock screen: nothing loads until the shared password is checked -->
+  <div
+    v-if="authState !== 'ready'"
+    class="flex min-h-screen items-center justify-center bg-gray-900 px-4 py-12 text-white"
+  >
+    <div class="w-full max-w-sm">
+      <img class="mx-auto w-48" :src="defaultLogo" alt="CSRO Logo" />
+      <h1 class="mt-6 text-center text-2xl font-bold">CSRO Results Generator</h1>
+
+      <p
+        v-if="authState === 'loading'"
+        class="mt-8 text-center text-sm text-gray-400"
+        role="status"
+      >
+        Loading results…
+      </p>
+
+      <div v-else-if="authState === 'unconfigured'" class="mt-8 rounded-md bg-gray-800 p-4 text-sm">
+        <p class="font-semibold">Database not connected</p>
+        <p class="mt-1 text-gray-300">
+          Set <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_KEY</code> in
+          <code>.env.local</code>, then restart the dev server. The README has the steps.
+        </p>
+      </div>
+
+      <form v-else class="mt-8 space-y-4" @submit.prevent="submitAuth">
+        <div>
+          <h2 class="text-lg font-semibold">
+            {{ authState === 'setup' ? 'Set a password' : 'Enter password' }}
+          </h2>
+          <p class="mt-1 text-sm text-gray-400">
+            <template v-if="authState === 'setup'">
+              Admins use this password to open the same results on any device. Anyone who has it can
+              edit and delete everything, so make it long.
+            </template>
+            <template v-else
+              >Results are shared across devices. Enter the admin password to load them.</template
+            >
+          </p>
+        </div>
+        <div>
+          <label for="authPassword" class="block text-sm font-medium text-gray-300">Password</label>
+          <input
+            id="authPassword"
+            v-model="authForm.password"
+            type="password"
+            :autocomplete="authState === 'setup' ? 'new-password' : 'current-password'"
+            required
+            autofocus
+            class="mt-1 w-full rounded-md border-0 bg-gray-800 text-white ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div v-if="authState === 'setup'">
+          <label for="authConfirm" class="block text-sm font-medium text-gray-300">
+            Confirm password
+          </label>
+          <input
+            id="authConfirm"
+            v-model="authForm.confirm"
+            type="password"
+            autocomplete="new-password"
+            required
+            class="mt-1 w-full rounded-md border-0 bg-gray-800 text-white ring-1 ring-inset ring-gray-600 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <p v-if="authForm.error" class="text-sm text-red-400" role="alert">{{ authForm.error }}</p>
+        <button
+          type="submit"
+          :disabled="authForm.busy"
+          class="w-full rounded-md bg-blue-600 px-4 py-2 font-bold hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 disabled:cursor-wait disabled:opacity-60"
+        >
+          {{ authForm.busy ? 'Checking…' : authState === 'setup' ? 'Set password' : 'Unlock' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div v-else class="flex dark:bg-gray-900 w-full min-h-screen">
     <SideNav
-      v-if="uploaded"
-      @settings="updateResultsTable"
+      @settings="updateSettings"
       @load-result="loadSavedResult"
       @delete-result="deleteSavedResult"
       @view-standings="viewStandings"
@@ -10,18 +86,27 @@
       @save-changes="handleSaveChanges"
       @screenshot="handleScreenshot"
       @back-to-table="backToTable"
+      @new-upload="newUpload"
+      @lock="lock()"
       :saved-results="savedResults"
       :current-view="currentView"
+      :settings="settings"
     ></SideNav>
     <div class="mx-auto px-6 lg:px-8 max-w-[80%]">
       <div class="mx-auto">
-        <div v-if="!uploaded" class="flex min-h-screen flex-col justify-center py-12">
-          <img class="mx-auto w-full max-w-sm" src="/images/csro-logo.png" alt="CSRO Logo" />
+        <div
+          v-if="!currentData && currentView === 'table'"
+          class="flex min-h-screen flex-col justify-center py-12"
+        >
+          <img class="mx-auto w-full max-w-sm" :src="defaultLogo" alt="CSRO Logo" />
           <h1 class="mt-4 text-3xl text-center font-bold dark:text-white">
             CSRO Results Generator
           </h1>
           <p class="text-center text-sm dark:text-white">
             v{{ version }} | Last updated: 04/10/2026
+          </p>
+          <p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
+            Upload an Assetto Corsa results file, or open a saved result from the sidebar.
           </p>
           <form class="my-4">
             <div class="flex items-center">
@@ -43,18 +128,22 @@
           </form>
         </div>
         <ResultsTable
-          v-if="uploaded && currentView === 'table'"
+          v-if="currentData && currentView === 'table'"
           ref="resultsTable"
           :race-data="settings"
+          :result-data="currentData"
           :current-result-id="currentResultId"
           :key="resultsTableKey"
           @save-result="saveResult"
         ></ResultsTable>
         <StandingsView
-          v-if="uploaded && currentView === 'standings'"
+          v-if="currentView === 'standings'"
           ref="standingsView"
+          :key="resultsTableKey"
           :saved-results="savedResults"
           :settings="settings"
+          :initial-adjustments="pointAdjustments"
+          @adjustments="saveAdjustments"
         ></StandingsView>
       </div>
     </div>
@@ -188,14 +277,32 @@ import { version } from '../package.json'
 import ResultsTable from './components/ResultsTable.vue'
 import SideNav from './components/SideNav.vue'
 import StandingsView from './components/StandingsView.vue'
+import { configured, rpc, WRONG_PASSWORD } from './db.js'
+
+const DEFAULT_SETTINGS = {
+  seriesTitle: 'CSRO Championship',
+  resultsTitle: '',
+  seriesLogo: null,
+  mainLogo: null,
+  enablePoints: false
+}
+
+// Keys from before data moved to Supabase; imported once, then removed
+const LEGACY_KEYS = ['CSRO_RESULT', 'CSRO_SAVED_RESULTS', 'CSRO_SETTINGS', 'CSRO_POINT_ADJUSTMENTS']
 
 export default {
   components: { ResultsTable, SideNav, StandingsView },
   data() {
     return {
-      jsonData: [],
-      uploaded: false,
-      settings: null,
+      // 'loading' | 'unconfigured' | 'setup' | 'locked' | 'ready'
+      authState: 'loading',
+      authForm: { password: '', confirm: '', error: '', busy: false },
+      password: localStorage.getItem('CSRO_PASSWORD'),
+      defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
+      currentData: null,
+      settings: { ...DEFAULT_SETTINGS },
+      settingsTimer: null,
+      pointAdjustments: {},
       resultsTableKey: 0,
       version: version,
       savedResults: [],
@@ -224,6 +331,124 @@ export default {
     }
   },
   methods: {
+    async init() {
+      if (!configured) {
+        this.authState = 'unconfigured'
+        return
+      }
+      try {
+        if (!(await rpc('csro_status'))) {
+          this.authState = 'setup'
+        } else if (this.password) {
+          await this.unlock(this.password)
+        } else {
+          this.authState = 'locked'
+        }
+      } catch (error) {
+        if (error.code === WRONG_PASSWORD) {
+          this.lock('The password has changed. Enter the new one.')
+        } else {
+          // Keep the remembered password; this is probably just the network
+          this.authForm.error = `Couldn't reach the database: ${error.message}`
+          this.authState = 'locked'
+        }
+      }
+    },
+    async submitAuth() {
+      const { password, confirm } = this.authForm
+      if (this.authState === 'setup') {
+        if (password.length < 8) {
+          this.authForm.error = 'Use at least 8 characters.'
+          return
+        }
+        if (password !== confirm) {
+          this.authForm.error = "The passwords don't match."
+          return
+        }
+      }
+      this.authForm.busy = true
+      this.authForm.error = ''
+      try {
+        if (this.authState === 'setup') await rpc('csro_setup', { p_password: password })
+        await this.unlock(password)
+        this.authForm = { password: '', confirm: '', error: '', busy: false }
+      } catch (error) {
+        this.authForm.busy = false
+        this.authForm.error =
+          error.code === WRONG_PASSWORD ? "That password isn't right." : error.message
+      }
+    },
+    async unlock(password) {
+      let workspace = await rpc('csro_load', { p_password: password })
+      this.password = password
+      localStorage.setItem('CSRO_PASSWORD', password)
+      if (await this.importLegacyData(workspace)) {
+        workspace = await rpc('csro_load', { p_password: password })
+      }
+      this.settings = { ...DEFAULT_SETTINGS, ...workspace.settings }
+      this.pointAdjustments = workspace.pointAdjustments
+      this.savedResults = workspace.results
+
+      // Reopen the result this device was last looking at
+      const lastId = localStorage.getItem('CSRO_CURRENT_RESULT_ID')
+      const last = this.savedResults.find((r) => r.id === lastId)
+      if (last && !this.currentData) this.openResult(last)
+      else this.currentResultId = last ? last.id : null
+      this.authState = 'ready'
+    },
+    lock(message = '') {
+      this.password = null
+      localStorage.removeItem('CSRO_PASSWORD')
+      this.currentData = null
+      this.savedResults = []
+      this.authForm = { password: '', confirm: '', error: message, busy: false }
+      this.authState = 'locked'
+    },
+    // Every write goes through here so a password changed elsewhere locks the app
+    async call(fn, args = {}) {
+      try {
+        return await rpc(fn, { p_password: this.password, ...args })
+      } catch (error) {
+        if (error.code === WRONG_PASSWORD) this.lock('The password has changed. Enter the new one.')
+        throw error
+      }
+    },
+    async importLegacyData(workspace) {
+      // One-time move of results saved in this browser before the Supabase
+      // switch. Local copies are only removed once every upload has succeeded.
+      const read = (key) => {
+        try {
+          return JSON.parse(localStorage.getItem(key))
+        } catch {
+          return null
+        }
+      }
+      const results = read('CSRO_SAVED_RESULTS') || []
+      const settings = read('CSRO_SETTINGS')
+      const adjustments = read('CSRO_POINT_ADJUSTMENTS')
+      const draft = read('CSRO_RESULT') // unsaved working copy
+      if (!results.length && !settings && !adjustments && !draft) return false
+
+      const taken = new Set(workspace.results.flatMap((r) => [r.id, r.name]))
+      for (const r of results) {
+        if (taken.has(r.id) || taken.has(r.name)) continue
+        await this.call('csro_save_result', {
+          p_id: r.id,
+          p_name: r.name,
+          p_data: this.trimResultData(r.data)
+        })
+      }
+      if (settings && !Object.keys(workspace.settings).length) {
+        await this.call('csro_save_settings', { p_settings: settings })
+      }
+      if (adjustments && !Object.keys(workspace.pointAdjustments).length) {
+        await this.call('csro_save_adjustments', { p_adjustments: adjustments })
+      }
+      LEGACY_KEYS.forEach((key) => localStorage.removeItem(key))
+      if (draft) this.currentData = this.trimResultData(draft)
+      this.showToast("Moved this browser's saved data to the database", 5000)
+      return true
+    },
     handleFileUpload(event) {
       const file = event.target.files[0]
 
@@ -232,15 +457,11 @@ export default {
 
         reader.onload = () => {
           try {
-            const fileData = JSON.parse(reader.result)
-            // Strip the heavy fields the app never reads before anything touches
-            // storage, so a single upload can't blow the ~5 MB localStorage cap.
-            this.jsonData = this.trimResultData(fileData)
-            this.saveDataToLocalStorage(this.jsonData)
-            this.currentResultId = null // New upload, not saved yet
-            localStorage.removeItem('CSRO_CURRENT_RESULT_ID')
+            // Strip the heavy fields the app never reads before anything is stored
+            this.currentData = this.trimResultData(JSON.parse(reader.result))
+            this.setCurrentResultId(null) // New upload, not saved yet
             this.currentView = 'table'
-            this.uploaded = true
+            this.resultsTableKey += 1
           } catch (error) {
             console.error('Error parsing JSON:', error)
             this.showToast("That file isn't valid Assetto Corsa results JSON.", 5000)
@@ -249,22 +470,10 @@ export default {
         reader.readAsText(file)
       }
     },
-    persist(key, value) {
-      // Centralised localStorage write that never fails silently.
-      // Returns true on success, false (with a loud report) on failure.
-      try {
-        localStorage.setItem(key, value)
-        return true
-      } catch (error) {
-        const approxMB = (value.length / 1024 / 1024).toFixed(2)
-        console.error(
-          `[CSRO] Failed to save "${key}" (${approxMB} MB). localStorage is likely full ` +
-            `(~5 MB cap). Error: ${error.name}`,
-          error
-        )
-        this.showToast('Storage is full — delete some saved results and try again.', 6000)
-        return false
-      }
+    setCurrentResultId(id) {
+      this.currentResultId = id
+      if (id) localStorage.setItem('CSRO_CURRENT_RESULT_ID', id)
+      else localStorage.removeItem('CSRO_CURRENT_RESULT_ID')
     },
     showToast(message, duration = 2500) {
       this.toast = message
@@ -276,7 +485,7 @@ export default {
     trimResultData(data) {
       // Keep only the fields the app actually reads. The raw Assetto Corsa JSON
       // carries Events, Penalties, per-lap Conditions/Sectors, session config,
-      // etc. — none of which are rendered — and those are what blow up storage.
+      // etc. — none of which are rendered.
       if (!data || typeof data !== 'object' || Array.isArray(data)) return data
       const trimCar = (c) => ({
         CarId: c.CarId,
@@ -303,76 +512,28 @@ export default {
         Laps: Array.isArray(data.Laps) ? data.Laps.map(trimLap) : data.Laps
       }
     },
-    compactStorage() {
-      // One-time cleanup of data saved before trimming existed, so the user
-      // doesn't have to re-upload everything. Idempotent: re-running is a no-op.
-      let before = 0
-      let after = 0
-
-      if (this.savedResults.length) {
-        const oldStr = JSON.stringify(this.savedResults)
-        const trimmed = this.savedResults.map((r) => ({
-          ...r,
-          data: this.trimResultData(r.data)
-        }))
-        const newStr = JSON.stringify(trimmed)
-        if (newStr.length < oldStr.length) {
-          before += oldStr.length
-          after += newStr.length
-          if (this.persist('CSRO_SAVED_RESULTS', newStr)) {
-            this.savedResults = trimmed
-          }
-        }
-      }
-
-      const current = localStorage.getItem('CSRO_RESULT')
-      if (current) {
-        try {
-          const newStr = JSON.stringify(this.trimResultData(JSON.parse(current)))
-          if (newStr.length < current.length) {
-            before += current.length
-            after += newStr.length
-            this.persist('CSRO_RESULT', newStr)
-          }
-        } catch (error) {
-          console.warn('[CSRO] Could not compact CSRO_RESULT:', error)
-        }
-      }
-
-      if (after && after < before) {
-        const saved = ((before - after) / 1024).toFixed(0)
-        console.info(
-          `[CSRO] Compacted storage: ${(before / 1024).toFixed(0)} KB → ` +
-            `${(after / 1024).toFixed(0)} KB (freed ${saved} KB)`
-        )
-        this.showToast(`Compacted storage, freed ${saved} KB`, 4000)
-      }
-    },
-    saveDataToLocalStorage(data) {
-      const jsonData = JSON.stringify(data)
-      this.persist('CSRO_RESULT', jsonData)
-    },
-    loadDataFromLocalStorage() {
-      const jsonData = localStorage.getItem('CSRO_RESULT')
-      if (jsonData) {
-        this.uploaded = true
-      }
-      // Load saved results
-      const savedResultsData = localStorage.getItem('CSRO_SAVED_RESULTS')
-      if (savedResultsData) {
-        this.savedResults = JSON.parse(savedResultsData)
-      }
-      // Restore currentResultId
-      const savedCurrentResultId = localStorage.getItem('CSRO_CURRENT_RESULT_ID')
-      if (savedCurrentResultId) {
-        this.currentResultId = savedCurrentResultId
-      }
-    },
-    updateResultsTable(data) {
+    updateSettings(data) {
       this.settings = data
       this.resultsTableKey += 1
+      // Settings change per keystroke; write once typing pauses
+      clearTimeout(this.settingsTimer)
+      this.settingsTimer = setTimeout(() => {
+        this.call('csro_save_settings', { p_settings: data }).catch((error) =>
+          this.showToast(`Couldn't save settings: ${error.message}`, 6000)
+        )
+      }, 800)
+    },
+    async saveAdjustments(adjustments) {
+      this.pointAdjustments = adjustments
+      try {
+        await this.call('csro_save_adjustments', { p_adjustments: adjustments })
+      } catch (error) {
+        this.showToast(`Couldn't save points: ${error.message}`, 6000)
+      }
     },
     saveResult(resultData) {
+      // Keep the edited copy as the working result even if the save is cancelled
+      this.currentData = resultData.data
       // Open the in-app naming modal. We deliberately avoid native prompt():
       // browsers can block page dialogs ("prevent this page from creating
       // additional dialogs"), which made saves vanish with no error.
@@ -392,7 +553,7 @@ export default {
     cancelSaveResult() {
       this.saveModal = { open: false, name: '', pending: null }
     },
-    confirmSaveResult() {
+    async confirmSaveResult() {
       const resultName = this.saveModal.name.trim()
       const resultData = this.saveModal.pending
       if (!resultName || !resultData) return
@@ -410,60 +571,70 @@ export default {
       const result = {
         id: resultId,
         name: resultName,
-        data: this.trimResultData(resultData.data),
+        // Snapshot, so later unsaved edits to the working copy don't leak into it
+        data: JSON.parse(JSON.stringify(this.trimResultData(resultData.data))),
         timestamp: Date.now()
       }
 
-      // Build the next state without mutating component state yet, so a failed
-      // persist leaves the in-memory list and storage in agreement.
+      try {
+        await this.call('csro_save_result', {
+          p_id: result.id,
+          p_name: result.name,
+          p_data: result.data
+        })
+      } catch (error) {
+        this.showToast(`Couldn't save “${resultName}”: ${error.message}`, 6000)
+        return
+      }
+
       const existingIndex = this.savedResults.findIndex((r) => r.id === result.id)
-      const nextResults =
+      this.savedResults =
         existingIndex !== -1
           ? this.savedResults.map((r, i) => (i === existingIndex ? result : r))
           : [...this.savedResults, result]
-
-      // Only commit if the write actually succeeded
-      if (!this.persist('CSRO_SAVED_RESULTS', JSON.stringify(nextResults))) return
-
-      this.savedResults = nextResults
-      this.currentResultId = result.id
+      this.setCurrentResultId(result.id)
       this.cancelSaveResult()
       this.showToast(`Saved “${resultName}”`)
     },
+    openResult(result) {
+      // Work on a copy so unsaved edits don't change the saved result
+      this.currentData = JSON.parse(JSON.stringify(result.data))
+      this.setCurrentResultId(result.id)
+      this.currentView = 'table'
+      this.resultsTableKey += 1
+    },
     loadSavedResult(resultId) {
       const result = this.savedResults.find((r) => r.id === resultId)
-      if (result) {
-        this.persist('CSRO_RESULT', JSON.stringify(result.data))
-        localStorage.setItem('CSRO_CURRENT_RESULT_ID', result.id)
-        this.currentResultId = result.id
-        this.currentView = 'table'
-        this.uploaded = true
-        this.resultsTableKey += 1
-        window.location.reload()
-      }
+      if (result) this.openResult(result)
+    },
+    newUpload() {
+      this.currentData = null
+      this.setCurrentResultId(null)
+      this.currentView = 'table'
     },
     deleteSavedResult(resultId) {
       const result = this.savedResults.find((r) => r.id === resultId)
       this.requestConfirm(
         {
           title: 'Delete result',
-          message: `Delete “${result ? result.name : 'this result'}”? This can't be undone.`,
+          message: `Delete “${result ? result.name : 'this result'}” for everyone? This can't be undone.`,
           confirmLabel: 'Delete',
           danger: true
         },
         () => this.performDeleteSavedResult(resultId)
       )
     },
-    performDeleteSavedResult(resultId) {
+    async performDeleteSavedResult(resultId) {
+      try {
+        await this.call('csro_delete_result', { p_id: resultId })
+      } catch (error) {
+        this.showToast(`Couldn't delete: ${error.message}`, 6000)
+        return
+      }
       this.savedResults = this.savedResults.filter((r) => r.id !== resultId)
-      this.persist('CSRO_SAVED_RESULTS', JSON.stringify(this.savedResults))
 
       // If deleting current result, clear the current data
-      if (this.currentResultId === resultId) {
-        this.currentResultId = null
-        localStorage.removeItem('CSRO_RESULT')
-        this.uploaded = false
-      }
+      if (this.currentResultId === resultId) this.newUpload()
 
       // Force update of standings view if currently viewing it
       if (this.currentView === 'standings') {
@@ -483,13 +654,18 @@ export default {
         {
           title: 'Reset everything',
           message:
-            'This permanently deletes all saved results, settings, and uploaded images. This cannot be undone.',
+            'This permanently deletes all saved results, settings, and uploaded images for every device. The password stays the same. This cannot be undone.',
           confirmLabel: 'Delete everything',
           danger: true
         },
-        () => {
-          localStorage.clear()
-          window.location.reload()
+        async () => {
+          try {
+            await this.call('csro_reset')
+            localStorage.removeItem('CSRO_CURRENT_RESULT_ID')
+            window.location.reload()
+          } catch (error) {
+            this.showToast(`Couldn't reset: ${error.message}`, 6000)
+          }
         }
       )
     },
@@ -538,9 +714,7 @@ export default {
     }
   },
   mounted() {
-    this.loadDataFromLocalStorage()
-    // Shrink anything saved before trimming existed (no re-upload needed)
-    this.compactStorage()
+    this.init()
   }
 }
 </script>

@@ -452,6 +452,11 @@ export default {
     currentResultId: {
       type: String,
       default: null
+    },
+    // App's working copy, edited in place so changes survive a re-render
+    resultData: {
+      type: Object,
+      default: null
     }
   },
   methods: {
@@ -610,20 +615,6 @@ export default {
       const formattedDate = `${formattedDay}-${formattedMonth}-${year}`
 
       return formattedDate
-    },
-    loadDataFromLocalStorage() {
-      const jsonData = localStorage.getItem('CSRO_RESULT')
-      if (jsonData) {
-        try {
-          this.tableData = JSON.parse(jsonData)
-        } catch (error) {
-          console.error('Error loading JSON from localStorage:', error)
-        }
-      }
-    },
-    saveDataToLocalStorage(data) {
-      const jsonData = JSON.stringify(data)
-      localStorage.setItem('CSRO_RESULT', jsonData)
     },
     isBestLap(currentBestLap) {
       // Only real laps can be the fastest. Without this, a field where nobody
@@ -857,7 +848,6 @@ export default {
       this.pendingEdits = moved
 
       this.tableData.Result = results
-      this.saveDataToLocalStorage(this.tableData)
     },
     handleDragEnd() {
       this.draggedIndex = null
@@ -927,9 +917,6 @@ export default {
           this.tableData.Cars[carIndex].Model = this.editForm.car
         }
       }
-
-      // Save to localStorage and emit save event
-      this.saveDataToLocalStorage(this.tableData)
 
       const date = this.formatDate(this.tableData.Date)
       const type = this.tableData.Type === 'QUALIFY' ? 'Qualifying' : 'Race'
@@ -1045,9 +1032,6 @@ export default {
       // Clear pending edits
       this.pendingEdits = {}
 
-      // Save to localStorage (current working copy)
-      this.saveDataToLocalStorage(this.tableData)
-
       // Generate suggested name based on date and type
       const date = this.formatDate(this.tableData.Date)
       const type = this.tableData.Type === 'QUALIFY' ? 'Qualifying' : 'Race'
@@ -1065,7 +1049,7 @@ export default {
     }
   },
   mounted() {
-    this.loadDataFromLocalStorage()
+    this.tableData = this.resultData
     if (this.raceData) {
       this.seriesTitle = this.raceData.seriesTitle
       this.resultsTitle = this.raceData.resultsTitle || ''
