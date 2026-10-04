@@ -191,6 +191,10 @@ import StandingsView from './components/StandingsView.vue'
 
 export default {
   components: { ResultsTable, SideNav, StandingsView },
+  // Children write through persist() too, so a full localStorage always shows a toast
+  provide() {
+    return { persist: this.persist }
+  },
   data() {
     return {
       jsonData: [],

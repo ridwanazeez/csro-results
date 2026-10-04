@@ -81,7 +81,7 @@
           </label>
           <button
             v-if="mainLogo"
-            @click="mainLogo = null; saveSettings()"
+            @click="((mainLogo = null), saveSettings())"
             class="ml-2 text-sm text-gray-300 hover:text-white underline"
           >
             Reset
@@ -199,6 +199,7 @@ export default {
       toggleDark
     }
   },
+  inject: ['persist'],
   props: {
     savedResults: {
       type: Array,
@@ -242,7 +243,7 @@ export default {
         enablePoints: this.enablePoints
       }
       // Save to localStorage
-      localStorage.setItem('CSRO_SETTINGS', JSON.stringify(settings))
+      this.persist('CSRO_SETTINGS', JSON.stringify(settings))
       // Emit to parent
       this.$emit('settings', settings)
     },

@@ -37,9 +37,17 @@
             v-if="driverStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
-            <RenderTable :table="cachedTables.driver" />
+            <RenderTable :table="cachedTables.driver" :remove="(row) => hideRow('driver', row)" />
           </table>
         </div>
+        <button
+          v-if="hiddenCount('driver')"
+          data-html2canvas-ignore
+          @click="restoreRows('driver')"
+          class="mt-2 text-sm text-blue-600 hover:underline dark:text-blue-400"
+        >
+          Restore {{ hiddenCount('driver') }} removed driver(s)
+        </button>
       </div>
 
       <!-- Team Standings -->
@@ -52,9 +60,17 @@
             v-if="teamStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
-            <RenderTable :table="cachedTables.team" />
+            <RenderTable :table="cachedTables.team" :remove="(row) => hideRow('team', row)" />
           </table>
         </div>
+        <button
+          v-if="hiddenCount('team')"
+          data-html2canvas-ignore
+          @click="restoreRows('team')"
+          class="mt-2 text-sm text-blue-600 hover:underline dark:text-blue-400"
+        >
+          Restore {{ hiddenCount('team') }} removed team(s)
+        </button>
       </div>
 
       <!-- Country Standings -->
@@ -67,9 +83,17 @@
             v-if="countryStandings.length > 0"
             class="w-full border-collapse bg-white dark:bg-gray-800 text-left text-sm text-gray-700 dark:text-gray-300"
           >
-            <RenderTable :table="cachedTables.country" />
+            <RenderTable :table="cachedTables.country" :remove="(row) => hideRow('country', row)" />
           </table>
         </div>
+        <button
+          v-if="hiddenCount('country')"
+          data-html2canvas-ignore
+          @click="restoreRows('country')"
+          class="mt-2 text-sm text-blue-600 hover:underline dark:text-blue-400"
+        >
+          Restore {{ hiddenCount('country') }} removed country(s)
+        </button>
       </div>
     </div>
   </div>
@@ -83,7 +107,8 @@ import { captureElement } from '@/screenshot'
 import { hasTime } from '@/time'
 
 const RenderTable = {
-  props: ['table'],
+  // remove(row): when given, each row gets a remove button (left out of screenshots)
+  props: ['table', 'remove'],
   render() {
     const table = this.table
     return [
@@ -94,22 +119,32 @@ const RenderTable = {
           h(
             'tr',
             { key: headerGroup.id },
-            headerGroup.headers.map((header) =>
-              h(
-                'th',
-                {
-                  key: header.id,
-                  class:
-                    'px-3 py-2 font-medium text-gray-900 dark:text-white text-center whitespace-nowrap'
-                },
-                [
-                  h(FlexRender, {
-                    render: header.column.columnDef.header,
-                    props: header.getContext()
-                  })
-                ]
+            headerGroup.headers
+              .map((header) =>
+                h(
+                  'th',
+                  {
+                    key: header.id,
+                    class:
+                      'px-3 py-2 font-medium text-gray-900 dark:text-white text-center whitespace-nowrap'
+                  },
+                  [
+                    h(FlexRender, {
+                      render: header.column.columnDef.header,
+                      props: header.getContext()
+                    })
+                  ]
+                )
               )
-            )
+              .concat(
+                this.remove
+                  ? h(
+                      'th',
+                      { 'data-html2canvas-ignore': '' },
+                      h('span', { class: 'sr-only' }, 'Remove')
+                    )
+                  : []
+              )
           )
         )
       ),
@@ -124,21 +159,42 @@ const RenderTable = {
             'tr',
             {
               key: row.id,
-              class: 'hover:bg-gray-50 dark:hover:bg-gray-700'
+              class: 'group/row hover:bg-gray-50 dark:hover:bg-gray-700'
             },
-            row.getAllCells().map((cell) =>
-              h(
-                'td',
-                {
-                  key: cell.id,
-                  class: 'px-3 py-2 dark:text-gray-300'
-                },
-                h(FlexRender, {
-                  render: cell.column.columnDef.cell,
-                  props: cell.getContext()
-                })
+            row
+              .getAllCells()
+              .map((cell) =>
+                h(
+                  'td',
+                  {
+                    key: cell.id,
+                    class: 'px-3 py-2 dark:text-gray-300'
+                  },
+                  h(FlexRender, {
+                    render: cell.column.columnDef.cell,
+                    props: cell.getContext()
+                  })
+                )
               )
-            )
+              .concat(
+                this.remove
+                  ? h(
+                      'td',
+                      { 'data-html2canvas-ignore': '' },
+                      h(
+                        'button',
+                        {
+                          onClick: () => this.remove(row.original),
+                          title: 'Remove row',
+                          'aria-label': `Remove ${row.original.name}`,
+                          class:
+                            'opacity-0 group-hover/row:opacity-100 focus:opacity-100 px-2 text-lg leading-none text-gray-400 hover:text-red-600 dark:hover:text-red-400'
+                        },
+                        '×'
+                      )
+                    )
+                  : []
+              )
           )
         )
       )
@@ -154,7 +210,9 @@ export default {
     return {
       defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
       // Manual corrections stored as deltas ("type:name" -> points) so later races still add on top
-      pointAdjustments: this.loadAdjustments(),
+      pointAdjustments: this.load('CSRO_POINT_ADJUSTMENTS', {}),
+      // Rows removed from the standings tables ("type:name")
+      hiddenRows: this.load('CSRO_HIDDEN_STANDINGS', []),
       cachedTables: {
         qualifying: [],
         race: [],
@@ -164,6 +222,7 @@ export default {
       }
     }
   },
+  inject: ['persist'],
   props: {
     savedResults: {
       type: Array,
@@ -211,6 +270,7 @@ export default {
           country: data.country
         }))
         .map((row) => this.applyAdjustment(row, 'driver'))
+        .filter((row) => !this.hiddenRows.includes(`driver:${row.name}`))
         .sort((a, b) => b.points - a.points)
     },
     teamStandings() {
@@ -238,6 +298,7 @@ export default {
       return Object.entries(teamPoints)
         .map(([name, points]) => ({ name, points }))
         .map((row) => this.applyAdjustment(row, 'team'))
+        .filter((row) => !this.hiddenRows.includes(`team:${row.name}`))
         .sort((a, b) => b.points - a.points)
     },
     countryStandings() {
@@ -266,6 +327,7 @@ export default {
       return Object.entries(countryPoints)
         .map(([name, points]) => ({ name, points }))
         .map((row) => this.applyAdjustment(row, 'country'))
+        .filter((row) => !this.hiddenRows.includes(`country:${row.name}`))
         .sort((a, b) => b.points - a.points)
     }
   },
@@ -555,12 +617,24 @@ export default {
         columns
       })
     },
-    loadAdjustments() {
+    load(key, fallback) {
       try {
-        return JSON.parse(localStorage.getItem('CSRO_POINT_ADJUSTMENTS')) || {}
+        return JSON.parse(localStorage.getItem(key)) || fallback
       } catch {
-        return {}
+        return fallback
       }
+    },
+    hiddenCount(type) {
+      return this.hiddenRows.filter((key) => key.startsWith(`${type}:`)).length
+    },
+    hideRow(type, row) {
+      this.saveHidden([...this.hiddenRows, `${type}:${row.name}`])
+    },
+    restoreRows(type) {
+      this.saveHidden(this.hiddenRows.filter((key) => !key.startsWith(`${type}:`)))
+    },
+    saveHidden(next) {
+      if (this.persist('CSRO_HIDDEN_STANDINGS', JSON.stringify(next))) this.hiddenRows = next
     },
     applyAdjustment(row, type) {
       const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0
@@ -568,6 +642,7 @@ export default {
     },
     editPoints(type, row, event) {
       const key = `${type}:${row.name}`
+      const previous = { ...this.pointAdjustments }
       const text = event.target.textContent.trim()
       const value = parseInt(text)
 
@@ -581,9 +656,12 @@ export default {
       } else {
         this.pointAdjustments[key] = value - row.basePoints
       }
+      // An unsaved edit must not stay on screen looking saved
+      if (!this.persist('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))) {
+        this.pointAdjustments = previous
+      }
       // Clearing to the calculated total may not change `points`, so restore the text directly
       event.target.textContent = row.basePoints + (this.pointAdjustments[key] || 0)
-      localStorage.setItem('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
