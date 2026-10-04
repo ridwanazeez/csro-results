@@ -213,9 +213,9 @@ export default {
     return {
       defaultLogo: import.meta.env.BASE_URL + 'images/csro-logo.png',
       // Manual corrections stored as deltas ("type:name" -> points) so later races still add on top
-      pointAdjustments: this.load('CSRO_POINT_ADJUSTMENTS', {}),
+      pointAdjustments: { ...this.initialAdjustments },
       // Rows removed from the standings tables ("type:name")
-      hiddenRows: this.load('CSRO_HIDDEN_STANDINGS', []),
+      hiddenRows: [...this.initialHidden],
       cachedTables: {
         qualifying: [],
         race: [],
@@ -225,7 +225,6 @@ export default {
       }
     }
   },
-  inject: ['persist'],
   props: {
     savedResults: {
       type: Array,
@@ -234,6 +233,14 @@ export default {
     settings: {
       type: Object,
       default: null
+    },
+    initialHidden: {
+      type: Array,
+      default: () => []
+    },
+    initialAdjustments: {
+      type: Object,
+      default: () => ({})
     }
   },
   computed: {
@@ -620,13 +627,6 @@ export default {
         columns
       })
     },
-    load(key, fallback) {
-      try {
-        return JSON.parse(localStorage.getItem(key)) || fallback
-      } catch {
-        return fallback
-      }
-    },
     hiddenCount(type) {
       return this.hiddenRows.filter((key) => key.startsWith(`${type}:`)).length
     },
@@ -637,7 +637,8 @@ export default {
       this.saveHidden(this.hiddenRows.filter((key) => !key.startsWith(`${type}:`)))
     },
     saveHidden(next) {
-      if (this.persist('CSRO_HIDDEN_STANDINGS', JSON.stringify(next))) this.hiddenRows = next
+      this.hiddenRows = next
+      this.$emit('hidden', next)
     },
     applyAdjustment(row, type) {
       const adjustment = this.pointAdjustments[`${type}:${row.name}`] || 0
@@ -646,7 +647,6 @@ export default {
     },
     editPoints(type, row, event) {
       const key = `${type}:${row.name}`
-      const previous = { ...this.pointAdjustments }
       const text = event.target.textContent.trim()
       const value = Number(text)
 
@@ -660,12 +660,9 @@ export default {
       } else {
         this.pointAdjustments[key] = round2(value - row.basePoints)
       }
-      // An unsaved edit must not stay on screen looking saved
-      if (!this.persist('CSRO_POINT_ADJUSTMENTS', JSON.stringify(this.pointAdjustments))) {
-        this.pointAdjustments = previous
-      }
       // Clearing to the calculated total may not change `points`, so restore the text directly
       event.target.textContent = round2(row.basePoints + (this.pointAdjustments[key] || 0))
+      this.$emit('adjustments', { ...this.pointAdjustments })
     },
     calculatePoints(position) {
       const pointsTable = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
