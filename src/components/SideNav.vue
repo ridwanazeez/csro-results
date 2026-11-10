@@ -49,12 +49,12 @@
           ></textarea>
         </div>
         <div class="mb-4">
-          <label for="resultsTitle" class="block text-sm font-medium leading-6 text-white"
-            >Results Title</label
-          >
+          <label for="resultsTitle" class="block text-sm font-medium leading-6 text-white">{{
+            currentView === 'standings' ? 'Standings Title' : 'Results Title'
+          }}</label>
           <input
             id="resultsTitle"
-            v-model="resultsTitle"
+            v-model="pageTitle"
             @input="saveSettings"
             name="resultsTitle"
             type="text"
@@ -214,9 +214,21 @@ export default {
     return {
       seriesTitle: '2023 CSRO Championship',
       resultsTitle: '',
+      standingsTitle: '',
       seriesLogo: null,
       mainLogo: null,
       enablePoints: false
+    }
+  },
+  computed: {
+    // Standings keeps its own title so race results don't overwrite it
+    pageTitle: {
+      get() {
+        return this.currentView === 'standings' ? this.standingsTitle : this.resultsTitle
+      },
+      set(value) {
+        this[this.currentView === 'standings' ? 'standingsTitle' : 'resultsTitle'] = value
+      }
     }
   },
   methods: {
@@ -238,6 +250,7 @@ export default {
       const settings = {
         seriesTitle: this.seriesTitle,
         resultsTitle: this.resultsTitle,
+        standingsTitle: this.standingsTitle,
         seriesLogo: this.seriesLogo,
         mainLogo: this.mainLogo,
         enablePoints: this.enablePoints
@@ -253,6 +266,7 @@ export default {
         const settings = JSON.parse(savedSettings)
         this.seriesTitle = settings.seriesTitle || 'CSRO Championship'
         this.resultsTitle = settings.resultsTitle || ''
+        this.standingsTitle = settings.standingsTitle || ''
         this.seriesLogo = settings.seriesLogo || null
         this.mainLogo = settings.mainLogo || null
         this.enablePoints = settings.enablePoints || false
