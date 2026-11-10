@@ -60,12 +60,12 @@
           ></textarea>
         </div>
         <div class="mb-4">
-          <label for="resultsTitle" class="block text-sm font-medium leading-6 text-white"
-            >Results Title</label
-          >
+          <label for="resultsTitle" class="block text-sm font-medium leading-6 text-white">{{
+            currentView === 'standings' ? 'Standings Title' : 'Results Title'
+          }}</label>
           <input
             id="resultsTitle"
-            v-model="resultsTitle"
+            v-model="pageTitle"
             @input="saveSettings"
             name="resultsTitle"
             type="text"
@@ -239,9 +239,21 @@ export default {
     return {
       seriesTitle: this.settings.seriesTitle,
       resultsTitle: this.settings.resultsTitle,
+      standingsTitle: this.settings.standingsTitle,
       seriesLogo: this.settings.seriesLogo,
       mainLogo: this.settings.mainLogo,
       enablePoints: this.settings.enablePoints
+    }
+  },
+  computed: {
+    // Standings keeps its own title so race results don't overwrite it
+    pageTitle: {
+      get() {
+        return this.currentView === 'standings' ? this.standingsTitle : this.resultsTitle
+      },
+      set(value) {
+        this[this.currentView === 'standings' ? 'standingsTitle' : 'resultsTitle'] = value
+      }
     }
   },
   methods: {
@@ -263,6 +275,7 @@ export default {
       const settings = {
         seriesTitle: this.seriesTitle,
         resultsTitle: this.resultsTitle,
+        standingsTitle: this.standingsTitle,
         seriesLogo: this.seriesLogo,
         mainLogo: this.mainLogo,
         enablePoints: this.enablePoints

@@ -23,7 +23,7 @@
         <h1
           class="items-center text-2xl font-bold tracking-tight text-black dark:text-white sm:text-3xl"
         >
-          {{ settings?.resultsTitle || 'Standings' }}
+          {{ settings?.standingsTitle || 'Standings' }}
         </h1>
       </div>
 

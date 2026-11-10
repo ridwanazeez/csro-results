@@ -361,6 +361,7 @@ import { configured, EVENT_GONE, rpc, WRONG_PASSWORD } from './db.js'
 const DEFAULT_SETTINGS = {
   seriesTitle: 'CSRO Championship',
   resultsTitle: '',
+  standingsTitle: '',
   seriesLogo: null,
   mainLogo: null,
   enablePoints: false
